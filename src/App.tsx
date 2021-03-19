@@ -1,6 +1,7 @@
+import React from 'react';
 import './App.css';
-import Header from './Header.js';
-import Technologies from './Technologies.js';
+import Header from "./Header";
+import Technologies from "./Technologies";
 
 const App = () => {
   return (
@@ -9,5 +10,6 @@ const App = () => {
       <Technologies />
     </div>);
 }
+
 
 export default App;
