@@ -6,7 +6,7 @@ export type PostType = {
   likesCount: number
 }
 
-const Post = (props:PostType) => {
+const Post: React.FC<PostType> = (props) => {
 
   return (
     <div>
