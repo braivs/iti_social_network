@@ -17,13 +17,11 @@ a {
   "n c";
   grid-template-rows: 100px 1fr;
   grid-template-columns: 2fr 10fr;
-  /*grid-gap: 10px;*/
 }
 
 .header {
   grid-area: h;
   background-color: darkorange;
-  /*height: 100px;*/
 }
 
 .header img {
