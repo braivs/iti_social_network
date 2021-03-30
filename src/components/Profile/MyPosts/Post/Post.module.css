@@ -1,0 +1,9 @@
+.item {
+  color: aqua;
+  display: flex;
+  align-items: center;
+}
+
+.item img {
+  width: 80px;
+}
