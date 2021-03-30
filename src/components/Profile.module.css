@@ -1,0 +1,12 @@
+.content img {
+  width: 800px;
+}
+
+.content {
+  grid-area: c;
+  background-color: darkgoldenrod;
+}
+
+.item {
+  color: aqua;
+}

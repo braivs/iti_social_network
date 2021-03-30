@@ -5,7 +5,6 @@
 
 a {
   text-decoration: none;
-  color: white;
 }
 
 .appWrapper {
@@ -17,28 +16,4 @@ a {
   "n c";
   grid-template-rows: 100px 1fr;
   grid-template-columns: 2fr 10fr;
-}
-
-.header {
-  grid-area: h;
-  background-color: darkorange;
-}
-
-.header img {
-  width: 100px;
-}
-
-.content img {
-  width: 800px;
-}
-
-.nav {
-  grid-area: n;
-  background-color: coral;
-  color: white;
-}
-
-.content {
-  grid-area: c;
-  background-color: darkgoldenrod;
 }
