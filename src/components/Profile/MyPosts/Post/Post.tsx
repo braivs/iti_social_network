@@ -11,8 +11,10 @@ const Post: React.FC<PostType> = (props) => {
     <div>
       <div className={s.item}>
         <img src={process.env.PUBLIC_URL + '/img/ava.png'} alt=""/>
-        <div className={s.text}>{props.message}</div>
-        <div className={s.likes}>Likes: {props.likesCount}</div>
+        <div>
+          <div className={s.text}>{props.message}</div>
+          <div className={s.likes}>Likes: {props.likesCount}</div>
+        </div>
       </div>
       <span>like</span>
     </div>
