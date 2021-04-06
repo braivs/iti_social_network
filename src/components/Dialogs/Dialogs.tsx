@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import s from './Dialogs.module.css'
 
 const Dialogs = () => {
@@ -6,18 +7,19 @@ const Dialogs = () => {
     <div className={s.dialogs}>
       <div className={s.dialogItems}>
         <div className={s.dialog + ' ' + s.active}>
-          Briws
+          <NavLink to={'/dialogs/1'}>Briws</NavLink>
         </div>
         <div className={s.dialog}>
-          Masha
+          <NavLink to={'/dialogs/2'}>Masha</NavLink>
         </div>
         <div className={s.dialog}>
-          Lera
+          <NavLink to={'/dialogs/3'}>Lera</NavLink>
         </div>
         <div className={s.dialog}>
-          Liza
-        </div><div className={s.dialog}>
-          Diana
+          <NavLink to={'/dialogs/4'}>Liza</NavLink>
+        </div>
+        <div className={s.dialog}>
+          <NavLink to={'/dialogs/5'}>Diana</NavLink>
         </div>
       </div>
       <div className={s.messages}>
