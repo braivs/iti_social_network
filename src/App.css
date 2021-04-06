@@ -3,10 +3,6 @@
   font-size: 25px;
 }
 
-a {
-  text-decoration: none;
-}
-
 .app-wrapper {
   margin: 0 auto;
   display: grid;
