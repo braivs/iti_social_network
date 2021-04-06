@@ -7,7 +7,6 @@ export type PostType = {
 }
 
 const Post: React.FC<PostType> = (props) => {
-
   return (
     <div>
       <div className={s.item}>
