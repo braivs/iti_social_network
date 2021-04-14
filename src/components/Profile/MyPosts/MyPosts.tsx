@@ -4,12 +4,14 @@ import s from './MyPost.module.css'
 
 const MyPosts = () => {
 
-  let postData = [
+  let posts = [
     {id: 1, message: 'I will be React Developer', likesCount: 12},
-    {id: 2, message: 'It\'s my first post', likesCount: 11}
+    {id: 2, message: 'It\'s my first post', likesCount: 11},
+    {id: 3, message: 'Bugaga', likesCount: 5},
+    {id: 4, message: 'Dada', likesCount: 1}
   ]
 
-  let postElements = postData.map( p => (<Post message={p.message} likesCount={p.likesCount} />))
+  let postElements = posts.map( p => <Post message={p.message} likesCount={p.likesCount} />)
 
   return (
     <div className={s.postsBlock}>

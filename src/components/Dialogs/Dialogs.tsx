@@ -26,7 +26,7 @@ const Message: React.FC<MessageType> = (props) => {
 
 const Dialogs = () => {
 
-  let dialogsData = [
+  let dialogs = [
     {id: 1,name: 'BriWS'},
     {id: 2,name: 'Masha'},
     {id: 3,name: 'Lera'},
@@ -34,18 +34,17 @@ const Dialogs = () => {
     {id: 5,name: 'Diana'},
     {id: 6,name: 'Kristina'}
   ]
- let dialogsElements = dialogsData.map(d => (<DialogItem id={d.id} name={d.name}/>))
-
-  let messagesData = [
+  let messages = [
     {id: 1, message: 'Hello'},
     {id: 2, message: 'Namaskar'},
     {id: 3, message: 'Namaste'},
     {id: 4, message: 'Love'},
     {id: 5, message: 'Peace'},
-    {id: 6, message: 'Yo'},
+    {id: 6, message: 'We all one'},
   ]
 
-  let messagesElements = messagesData.map(m => (<Message message={m.message} />) )
+ let dialogsElements = dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
+ let messagesElements = messages.map(m => <Message message={m.message} /> )
 
   return (
     <div className={s.dialogs}>
