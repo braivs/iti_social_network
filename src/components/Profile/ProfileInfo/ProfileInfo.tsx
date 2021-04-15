@@ -1,15 +1,15 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
-import {profileInfoDataType} from '../../../index';
+import {topType} from '../../../redux/state';
 
 type ProfileInfoType = {
-  profileInfoData: profileInfoDataType
+  top: topType
 }
 
 export const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
   return (
     <>
-      <img src={props.profileInfoData.imgSrc} alt=""/>
+      <img src={props.top.imgSrc} alt=""/>
       <div className={s.descriptionBlock}>
         ava + description
       </div>
