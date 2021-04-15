@@ -1,6 +1,7 @@
 * {
   font-family: sans-serif;
   font-size: 25px;
+  box-sizing: border-box;
 }
 
 .app-wrapper {

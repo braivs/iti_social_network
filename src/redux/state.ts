@@ -5,6 +5,8 @@ type dialogsType = {
 type messagesType = {
   id: number
   message: string
+  author: string
+  avatar: string
 }
 export type dialogsPageType = {
   dialogs: Array<dialogsType>
@@ -26,9 +28,18 @@ export type profilePageType = {
   posts: Array<postsType>
 }
 
+type friendsType = {
+  name: string,
+  avatar: string
+}
+export type sidebarType = {
+  friends: Array<friendsType>
+}
+
 export  type stateType = {
   dialogsPage: dialogsPageType
   profilePage: profilePageType
+  sidebar: sidebarType
 }
 
 let state: stateType = {
@@ -42,12 +53,12 @@ let state: stateType = {
       {id: 6, name: 'Kristina'}
     ],
     messages: [
-      {id: 1, message: 'Hello'},
-      {id: 2, message: 'Namaskar'},
-      {id: 3, message: 'Namaste'},
-      {id: 4, message: 'Love'},
-      {id: 5, message: 'Peace'},
-      {id: 6, message: 'We all one'}
+      {id: 1, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Masha', avatar: 'img/ava.png'},
+      {id: 2, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Briws', avatar: 'img/ava.png'},
+      {id: 3, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Lera', avatar: 'img/ava.png'},
+      {id: 4, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Liza', avatar: 'img/ava.png'},
+      {id: 5, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Kristina', avatar: 'img/ava.png'},
+      {id: 6, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Diana', avatar: 'img/ava.png'}
     ]
   },
   profilePage: {
@@ -62,7 +73,16 @@ let state: stateType = {
       {id: 3, message: 'Bugaga', likesCount: 5},
       {id: 4, message: 'Dada', likesCount: 1}
     ]
+  },
+  sidebar: {
+    friends: [
+      { name: 'Liza', avatar: 'img/ava.png' },
+      { name: 'Masha', avatar: 'img/ava.png' },
+      { name: 'Diana', avatar: 'img/ava.png' }
+    ]
   }
 }
+
+
 
 export default state;

@@ -19,7 +19,7 @@ const App:React.FC<AppType> = (props) => {
     <BrowserRouter>
       <div className={'app-wrapper'}>
         <Header/>
-        <Navbar/>
+        <Navbar sidebar={props.state.sidebar}/>
         <div className={'app-wrapper-content'}>
           <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} />}/>
           <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage}/>}/>

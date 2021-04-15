@@ -1,0 +1,32 @@
+.navbarContainer {
+  background-color: coral;
+  h3 {
+    color: white;
+    font-size: 40px;
+    padding-left: 20px;
+    font-weight: lighter;
+  }
+  .nav {
+    padding: 10px 20px;
+
+    .item {
+      color: white;
+
+      a {
+        text-decoration: none;
+        color: white;
+
+        &.active {
+          color: gold;
+        }
+      }
+    }
+  }
+  .friends {
+    .friendsContainer {
+      margin: 0 10px 0 10px;
+      display: flex;
+    }
+  }
+
+}
