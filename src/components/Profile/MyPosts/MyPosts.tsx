@@ -1,7 +1,7 @@
 import React from 'react';
 import Post from './Post/Post';
 import s from './MyPost.module.css'
-import {postsType} from '../Profile';
+import {postsType} from '../../../index';
 
 type MyPostsPropsType = {
   posts: Array<postsType>
