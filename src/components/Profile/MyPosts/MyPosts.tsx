@@ -8,15 +8,28 @@ type MyPostsPropsType = {
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
+  let postElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
 
-  let postElements = props.posts.map( p => <Post message={p.message} likesCount={p.likesCount} />)
+  let newPostElement = React.createRef<HTMLTextAreaElement>();
+
+  let addPost = () => {
+    debugger
+    let text = newPostElement.current?.value
+    // current - ссылается на нативный html элемент
+    alert(text)
+
+  }
 
   return (
     <div className={s.postsBlock}>
       <h3>My posts</h3>
       <div>
-        <div><textarea/></div>
-        <div><button>Add post</button></div>
+        <div>
+          <textarea ref={newPostElement}/>
+        </div>
+        <div>
+          <button onClick={addPost}>Add post</button>
+        </div>
       </div>
       <div>
         <div className={s.posts}>
