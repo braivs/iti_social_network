@@ -53,10 +53,10 @@ let state: stateType = {
       {id: 6, name: 'Kristina'}
     ],
     messages: [
-      {id: 1, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Masha', avatar: 'img/ava.png'},
-      {id: 2, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Briws', avatar: 'img/ava.png'},
-      {id: 3, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Lera', avatar: 'img/ava.png'},
-      {id: 4, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Liza', avatar: 'img/ava.png'}
+      {id: 1, message: 'Lorem ipsum dolor sit amet', author: 'Masha', avatar: 'img/ava.png'},
+      {id: 2, message: 'Lorem ipsum dolor sit amet', author: 'Briws', avatar: 'img/ava.png'},
+      {id: 3, message: 'Lorem ipsum dolor sit amet', author: 'Lera', avatar: 'img/ava.png'},
+      {id: 4, message: 'Lorem ipsum dolor sit amet', author: 'Liza', avatar: 'img/ava.png'}
     ]
   },
   profilePage: {
@@ -88,6 +88,17 @@ export const addPost = (postMessage: string) => {
     likesCount: 0
   };
   state.profilePage.posts.push(newPost);
+}
+
+export const addMessage = (messageAuthor: string, messageText: string) => {
+  debugger
+  const newMessage: messagesType = {
+    id: new Date().getTime(),
+    message: messageText,
+    author: messageAuthor,
+    avatar: 'img/ava.png'
+  };
+  state.dialogsPage.messages.push(newMessage);
 }
 
 export default state;

@@ -6,6 +6,7 @@ import {dialogsPageType} from '../../redux/state';
 
 type DialogsType = {
   dialogsPage: dialogsPageType
+  addMessage : (messageAuthor: string, messageText: string) => void
 }
 
 const Dialogs:React.FC<DialogsType> = (props) => {
@@ -16,10 +17,13 @@ const Dialogs:React.FC<DialogsType> = (props) => {
             avatar={m.avatar}
    />)
 
+  let newAuthorElement = React.createRef<HTMLTextAreaElement>();
   let newMessageElement = React.createRef<HTMLTextAreaElement>();
   let addMessage = () => {
-    let text = newMessageElement.current?.value
-    alert(text)
+    if (newAuthorElement.current && newMessageElement.current) {
+      props.addMessage(newAuthorElement.current.value, newMessageElement.current.value)
+
+    }
   }
 
   return (
@@ -29,9 +33,19 @@ const Dialogs:React.FC<DialogsType> = (props) => {
       </div>
       <div className={s.messages}>
         { messagesElements }
-        <textarea ref={newMessageElement}/>
-        <button onClick={addMessage}>Add message</button>
+        <div className={s.newMessageContainer}>
+          <div className={s.newMessageAuthor}>
+            <div>Author:</div>
+            <textarea ref={newAuthorElement}/>
+          </div>
+          <div className={s.newMessageText}>
+            <div>Text:</div>
+            <textarea ref={newMessageElement}/>
+          </div>
+          <button onClick={addMessage}>Add message</button>
+        </div>
       </div>
+
       <div>
       </div>
     </div>
