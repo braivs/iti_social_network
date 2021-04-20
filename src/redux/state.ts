@@ -12,7 +12,6 @@ export type dialogsPageType = {
   dialogs: Array<dialogsType>
   messages: Array<messagesType>
 }
-
 export type topType = {
   imgSrc: string
   imgAlt: string
@@ -27,7 +26,6 @@ export type profilePageType = {
   top: topType
   posts: Array<postsType>
 }
-
 type friendsType = {
   name: string,
   avatar: string
@@ -35,7 +33,6 @@ type friendsType = {
 export type sidebarType = {
   friends: Array<friendsType>
 }
-
 export  type stateType = {
   dialogsPage: dialogsPageType
   profilePage: profilePageType
@@ -89,7 +86,6 @@ export const addPost = (postMessage: string) => {
   };
   state.profilePage.posts.push(newPost);
 }
-
 export const addMessage = (messageAuthor: string, messageText: string) => {
   debugger
   const newMessage: messagesType = {
