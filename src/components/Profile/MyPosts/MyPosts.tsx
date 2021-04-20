@@ -11,13 +11,9 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   let postElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
 
   let newPostElement = React.createRef<HTMLTextAreaElement>();
-
   let addPost = () => {
-    debugger
-    let text = newPostElement.current?.value
-    // current - ссылается на нативный html элемент
+    let text = newPostElement.current?.value // current - ссылается на нативный html элемент
     alert(text)
-
   }
 
   return (

@@ -7,6 +7,8 @@ type MessageType = {
   avatar: string
 }
 export const Message: React.FC<MessageType> = (props) => {
+
+
   return <div className={s.messagesContainer}>
     <div className={s.left}>
       <img src={props.avatar} alt=""/>

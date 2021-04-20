@@ -56,9 +56,7 @@ let state: stateType = {
       {id: 1, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Masha', avatar: 'img/ava.png'},
       {id: 2, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Briws', avatar: 'img/ava.png'},
       {id: 3, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Lera', avatar: 'img/ava.png'},
-      {id: 4, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Liza', avatar: 'img/ava.png'},
-      {id: 5, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Kristina', avatar: 'img/ava.png'},
-      {id: 6, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Diana', avatar: 'img/ava.png'}
+      {id: 4, message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, sunt!', author: 'Liza', avatar: 'img/ava.png'}
     ]
   },
   profilePage: {
