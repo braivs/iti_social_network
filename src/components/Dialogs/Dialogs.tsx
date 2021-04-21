@@ -22,7 +22,8 @@ const Dialogs:React.FC<DialogsType> = (props) => {
   let addMessage = () => {
     if (newAuthorElement.current && newMessageElement.current) {
       props.addMessage(newAuthorElement.current.value, newMessageElement.current.value)
-
+      newAuthorElement.current.value = '';
+      newMessageElement.current.value = '';
     }
   }
 

@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from '../render';
+
 type dialogsType = {
   id: number
   name: string
@@ -39,7 +41,7 @@ export  type stateType = {
   sidebar: sidebarType
 }
 
-let state: stateType = {
+export let state: stateType = {
   dialogsPage: {
     dialogs: [
       {id: 1, name: 'Briws'},
@@ -85,6 +87,7 @@ export const addPost = (postMessage: string) => {
     likesCount: 0
   };
   state.profilePage.posts.push(newPost);
+  rerenderEntireTree(state);
 }
 export const addMessage = (messageAuthor: string, messageText: string) => {
   debugger
@@ -95,6 +98,7 @@ export const addMessage = (messageAuthor: string, messageText: string) => {
     avatar: 'img/ava.png'
   };
   state.dialogsPage.messages.push(newMessage);
+  rerenderEntireTree(state);
 }
 
 export default state;

@@ -13,7 +13,10 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
   let newPostElement = React.createRef<HTMLTextAreaElement>();
   let addPost = () => {
-    if (newPostElement.current) props.addPost(newPostElement.current.value) // current - ссылается на нативный html элемент
+    if (newPostElement.current) {
+      props.addPost(newPostElement.current.value) // current - ссылается на нативный html элемент
+      newPostElement.current.value = '';
+    }
   }
 
   return (
