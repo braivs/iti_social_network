@@ -27,6 +27,7 @@ export type postsType = {
 export type profilePageType = {
   top: topType
   posts: Array<postsType>
+  newPostText: string
 }
 type friendsType = {
   name: string,
@@ -69,7 +70,8 @@ export let state: stateType = {
       {id: 2, message: 'It\'s my first post', likesCount: 11},
       {id: 3, message: 'Bugaga', likesCount: 5},
       {id: 4, message: 'Dada', likesCount: 1}
-    ]
+    ],
+    newPostText: 'briws.ru'
   },
   sidebar: {
     friends: [
