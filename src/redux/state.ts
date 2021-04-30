@@ -13,6 +13,8 @@ type messagesType = {
 export type dialogsPageType = {
   dialogs: Array<dialogsType>
   messages: Array<messagesType>
+  newMessageAuthor: string
+  newMessageText: string
 }
 export type topType = {
   imgSrc: string
@@ -57,7 +59,9 @@ export let state: stateType = {
       {id: 2, message: 'Lorem ipsum dolor sit amet', author: 'Briws', avatar: 'img/ava.png'},
       {id: 3, message: 'Lorem ipsum dolor sit amet', author: 'Lera', avatar: 'img/ava.png'},
       {id: 4, message: 'Lorem ipsum dolor sit amet', author: 'Liza', avatar: 'img/ava.png'}
-    ]
+    ],
+    newMessageAuthor: 'Briws',
+    newMessageText: 'Hellooo'
   },
   profilePage: {
     top: {
@@ -85,7 +89,6 @@ export let state: stateType = {
 // @ts-ignore
 window.state = state;
 
-
 export const addPost = () => {
   const newPost: postsType = {
     id: new Date().getTime(),
@@ -97,20 +100,32 @@ export const addPost = () => {
   rerenderEntireTree(state);
 }
 
-export const addMessage = (messageAuthor: string, messageText: string) => {
+export const addMessage = () => {
   debugger
   const newMessage: messagesType = {
     id: new Date().getTime(),
-    message: messageText,
-    author: messageAuthor,
+    message: state.dialogsPage.newMessageText,
+    author: state.dialogsPage.newMessageAuthor,
     avatar: 'img/ava.png'
   };
   state.dialogsPage.messages.push(newMessage);
+  state.dialogsPage.newMessageText = '';
+  state.dialogsPage.newMessageAuthor = '';
   rerenderEntireTree(state);
 }
 
 export const updateNewPostText = (newText: string) => {
   state.profilePage.newPostText = newText;
+  rerenderEntireTree(state);
+}
+
+export const updateNewMessageAuthor = (newAuthor: string) => {
+  state.dialogsPage.newMessageAuthor = newAuthor;
+  rerenderEntireTree(state);
+}
+
+export const updateNewMessageText = (newText: string) => {
+  state.dialogsPage.newMessageText = newText;
   rerenderEntireTree(state);
 }
 

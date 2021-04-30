@@ -6,7 +6,9 @@ import {dialogsPageType} from '../../redux/state';
 
 type DialogsType = {
   dialogsPage: dialogsPageType
-  addMessage : (messageAuthor: string, messageText: string) => void
+  addMessage : () => void
+  updateNewMessageAuthor: (newAuthor: string) => void
+  updateNewMessageText: (newText: string) => void
 }
 
 const Dialogs:React.FC<DialogsType> = (props) => {
@@ -20,10 +22,19 @@ const Dialogs:React.FC<DialogsType> = (props) => {
   let newAuthorElement = React.createRef<HTMLTextAreaElement>();
   let newMessageElement = React.createRef<HTMLTextAreaElement>();
   let addMessage = () => {
-    if (newAuthorElement.current && newMessageElement.current) {
-      props.addMessage(newAuthorElement.current.value, newMessageElement.current.value)
-      newAuthorElement.current.value = '';
-      newMessageElement.current.value = '';
+      props.addMessage()
+  }
+
+  const onMessageAuthorChange = () => {
+    if (newAuthorElement.current) {
+      let author = newAuthorElement.current.value;
+      props.updateNewMessageAuthor(author)
+    }
+  }
+  const onMessageTextChange = () => {
+    if (newMessageElement.current) {
+      let text = newMessageElement.current.value;
+      props.updateNewMessageText(text)
     }
   }
 
@@ -37,11 +48,11 @@ const Dialogs:React.FC<DialogsType> = (props) => {
         <div className={s.newMessageContainer}>
           <div className={s.newMessageAuthor}>
             <div>Author:</div>
-            <textarea ref={newAuthorElement}/>
+            <textarea onChange={onMessageAuthorChange} ref={newAuthorElement} value={props.dialogsPage.newMessageAuthor}/>
           </div>
           <div className={s.newMessageText}>
             <div>Text:</div>
-            <textarea ref={newMessageElement}/>
+            <textarea onChange={onMessageTextChange} ref={newMessageElement} value={props.dialogsPage.newMessageText}/>
           </div>
           <button onClick={addMessage}>Add message</button>
         </div>

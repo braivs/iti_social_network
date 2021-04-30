@@ -13,8 +13,10 @@ import {stateType} from './redux/state';
 type AppType = {
   state: stateType
   addPost: () => void
-  addMessage: (messageAuthor: string, messageText: string) => void
+  addMessage: () => void
   updateNewPostText: (newText: string) => void
+  updateNewMessageAuthor: (newAuthor: string) => void
+  updateNewMessageText: (newText: string) => void
 }
 
 const App: React.FC<AppType> = (props) => {
@@ -26,6 +28,8 @@ const App: React.FC<AppType> = (props) => {
         <Route path="/dialogs" render={() => <Dialogs
           dialogsPage={props.state.dialogsPage}
           addMessage={props.addMessage}
+          updateNewMessageAuthor={props.updateNewMessageAuthor}
+          updateNewMessageText={props.updateNewMessageText}
         />}/>
         <Route path="/profile"
                render={() => <Profile
