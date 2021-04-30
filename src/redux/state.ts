@@ -86,13 +86,14 @@ export let state: stateType = {
 window.state = state;
 
 
-export const addPost = (postMessage: string) => {
+export const addPost = () => {
   const newPost: postsType = {
     id: new Date().getTime(),
-    message: postMessage,
+    message: state.profilePage.newPostText,
     likesCount: 0
   };
   state.profilePage.posts.push(newPost);
+  state.profilePage.newPostText = '';
   rerenderEntireTree(state);
 }
 

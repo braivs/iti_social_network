@@ -5,7 +5,7 @@ import {postsType} from '../../../redux/state';
 
 type MyPostsPropsType = {
   posts: Array<postsType>
-  addPost : (postMessage: string) => void
+  addPost: () => void
   newPostText: string
   updateNewPostText: (newText: string) => void
 }
@@ -15,15 +15,11 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
   let newPostElement = React.createRef<HTMLTextAreaElement>();
   let addPost = () => {
-    if (newPostElement.current) {
-      let text = newPostElement.current.value; // current - ссылается на нативный html элемент
-      props.addPost(text);
-      props.updateNewPostText('');
-    }
+    props.addPost();
   }
 
   let onPostChange = () => {
-    if (newPostElement.current) {
+    if (newPostElement.current) { // current - ссылается на нативный html элемент
       let text = newPostElement.current.value;
       props.updateNewPostText(text)
     }
