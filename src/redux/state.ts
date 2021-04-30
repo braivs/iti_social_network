@@ -82,6 +82,10 @@ export let state: stateType = {
   }
 }
 
+// @ts-ignore
+window.state = state;
+
+
 export const addPost = (postMessage: string) => {
   const newPost: postsType = {
     id: new Date().getTime(),
@@ -91,6 +95,7 @@ export const addPost = (postMessage: string) => {
   state.profilePage.posts.push(newPost);
   rerenderEntireTree(state);
 }
+
 export const addMessage = (messageAuthor: string, messageText: string) => {
   debugger
   const newMessage: messagesType = {
@@ -100,6 +105,11 @@ export const addMessage = (messageAuthor: string, messageText: string) => {
     avatar: 'img/ava.png'
   };
   state.dialogsPage.messages.push(newMessage);
+  rerenderEntireTree(state);
+}
+
+export const updateNewPostText = (newText: string) => {
+  state.profilePage.newPostText = newText;
   rerenderEntireTree(state);
 }
 
