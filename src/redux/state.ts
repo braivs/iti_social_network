@@ -1,5 +1,3 @@
-import {rerenderEntireTree} from '../render';
-
 type dialogsType = {
   id: number
   name: string
@@ -38,10 +36,12 @@ type friendsType = {
 export type sidebarType = {
   friends: Array<friendsType>
 }
-export  type stateType = {
-  dialogsPage: dialogsPageType
-  profilePage: profilePageType
-  sidebar: sidebarType
+
+let rerenderEntireTree = () => {
+}
+
+export const subscribe = (observer: () => void) => {
+  rerenderEntireTree = observer
 }
 
 export let state: stateType = {
@@ -97,11 +97,10 @@ export const addPost = () => {
   };
   state.profilePage.posts.push(newPost);
   state.profilePage.newPostText = '';
-  rerenderEntireTree(state);
+  rerenderEntireTree();
 }
 
 export const addMessage = () => {
-  debugger
   const newMessage: messagesType = {
     id: new Date().getTime(),
     message: state.dialogsPage.newMessageText,
@@ -111,22 +110,24 @@ export const addMessage = () => {
   state.dialogsPage.messages.push(newMessage);
   state.dialogsPage.newMessageText = '';
   state.dialogsPage.newMessageAuthor = '';
-  rerenderEntireTree(state);
+  rerenderEntireTree();
 }
 
 export const updateNewPostText = (newText: string) => {
   state.profilePage.newPostText = newText;
-  rerenderEntireTree(state);
+  rerenderEntireTree();
 }
 
 export const updateNewMessageAuthor = (newAuthor: string) => {
   state.dialogsPage.newMessageAuthor = newAuthor;
-  rerenderEntireTree(state);
+  rerenderEntireTree();
 }
 
 export const updateNewMessageText = (newText: string) => {
   state.dialogsPage.newMessageText = newText;
-  rerenderEntireTree(state);
+  rerenderEntireTree();
 }
+
+
 
 export default state;
