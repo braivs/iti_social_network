@@ -36,6 +36,11 @@ type friendsType = {
 export type sidebarType = {
   friends: Array<friendsType>
 }
+export  type stateType = {
+  dialogsPage: dialogsPageType
+  profilePage: profilePageType
+  sidebar: sidebarType
+}
 
 let rerenderEntireTree = () => {
 }
