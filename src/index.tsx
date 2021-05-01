@@ -5,7 +5,7 @@ import App from './App';
 import {BrowserRouter} from 'react-router-dom';
 import state, {
   addMessage,
-  addPost,
+  addPost, store,
   subscribe,
   updateNewMessageAuthor,
   updateNewMessageText,
@@ -16,12 +16,12 @@ export let rerenderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>
       <App
-        state={state}
-        addPost={addPost}
-        addMessage={addMessage}
-        updateNewPostText={updateNewPostText}
-        updateNewMessageAuthor={updateNewMessageAuthor}
-        updateNewMessageText={updateNewMessageText}/>
+        state={store.getState()}
+        addPost={store.addPost}
+        addMessage={store.addMessage}
+        updateNewPostText={store.updateNewPostText}
+        updateNewMessageAuthor={store.updateNewMessageAuthor}
+        updateNewMessageText={store.updateNewMessageText}/>
     </BrowserRouter>, document.getElementById('root')
   );
 }
