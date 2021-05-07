@@ -84,16 +84,14 @@ export let state: stateType = {
   }
 }
 
-export type ActionTypes = AddPostActionType | UpdateNewPostTextActionType;
+export type ActionTypes = AddPostActionType | UpdateNewPostTextActionType | AddMessageType | updateNewMessageAuthor |
+  updateNewMessageText;
 
 export type StoreType = {
   _state: stateType
   _callSubscriber: () => void
   getState: () => stateType
   subscribe: (observer: () => void) => void
-  addMessage: () => void
-  updateNewMessageAuthor: (newAuthor: string) => void
-  updateNewMessageText: (newText: string) => void
   dispatch: (action: ActionTypes) => void
 }
 
@@ -102,6 +100,17 @@ type AddPostActionType = {
 }
 type UpdateNewPostTextActionType = {
   type: 'UPDATE-NEW-POST-TEXT'
+  newText: string
+}
+type AddMessageType = {
+  type: 'ADD-MESSAGE'
+}
+type updateNewMessageAuthor = {
+  type: 'UPDATE-NEW-MESSAGE-AUTHOR'
+  newAuthor: string
+}
+type updateNewMessageText = {
+  type: 'UPDATE-NEW-MESSAGE-TEXT'
   newText: string
 }
 
@@ -158,27 +167,6 @@ let store: StoreType = {
     this._callSubscriber = observer
   },
 
-  addMessage() {
-    const newMessage: messagesType = {
-      id: new Date().getTime(),
-      message: this._state.dialogsPage.newMessageText,
-      author: this._state.dialogsPage.newMessageAuthor,
-      avatar: 'img/ava.png'
-    };
-    this._state.dialogsPage.messages.push(newMessage);
-    this._state.dialogsPage.newMessageText = '';
-    this._state.dialogsPage.newMessageAuthor = '';
-    this._callSubscriber();
-  },
-  updateNewMessageAuthor (newAuthor: string) {
-    this._state.dialogsPage.newMessageAuthor = newAuthor;
-    this._callSubscriber();
-  },
-  updateNewMessageText (newText: string){
-    this._state.dialogsPage.newMessageText = newText;
-    this._callSubscriber();
-  },
-
   dispatch(action) {
     if (action.type === 'ADD-POST') {
       const newPost: postsType = {
@@ -192,6 +180,26 @@ let store: StoreType = {
     }
     else if (action.type === 'UPDATE-NEW-POST-TEXT') {
       this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber();
+    }
+    else if (action.type === 'ADD-MESSAGE') {
+      const newMessage: messagesType = {
+        id: new Date().getTime(),
+        message: this._state.dialogsPage.newMessageText,
+        author: this._state.dialogsPage.newMessageAuthor,
+        avatar: 'img/ava.png'
+      };
+      this._state.dialogsPage.messages.push(newMessage);
+      this._state.dialogsPage.newMessageText = '';
+      this._state.dialogsPage.newMessageAuthor = '';
+      this._callSubscriber();
+    }
+    else if (action.type === 'UPDATE-NEW-MESSAGE-AUTHOR') {
+      this._state.dialogsPage.newMessageAuthor = action.newAuthor;
+      this._callSubscriber();
+    }
+    else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+      this._state.dialogsPage.newMessageText = action.newText;
       this._callSubscriber();
     }
   }

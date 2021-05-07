@@ -26,9 +26,7 @@ const App: React.FC<AppType> = (props) => {
       <div className={'app-wrapper-content'}>
         <Route path="/dialogs" render={() => <Dialogs
           dialogsPage={state.dialogsPage}
-          addMessage={props.store.addMessage.bind(props.store)}
-          updateNewMessageAuthor={props.store.updateNewMessageAuthor.bind(props.store)}
-          updateNewMessageText={props.store.updateNewMessageText.bind(props.store)}
+          dispatch={dispatch}
         />}/>
         <Route path="/profile"
                render={() => <Profile

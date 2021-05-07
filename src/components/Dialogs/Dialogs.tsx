@@ -2,13 +2,11 @@ import React from 'react';
 import s from './Dialogs.module.scss'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {dialogsPageType} from '../../redux/state';
+import {ActionTypes, dialogsPageType} from '../../redux/state';
 
 type DialogsType = {
   dialogsPage: dialogsPageType
-  addMessage : () => void
-  updateNewMessageAuthor: (newAuthor: string) => void
-  updateNewMessageText: (newText: string) => void
+  dispatch: (action: ActionTypes) => void
 }
 
 const Dialogs:React.FC<DialogsType> = (props) => {
@@ -22,19 +20,19 @@ const Dialogs:React.FC<DialogsType> = (props) => {
   let newAuthorElement = React.createRef<HTMLTextAreaElement>();
   let newMessageElement = React.createRef<HTMLTextAreaElement>();
   let addMessage = () => {
-      props.addMessage()
+      props.dispatch({type: 'ADD-MESSAGE'})
   }
 
   const onMessageAuthorChange = () => {
     if (newAuthorElement.current) {
       let author = newAuthorElement.current.value;
-      props.updateNewMessageAuthor(author)
+      props.dispatch({type: 'UPDATE-NEW-MESSAGE-AUTHOR', newAuthor: author})
     }
   }
   const onMessageTextChange = () => {
     if (newMessageElement.current) {
       let text = newMessageElement.current.value;
-      props.updateNewMessageText(text)
+      props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text})
     }
   }
 
