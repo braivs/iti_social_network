@@ -92,7 +92,7 @@ export type StoreType = {
   addMessage: () => void
   updateNewMessageAuthor: (newAuthor: string) => void
   updateNewMessageText: (newText: string) => void
-  rerenderEntireTree: () => void
+  _callSubscriber: () => void
   subscribe: (observer: () => void) => void
 }
 
@@ -149,11 +149,11 @@ let store: StoreType = {
     };
     this._state.profilePage.posts.push(newPost);
     this._state.profilePage.newPostText = '';
-    this.rerenderEntireTree();
+    this._callSubscriber();
   },
   updateNewPostText (newText: string) {
     this._state.profilePage.newPostText = newText;
-    this.rerenderEntireTree();
+    this._callSubscriber();
   },
   addMessage() {
     const newMessage: messagesType = {
@@ -165,21 +165,21 @@ let store: StoreType = {
     this._state.dialogsPage.messages.push(newMessage);
     this._state.dialogsPage.newMessageText = '';
     this._state.dialogsPage.newMessageAuthor = '';
-    this.rerenderEntireTree();
+    this._callSubscriber();
   },
   updateNewMessageAuthor (newAuthor: string) {
     this._state.dialogsPage.newMessageAuthor = newAuthor;
-    this.rerenderEntireTree();
+    this._callSubscriber();
   },
   updateNewMessageText (newText: string){
     this._state.dialogsPage.newMessageText = newText;
-    this.rerenderEntireTree();
+    this._callSubscriber();
   },
-  rerenderEntireTree() {
+  _callSubscriber() {
     console.log('State changed');
   },
   subscribe(observer: () => void){
-    this.rerenderEntireTree = observer
+    this._callSubscriber = observer
   }
 }
 
