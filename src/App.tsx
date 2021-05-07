@@ -8,34 +8,32 @@ import {Route} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import {stateType} from './redux/state';
+import {StoreType} from './redux/state';
+
 
 type AppType = {
-  state: stateType
-  addPost: () => void
-  addMessage: () => void
-  updateNewPostText: (newText: string) => void
-  updateNewMessageAuthor: (newAuthor: string) => void
-  updateNewMessageText: (newText: string) => void
+  store: StoreType
 }
 
 const App: React.FC<AppType> = (props) => {
+  const state = props.store.getState()
+
   return (
     <div className={'app-wrapper'}>
       <Header/>
-      <Navbar sidebar={props.state.sidebar}/>
+      <Navbar sidebar={state.sidebar}/>
       <div className={'app-wrapper-content'}>
         <Route path="/dialogs" render={() => <Dialogs
-          dialogsPage={props.state.dialogsPage}
-          addMessage={props.addMessage}
-          updateNewMessageAuthor={props.updateNewMessageAuthor}
-          updateNewMessageText={props.updateNewMessageText}
+          dialogsPage={state.dialogsPage}
+          addMessage={props.store.addMessage.bind(props.store)}
+          updateNewMessageAuthor={props.store.updateNewMessageAuthor.bind(props.store)}
+          updateNewMessageText={props.store.updateNewMessageText.bind(props.store)}
         />}/>
         <Route path="/profile"
                render={() => <Profile
-                 profilePage={props.state.profilePage}
-                 addPost={props.addPost}
-                 updateNewPostText={props.updateNewPostText}/>}
+                 profilePage={state.profilePage}
+                 addPost={props.store.addPost.bind(props.store)}
+                 updateNewPostText={props.store.updateNewPostText.bind(props.store)}/>}
         />
         <Route path="/news" render={() => <News/>}/>
         <Route path="/music" render={() => <Music/>}/>

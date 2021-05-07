@@ -36,17 +36,10 @@ type friendsType = {
 export type sidebarType = {
   friends: Array<friendsType>
 }
-export  type stateType = {
+export type stateType = {
   dialogsPage: dialogsPageType
   profilePage: profilePageType
   sidebar: sidebarType
-}
-
-let rerenderEntireTree = () => {
-}
-
-export const subscribe = (observer: () => void) => {
-  rerenderEntireTree = observer
 }
 
 export let state: stateType = {
@@ -91,62 +84,19 @@ export let state: stateType = {
   }
 }
 
-
-
-// @ts-ignore
-window.state = state;
-
-export const addPost = () => {
-  const newPost: postsType = {
-    id: new Date().getTime(),
-    message: state.profilePage.newPostText,
-    likesCount: 0
-  };
-  state.profilePage.posts.push(newPost);
-  state.profilePage.newPostText = '';
-  rerenderEntireTree();
-}
-
-export const addMessage = () => {
-  const newMessage: messagesType = {
-    id: new Date().getTime(),
-    message: state.dialogsPage.newMessageText,
-    author: state.dialogsPage.newMessageAuthor,
-    avatar: 'img/ava.png'
-  };
-  state.dialogsPage.messages.push(newMessage);
-  state.dialogsPage.newMessageText = '';
-  state.dialogsPage.newMessageAuthor = '';
-  rerenderEntireTree();
-}
-
-export const updateNewPostText = (newText: string) => {
-  state.profilePage.newPostText = newText;
-  rerenderEntireTree();
-}
-
-export const updateNewMessageAuthor = (newAuthor: string) => {
-  state.dialogsPage.newMessageAuthor = newAuthor;
-  rerenderEntireTree();
-}
-
-export const updateNewMessageText = (newText: string) => {
-  state.dialogsPage.newMessageText = newText;
-  rerenderEntireTree();
-}
-
-type storeType = {
+export type StoreType = {
   _state: stateType
   getState: () => stateType
   addPost: () => void
-  addMessage: () => void
   updateNewPostText: (newText: string) => void
+  addMessage: () => void
   updateNewMessageAuthor: (newAuthor: string) => void
   updateNewMessageText: (newText: string) => void
+  rerenderEntireTree: () => void
+  subscribe: (observer: () => void) => void
 }
 
-
-export let store: storeType = {
+let store: StoreType = {
   _state : {
     dialogsPage: {
       dialogs: [
@@ -194,12 +144,16 @@ export let store: storeType = {
   addPost() {
     const newPost: postsType = {
       id: new Date().getTime(),
-      message: state.profilePage.newPostText,
+      message: this._state.profilePage.newPostText,
       likesCount: 0
     };
-    state.profilePage.posts.push(newPost);
-    state.profilePage.newPostText = '';
-    rerenderEntireTree();
+    this._state.profilePage.posts.push(newPost);
+    this._state.profilePage.newPostText = '';
+    this.rerenderEntireTree();
+  },
+  updateNewPostText (newText: string) {
+    this._state.profilePage.newPostText = newText;
+    this.rerenderEntireTree();
   },
   addMessage() {
     const newMessage: messagesType = {
@@ -208,24 +162,28 @@ export let store: storeType = {
       author: state.dialogsPage.newMessageAuthor,
       avatar: 'img/ava.png'
     };
-    state.dialogsPage.messages.push(newMessage);
-    state.dialogsPage.newMessageText = '';
-    state.dialogsPage.newMessageAuthor = '';
-    rerenderEntireTree();
-  },
-  updateNewPostText (newText: string) {
-    state.profilePage.newPostText = newText;
-    rerenderEntireTree();
+    this._state.dialogsPage.messages.push(newMessage);
+    this._state.dialogsPage.newMessageText = '';
+    this._state.dialogsPage.newMessageAuthor = '';
+    this.rerenderEntireTree();
   },
   updateNewMessageAuthor (newAuthor: string) {
-    state.dialogsPage.newMessageAuthor = newAuthor;
-    rerenderEntireTree();
+    this._state.dialogsPage.newMessageAuthor = newAuthor;
+    this.rerenderEntireTree();
   },
   updateNewMessageText (newText: string){
-    state.dialogsPage.newMessageText = newText;
-    rerenderEntireTree();
+    this._state.dialogsPage.newMessageText = newText;
+    this.rerenderEntireTree();
+  },
+  rerenderEntireTree() {
+    console.log('State changed');
+  },
+  subscribe(observer: () => void){
+    this.rerenderEntireTree = observer
   }
 }
 
+export default store;
+// @ts-ignore
+window.store = store;
 
-export default state;
