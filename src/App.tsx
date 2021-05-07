@@ -17,6 +17,7 @@ type AppType = {
 
 const App: React.FC<AppType> = (props) => {
   const state = props.store.getState()
+  const dispatch = props.store.dispatch.bind(props.store)
 
   return (
     <div className={'app-wrapper'}>
@@ -32,8 +33,8 @@ const App: React.FC<AppType> = (props) => {
         <Route path="/profile"
                render={() => <Profile
                  profilePage={state.profilePage}
-                 addPost={props.store.addPost.bind(props.store)}
-                 updateNewPostText={props.store.updateNewPostText.bind(props.store)}/>}
+                 dispatch={dispatch}
+                 />}
         />
         <Route path="/news" render={() => <News/>}/>
         <Route path="/music" render={() => <Music/>}/>

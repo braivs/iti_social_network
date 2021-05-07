@@ -84,16 +84,25 @@ export let state: stateType = {
   }
 }
 
+export type ActionTypes = AddPostActionType | UpdateNewPostTextActionType;
+
 export type StoreType = {
   _state: stateType
+  _callSubscriber: () => void
   getState: () => stateType
-  addPost: () => void
-  updateNewPostText: (newText: string) => void
+  subscribe: (observer: () => void) => void
   addMessage: () => void
   updateNewMessageAuthor: (newAuthor: string) => void
   updateNewMessageText: (newText: string) => void
-  _callSubscriber: () => void
-  subscribe: (observer: () => void) => void
+  dispatch: (action: ActionTypes) => void
+}
+
+type AddPostActionType = {
+  type: 'ADD-POST'
+}
+type UpdateNewPostTextActionType = {
+  type: 'UPDATE-NEW-POST-TEXT'
+  newText: string
 }
 
 let store: StoreType = {
@@ -138,23 +147,17 @@ let store: StoreType = {
       ]
     }
   },
+  _callSubscriber() {
+    console.log('State changed');
+  },
+
   getState() {
     return this._state
   },
-  addPost() {
-    const newPost: postsType = {
-      id: new Date().getTime(),
-      message: this._state.profilePage.newPostText,
-      likesCount: 0
-    };
-    this._state.profilePage.posts.push(newPost);
-    this._state.profilePage.newPostText = '';
-    this._callSubscriber();
+  subscribe(observer: () => void){
+    this._callSubscriber = observer
   },
-  updateNewPostText (newText: string) {
-    this._state.profilePage.newPostText = newText;
-    this._callSubscriber();
-  },
+
   addMessage() {
     const newMessage: messagesType = {
       id: new Date().getTime(),
@@ -175,11 +178,22 @@ let store: StoreType = {
     this._state.dialogsPage.newMessageText = newText;
     this._callSubscriber();
   },
-  _callSubscriber() {
-    console.log('State changed');
-  },
-  subscribe(observer: () => void){
-    this._callSubscriber = observer
+
+  dispatch(action) {
+    if (action.type === 'ADD-POST') {
+      const newPost: postsType = {
+        id: new Date().getTime(),
+        message: this._state.profilePage.newPostText,
+        likesCount: 0
+      };
+      this._state.profilePage.posts.push(newPost);
+      this._state.profilePage.newPostText = '';
+      this._callSubscriber();
+    }
+    else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+      this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber();
+    }
   }
 }
 
