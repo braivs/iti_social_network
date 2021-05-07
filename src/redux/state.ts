@@ -158,8 +158,8 @@ let store: StoreType = {
   addMessage() {
     const newMessage: messagesType = {
       id: new Date().getTime(),
-      message: state.dialogsPage.newMessageText,
-      author: state.dialogsPage.newMessageAuthor,
+      message: this._state.dialogsPage.newMessageText,
+      author: this._state.dialogsPage.newMessageAuthor,
       avatar: 'img/ava.png'
     };
     this._state.dialogsPage.messages.push(newMessage);
