@@ -1,64 +1,65 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.scss'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
 import {
   ActionTypes,
-  AddMessageAC,
+  sendMessageCreator,
   dialogsPageType,
-  updateNewMessageAuthorAC,
-  updateNewMessageText
+  updateNewMessageAuthorCreator,
+  updateNewMessageBodyCreator, StoreType
 } from '../../redux/state';
 
 type DialogsType = {
-  dialogsPage: dialogsPageType
-  dispatch: (action: ActionTypes) => void
+  store: StoreType
 }
 
-const Dialogs:React.FC<DialogsType> = (props) => {
- let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
- let messagesElements = props.dialogsPage.messages.map(m =>
-   <Message message={m.message}
-            author={m.author}
-            avatar={m.avatar}
-   />)
+const Dialogs: React.FC<DialogsType> = (props) => {
+  let state = props.store.getState().dialogsPage;
+
+  let dialogsElements = state.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
+  let messagesElements = state.messages.map(m =>
+    <Message message={m.message}
+             author={m.author}
+             avatar={m.avatar}
+    />)
+  let newMessageBody = state.newMessageBody;
+
 
   let newAuthorElement = React.createRef<HTMLTextAreaElement>();
-  let newMessageElement = React.createRef<HTMLTextAreaElement>();
-  let addMessage = () => {
-      props.dispatch(AddMessageAC())
+  let onSendMessageClick = () => {
+    props.store.dispatch(sendMessageCreator())
   }
 
-  const onMessageAuthorChange = () => {
+  const onNewAuthorChange = () => {
     if (newAuthorElement.current) {
       let author = newAuthorElement.current.value;
-      props.dispatch(updateNewMessageAuthorAC(author))
+      props.store.dispatch(updateNewMessageAuthorCreator(author))
     }
   }
-  const onMessageTextChange = () => {
-    if (newMessageElement.current) {
-      let text = newMessageElement.current.value;
-      props.dispatch(updateNewMessageText(text))
-    }
+  const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    let body = e.target.value;
+    props.store.dispatch(updateNewMessageBodyCreator(body))
   }
 
   return (
     <div className={s.dialogs}>
       <div className={s.dialogItems}>
-        { dialogsElements }
+        {dialogsElements}
       </div>
       <div className={s.messages}>
-        { messagesElements }
+        {messagesElements}
         <div className={s.newMessageContainer}>
           <div className={s.newMessageAuthor}>
             <div>Author:</div>
-            <textarea onChange={onMessageAuthorChange} ref={newAuthorElement} value={props.dialogsPage.newMessageAuthor}/>
+            <textarea onChange={onNewAuthorChange} ref={newAuthorElement}
+                      value={state.newMessageAuthor}/>
           </div>
           <div className={s.newMessageText}>
             <div>Text:</div>
-            <textarea onChange={onMessageTextChange} ref={newMessageElement} value={props.dialogsPage.newMessageText}/>
+            <textarea placeholder="Enter your message" onChange={onNewMessageChange} value={newMessageBody}/>
           </div>
-          <button onClick={addMessage}>Add message</button>
+          <button onClick={onSendMessageClick}>Send</button>
         </div>
       </div>
 

@@ -12,7 +12,7 @@ export type dialogsPageType = {
   dialogs: Array<dialogsType>
   messages: Array<messagesType>
   newMessageAuthor: string
-  newMessageText: string
+  newMessageBody: string
 }
 export type topType = {
   imgSrc: string
@@ -59,7 +59,7 @@ export let state: stateType = {
       {id: 4, message: 'Lorem ipsum dolor sit amet', author: 'Liza', avatar: 'img/ava.png'}
     ],
     newMessageAuthor: 'Briws',
-    newMessageText: 'Hellooo'
+    newMessageBody: 'Hellooo'
   },
   profilePage: {
     top: {
@@ -85,27 +85,27 @@ export let state: stateType = {
 }
 
 // Action Creators:
-export const addPostAC = () => ({type: 'ADD-POST' } as const)
-export const updateNewPostTextAC = (text: string) => (
+export const addPostActionCreator = () => ({type: 'ADD-POST' } as const)
+export const updateNewPostTextActionCreator = (text: string) => (
   {type: 'UPDATE-NEW-POST-TEXT', newText: text} as const
 )
-export const AddMessageAC = () => ({type: 'ADD-MESSAGE'} as const)
-export const updateNewMessageAuthorAC = (author: string) => {
+export const sendMessageCreator = () => ({type: 'SEND-MESSAGE'} as const)
+export const updateNewMessageAuthorCreator = (author: string) => {
   return {
     type: 'UPDATE-NEW-MESSAGE-AUTHOR', newAuthor: author
   } as const
 }
-export const updateNewMessageText = (text: string) => (
+export const updateNewMessageBodyCreator = (body: string) => (
   {
-    type: 'UPDATE-NEW-MESSAGE-TEXT',
-    newText: text
+    type: 'UPDATE-NEW-MESSAGE-BODY',
+    body: body
   } as const
 )
 
 //Autocreated types from Action Creators:
-export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
-  | ReturnType<typeof AddMessageAC> | ReturnType<typeof updateNewMessageAuthorAC> |
-  ReturnType<typeof updateNewMessageText>;
+export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator>
+  | ReturnType<typeof sendMessageCreator> | ReturnType<typeof updateNewMessageAuthorCreator> |
+  ReturnType<typeof updateNewMessageBodyCreator>;
 
 export type StoreType = {
   _state: stateType
@@ -133,7 +133,7 @@ let store: StoreType = {
         {id: 4, message: 'Lorem ipsum dolor sit amet', author: 'Liza', avatar: 'img/ava.png'}
       ],
       newMessageAuthor: 'Briws',
-      newMessageText: 'Hellooo'
+      newMessageBody: ''
     },
     profilePage: {
       top: {
@@ -165,7 +165,7 @@ let store: StoreType = {
     return this._state
   },
   subscribe(observer: () => void){
-    this._callSubscriber = observer
+    this._callSubscriber = observer;
   },
 
   dispatch(action) {
@@ -183,24 +183,24 @@ let store: StoreType = {
       this._state.profilePage.newPostText = action.newText;
       this._callSubscriber();
     }
-    else if (action.type === 'ADD-MESSAGE') {
-      const newMessage: messagesType = {
-        id: new Date().getTime(),
-        message: this._state.dialogsPage.newMessageText,
-        author: this._state.dialogsPage.newMessageAuthor,
-        avatar: 'img/ava.png'
-      };
-      this._state.dialogsPage.messages.push(newMessage);
-      this._state.dialogsPage.newMessageText = '';
-      this._state.dialogsPage.newMessageAuthor = '';
-      this._callSubscriber();
-    }
     else if (action.type === 'UPDATE-NEW-MESSAGE-AUTHOR') {
       this._state.dialogsPage.newMessageAuthor = action.newAuthor;
       this._callSubscriber();
     }
-    else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-      this._state.dialogsPage.newMessageText = action.newText;
+    else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
+      this._state.dialogsPage.newMessageBody = action.body;
+      this._callSubscriber();
+    }
+    else if (action.type === 'SEND-MESSAGE') {
+      const newMessage: messagesType = {
+        id: new Date().getTime(),
+        message: this._state.dialogsPage.newMessageBody,
+        author: this._state.dialogsPage.newMessageAuthor,
+        avatar: 'img/ava.png'
+      };
+      this._state.dialogsPage.messages.push(newMessage);
+      this._state.dialogsPage.newMessageAuthor = '';
+      this._state.dialogsPage.newMessageBody = '';
       this._callSubscriber();
     }
   }
