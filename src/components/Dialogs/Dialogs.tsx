@@ -3,11 +3,10 @@ import s from './Dialogs.module.scss'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
 import {
-  ActionTypes,
   sendMessageCreator,
-  dialogsPageType,
+  StoreType,
   updateNewMessageAuthorCreator,
-  updateNewMessageBodyCreator, StoreType
+  updateNewMessageBodyCreator
 } from '../../redux/state';
 
 type DialogsType = {
@@ -23,19 +22,16 @@ const Dialogs: React.FC<DialogsType> = (props) => {
              author={m.author}
              avatar={m.avatar}
     />)
+  let newMessageAuthor = state.newMessageAuthor;
   let newMessageBody = state.newMessageBody;
 
-
-  let newAuthorElement = React.createRef<HTMLTextAreaElement>();
   let onSendMessageClick = () => {
     props.store.dispatch(sendMessageCreator())
   }
 
-  const onNewAuthorChange = () => {
-    if (newAuthorElement.current) {
-      let author = newAuthorElement.current.value;
-      props.store.dispatch(updateNewMessageAuthorCreator(author))
-    }
+  const onNewAuthorChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    let author = e.target.value;
+    props.store.dispatch(updateNewMessageAuthorCreator(author))
   }
   const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let body = e.target.value;
@@ -52,8 +48,7 @@ const Dialogs: React.FC<DialogsType> = (props) => {
         <div className={s.newMessageContainer}>
           <div className={s.newMessageAuthor}>
             <div>Author:</div>
-            <textarea onChange={onNewAuthorChange} ref={newAuthorElement}
-                      value={state.newMessageAuthor}/>
+            <textarea placeholder='Enter your name' onChange={onNewAuthorChange} value={newMessageAuthor}/>
           </div>
           <div className={s.newMessageText}>
             <div>Text:</div>

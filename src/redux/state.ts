@@ -132,7 +132,7 @@ let store: StoreType = {
         {id: 3, message: 'Lorem ipsum dolor sit amet', author: 'Lera', avatar: 'img/ava.png'},
         {id: 4, message: 'Lorem ipsum dolor sit amet', author: 'Liza', avatar: 'img/ava.png'}
       ],
-      newMessageAuthor: 'Briws',
+      newMessageAuthor: '',
       newMessageBody: ''
     },
     profilePage: {
