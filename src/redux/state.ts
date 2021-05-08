@@ -1,3 +1,6 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 type dialogsType = {
   id: number
   name: string
@@ -95,10 +98,10 @@ export type StoreType = {
   dispatch: (action: ActionTypes) => void
 }
 
-type AddPostActionType = {
+export type AddPostActionType = {
   type: 'ADD-POST'
 }
-type UpdateNewPostTextActionType = {
+export type UpdateNewPostTextActionType = {
   type: 'UPDATE-NEW-POST-TEXT'
   newText: string
 }
@@ -168,7 +171,7 @@ let store: StoreType = {
   },
 
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
+    if (action.type === ADD_POST) {
       const newPost: postsType = {
         id: new Date().getTime(),
         message: this._state.profilePage.newPostText,
@@ -178,7 +181,7 @@ let store: StoreType = {
       this._state.profilePage.newPostText = '';
       this._callSubscriber();
     }
-    else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+    else if (action.type === UPDATE_NEW_POST_TEXT) {
       this._state.profilePage.newPostText = action.newText;
       this._callSubscriber();
     }
@@ -204,6 +207,10 @@ let store: StoreType = {
     }
   }
 }
+
+export const addPostActionCreator = (): AddPostActionType => ({type: ADD_POST })
+export const UpdateNewPostTextActionCreator = (text: string): UpdateNewPostTextActionType =>
+  ({type: UPDATE_NEW_POST_TEXT, newText: text})
 
 export default store;
 // @ts-ignore
