@@ -84,24 +84,6 @@ export let state: stateType = {
   }
 }
 
-export type ActionTypes = AddPostActionType | UpdateNewPostTextActionType | AddMessageType | updateNewMessageAuthor |
-  updateNewMessageText;
-
-export type StoreType = {
-  _state: stateType
-  _callSubscriber: () => void
-  getState: () => stateType
-  subscribe: (observer: () => void) => void
-  dispatch: (action: ActionTypes) => void
-}
-
-export type AddPostActionType = {
-  type: 'ADD-POST'
-}
-export type UpdateNewPostTextActionType = {
-  type: 'UPDATE-NEW-POST-TEXT'
-  newText: string
-}
 type AddMessageType = {
   type: 'ADD-MESSAGE'
 }
@@ -112,6 +94,25 @@ type updateNewMessageAuthor = {
 type updateNewMessageText = {
   type: 'UPDATE-NEW-MESSAGE-TEXT'
   newText: string
+}
+
+export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator>
+  | AddMessageType | updateNewMessageAuthor | updateNewMessageText;
+
+export const addPostActionCreator = () => (
+  {type: 'ADD-POST' } as const
+)
+export const updateNewPostTextActionCreator = (text: string) => (
+  {type: 'UPDATE-NEW-POST-TEXT', newText: text} as const
+)
+
+
+export type StoreType = {
+  _state: stateType
+  _callSubscriber: () => void
+  getState: () => stateType
+  subscribe: (observer: () => void) => void
+  dispatch: (action: ActionTypes) => void
 }
 
 let store: StoreType = {
@@ -204,10 +205,6 @@ let store: StoreType = {
     }
   }
 }
-
-export const addPostActionCreator = (): AddPostActionType => ({type: 'ADD-POST' })
-export const UpdateNewPostTextActionCreator = (text: string): UpdateNewPostTextActionType =>
-  ({type: 'UPDATE-NEW-POST-TEXT', newText: text})
 
 export default store;
 // @ts-ignore
