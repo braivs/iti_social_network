@@ -2,7 +2,13 @@ import React from 'react';
 import s from './Dialogs.module.scss'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {ActionTypes, dialogsPageType} from '../../redux/state';
+import {
+  ActionTypes,
+  AddMessageAC,
+  dialogsPageType,
+  updateNewMessageAuthorAC,
+  updateNewMessageText
+} from '../../redux/state';
 
 type DialogsType = {
   dialogsPage: dialogsPageType
@@ -20,19 +26,19 @@ const Dialogs:React.FC<DialogsType> = (props) => {
   let newAuthorElement = React.createRef<HTMLTextAreaElement>();
   let newMessageElement = React.createRef<HTMLTextAreaElement>();
   let addMessage = () => {
-      props.dispatch({type: 'ADD-MESSAGE'})
+      props.dispatch(AddMessageAC())
   }
 
   const onMessageAuthorChange = () => {
     if (newAuthorElement.current) {
       let author = newAuthorElement.current.value;
-      props.dispatch({type: 'UPDATE-NEW-MESSAGE-AUTHOR', newAuthor: author})
+      props.dispatch(updateNewMessageAuthorAC(author))
     }
   }
   const onMessageTextChange = () => {
     if (newMessageElement.current) {
       let text = newMessageElement.current.value;
-      props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text})
+      props.dispatch(updateNewMessageText(text))
     }
   }
 

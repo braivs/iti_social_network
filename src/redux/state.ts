@@ -84,28 +84,28 @@ export let state: stateType = {
   }
 }
 
-type AddMessageType = {
-  type: 'ADD-MESSAGE'
-}
-type updateNewMessageAuthor = {
-  type: 'UPDATE-NEW-MESSAGE-AUTHOR'
-  newAuthor: string
-}
-type updateNewMessageText = {
-  type: 'UPDATE-NEW-MESSAGE-TEXT'
-  newText: string
-}
-
-export const addPostAC = () => (
-  {type: 'ADD-POST' } as const
-)
+// Action Creators:
+export const addPostAC = () => ({type: 'ADD-POST' } as const)
 export const updateNewPostTextAC = (text: string) => (
   {type: 'UPDATE-NEW-POST-TEXT', newText: text} as const
 )
+export const AddMessageAC = () => ({type: 'ADD-MESSAGE'} as const)
+export const updateNewMessageAuthorAC = (author: string) => {
+  return {
+    type: 'UPDATE-NEW-MESSAGE-AUTHOR', newAuthor: author
+  } as const
+}
+export const updateNewMessageText = (text: string) => (
+  {
+    type: 'UPDATE-NEW-MESSAGE-TEXT',
+    newText: text
+  } as const
+)
 
-
+//Autocreated types from Action Creators:
 export type ActionTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
-  | AddMessageType | updateNewMessageAuthor | updateNewMessageText;
+  | ReturnType<typeof AddMessageAC> | ReturnType<typeof updateNewMessageAuthorAC> |
+  ReturnType<typeof updateNewMessageText>;
 
 export type StoreType = {
   _state: stateType

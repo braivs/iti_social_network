@@ -9,8 +9,6 @@ type MyPostsPropsType = {
   dispatch: (action: ActionTypes) => void
 }
 
-
-
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   let postElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
 
