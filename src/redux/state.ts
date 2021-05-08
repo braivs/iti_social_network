@@ -1,8 +1,16 @@
+import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from './profile-reducer';
+import dialogsReducer, {
+  sendMessageCreator,
+  updateNewMessageAuthorCreator,
+  updateNewMessageBodyCreator
+} from './dialogs-reducer';
+import sidebarReducer from './sidebar-reducer';
+
 type dialogsType = {
   id: number
   name: string
 }
-type messagesType = {
+export type messagesType = {
   id: number
   message: string
   author: string
@@ -84,24 +92,6 @@ export let state: stateType = {
   }
 }
 
-// Action Creators:
-export const addPostActionCreator = () => ({type: 'ADD-POST' } as const)
-export const updateNewPostTextActionCreator = (text: string) => (
-  {type: 'UPDATE-NEW-POST-TEXT', newText: text} as const
-)
-export const sendMessageCreator = () => ({type: 'SEND-MESSAGE'} as const)
-export const updateNewMessageAuthorCreator = (author: string) => {
-  return {
-    type: 'UPDATE-NEW-MESSAGE-AUTHOR', newAuthor: author
-  } as const
-}
-export const updateNewMessageBodyCreator = (body: string) => (
-  {
-    type: 'UPDATE-NEW-MESSAGE-BODY',
-    body: body
-  } as const
-)
-
 //Autocreated types from Action Creators:
 export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator>
   | ReturnType<typeof sendMessageCreator> | ReturnType<typeof updateNewMessageAuthorCreator> |
@@ -169,40 +159,11 @@ let store: StoreType = {
   },
 
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
-      const newPost: postsType = {
-        id: new Date().getTime(),
-        message: this._state.profilePage.newPostText,
-        likesCount: 0
-      };
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newPostText = '';
-      this._callSubscriber();
-    }
-    else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber();
-    }
-    else if (action.type === 'UPDATE-NEW-MESSAGE-AUTHOR') {
-      this._state.dialogsPage.newMessageAuthor = action.newAuthor;
-      this._callSubscriber();
-    }
-    else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
-      this._state.dialogsPage.newMessageBody = action.body;
-      this._callSubscriber();
-    }
-    else if (action.type === 'SEND-MESSAGE') {
-      const newMessage: messagesType = {
-        id: new Date().getTime(),
-        message: this._state.dialogsPage.newMessageBody,
-        author: this._state.dialogsPage.newMessageAuthor,
-        avatar: 'img/ava.png'
-      };
-      this._state.dialogsPage.messages.push(newMessage);
-      this._state.dialogsPage.newMessageAuthor = '';
-      this._state.dialogsPage.newMessageBody = '';
-      this._callSubscriber();
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+    this._callSubscriber();
   }
 }
 
