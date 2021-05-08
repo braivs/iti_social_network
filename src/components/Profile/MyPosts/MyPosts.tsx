@@ -31,7 +31,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
       <h3>My posts</h3>
       <div>
         <div>
-          <textarea onChange={onPostChange} ref={newPostElement}
+          <textarea placeholder='Enter your post' onChange={onPostChange} ref={newPostElement}
                     value={props.newPostText}/>
         </div>
         <div>

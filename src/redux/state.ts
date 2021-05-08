@@ -50,48 +50,6 @@ export type stateType = {
   sidebar: sidebarType
 }
 
-export let state: stateType = {
-  dialogsPage: {
-    dialogs: [
-      {id: 1, name: 'Briws'},
-      {id: 2, name: 'Masha'},
-      {id: 3, name: 'Lera'},
-      {id: 4, name: 'Liza'},
-      {id: 5, name: 'Diana'},
-      {id: 6, name: 'Kristina'}
-    ],
-    messages: [
-      {id: 1, message: 'Lorem ipsum dolor sit amet', author: 'Masha', avatar: 'img/ava.png'},
-      {id: 2, message: 'Lorem ipsum dolor sit amet', author: 'Briws', avatar: 'img/ava.png'},
-      {id: 3, message: 'Lorem ipsum dolor sit amet', author: 'Lera', avatar: 'img/ava.png'},
-      {id: 4, message: 'Lorem ipsum dolor sit amet', author: 'Liza', avatar: 'img/ava.png'}
-    ],
-    newMessageAuthor: 'Briws',
-    newMessageBody: 'Hellooo'
-  },
-  profilePage: {
-    top: {
-      imgSrc: 'img/main.jpg',
-      imgAlt: '',
-      description: 'ava + description'
-    },
-    posts: [
-      {id: 1, message: 'I will be React Developer!', likesCount: 12},
-      {id: 2, message: 'It\'s my first post', likesCount: 11},
-      {id: 3, message: 'Bugaga', likesCount: 5},
-      {id: 4, message: 'Dada', likesCount: 1}
-    ],
-    newPostText: 'briws.ru'
-  },
-  sidebar: {
-    friends: [
-      { name: 'Liza', avatar: 'img/ava.png' },
-      { name: 'Masha', avatar: 'img/ava.png' },
-      { name: 'Diana', avatar: 'img/ava.png' }
-    ]
-  }
-}
-
 //Autocreated types from Action Creators:
 export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator>
   | ReturnType<typeof sendMessageCreator> | ReturnType<typeof updateNewMessageAuthorCreator> |
@@ -137,7 +95,7 @@ let store: StoreType = {
         {id: 3, message: 'Bugaga', likesCount: 5},
         {id: 4, message: 'Dada', likesCount: 1}
       ],
-      newPostText: 'briws.ru'
+      newPostText: ''
     },
     sidebar: {
       friends: [
@@ -167,7 +125,9 @@ let store: StoreType = {
   }
 }
 
-export default store;
 // @ts-ignore
 window.store = store;
+
+export default store;
+
 
