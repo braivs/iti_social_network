@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
-import {topType} from '../../../redux/state';
+import {topType} from '../../../types/entities';
 
 type ProfileInfoType = {
   top: topType

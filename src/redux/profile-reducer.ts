@@ -1,7 +1,25 @@
-import {ActionTypes, postsType, profilePageType} from './state';
+import {ActionTypes, postsType, profilePageType} from '../types/entities';
 
-const profileReducer = (state: profilePageType, action: ActionTypes): profilePageType => {
+/*type ProfileActionType=
+  ReturnType<typeof addPostActionCreator> |
+  ReturnType<typeof updateNewPostTextActionCreator>*/
 
+let initialState: profilePageType = {
+  top: {
+    imgSrc: 'img/main.jpg',
+    imgAlt: '',
+    description: 'ava + description'
+  },
+  posts: [
+    {id: 1, message: 'I will be React Developer!', likesCount: 12},
+    {id: 2, message: 'It\'s my first post', likesCount: 11},
+    {id: 3, message: 'Bugaga', likesCount: 5},
+    {id: 4, message: 'Dada', likesCount: 1}
+  ],
+  newPostText: ''
+}
+
+const profileReducer = (state = initialState, action: ActionTypes): profilePageType => {
   switch (action.type) {
     case 'ADD-POST':
       const newPost: postsType = {
@@ -20,10 +38,13 @@ const profileReducer = (state: profilePageType, action: ActionTypes): profilePag
   }
 }
 
+
 // Action Creators:
 export const addPostActionCreator = () => ({type: 'ADD-POST'} as const)
-export const updateNewPostTextActionCreator = (text: string) => (
-  {type: 'UPDATE-NEW-POST-TEXT', newText: text} as const
-)
+export const updateNewPostTextActionCreator = (text: string) => ({
+    type: 'UPDATE-NEW-POST-TEXT', newText: text
+} as const)
 
-export default profileReducer;
+export default profileReducer
+
+

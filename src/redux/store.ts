@@ -1,67 +1,8 @@
-import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from './profile-reducer';
-import dialogsReducer, {
-  sendMessageCreator,
-  updateNewMessageAuthorCreator,
-  updateNewMessageBodyCreator
-} from './dialogs-reducer';
+import profileReducer from './profile-reducer';
+import dialogsReducer from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
+import {ActionTypes, StoreType} from '../types/entities';
 
-type dialogsType = {
-  id: number
-  name: string
-}
-export type messagesType = {
-  id: number
-  message: string
-  author: string
-  avatar: string
-}
-export type dialogsPageType = {
-  dialogs: Array<dialogsType>
-  messages: Array<messagesType>
-  newMessageAuthor: string
-  newMessageBody: string
-}
-export type topType = {
-  imgSrc: string
-  imgAlt: string
-  description: string
-}
-export type postsType = {
-  id: number
-  message: string
-  likesCount: number
-}
-export type profilePageType = {
-  top: topType
-  posts: Array<postsType>
-  newPostText: string
-}
-type friendsType = {
-  name: string,
-  avatar: string
-}
-export type sidebarType = {
-  friends: Array<friendsType>
-}
-export type stateType = {
-  dialogsPage: dialogsPageType
-  profilePage: profilePageType
-  sidebar: sidebarType
-}
-
-//Autocreated types from Action Creators:
-export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator>
-  | ReturnType<typeof sendMessageCreator> | ReturnType<typeof updateNewMessageAuthorCreator> |
-  ReturnType<typeof updateNewMessageBodyCreator>;
-
-export type StoreType = {
-  _state: stateType
-  _callSubscriber: () => void
-  getState: () => stateType
-  subscribe: (observer: () => void) => void
-  dispatch: (action: ActionTypes) => void
-}
 
 let store: StoreType = {
   _state : {
@@ -116,7 +57,7 @@ let store: StoreType = {
     this._callSubscriber = observer;
   },
 
-  dispatch(action) {
+  dispatch(action: ActionTypes) {
     this._state.profilePage = profileReducer(this._state.profilePage, action);
     this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
     this._state.sidebar = sidebarReducer(this._state.sidebar, action);
