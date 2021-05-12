@@ -8,14 +8,16 @@ import {
   updateNewMessageAuthorCreator,
   updateNewMessageBodyCreator
 } from '../../redux/dialogs-reducer';
-import {StoreType} from '../../types/entities';
+import {ActionTypes} from '../../types/entities';
+import {reduxStoreType} from '../../redux/redux-store';
 
 type DialogsType = {
-  store: StoreType
+  store: reduxStoreType
+  dispatch: (dispatch: ActionTypes) => void
 }
 
 const Dialogs: React.FC<DialogsType> = (props) => {
-  let state = props.store.getState().dialogsPage;
+  let state = props.store.dialogsReducer;
 
   let dialogsElements = state.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
   let messagesElements = state.messages.map(m =>
@@ -27,16 +29,16 @@ const Dialogs: React.FC<DialogsType> = (props) => {
   let newMessageBody = state.newMessageBody;
 
   let onSendMessageClick = () => {
-    props.store.dispatch(sendMessageCreator())
+    props.dispatch(sendMessageCreator())
   }
 
   const onNewAuthorChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let author = e.target.value;
-    props.store.dispatch(updateNewMessageAuthorCreator(author))
+    props.dispatch(updateNewMessageAuthorCreator(author))
   }
   const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let body = e.target.value;
-    props.store.dispatch(updateNewMessageBodyCreator(body))
+    props.dispatch(updateNewMessageBodyCreator(body))
   }
 
   return (
