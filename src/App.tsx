@@ -10,16 +10,19 @@ import Settings from './components/Settings/Settings';
 import {ActionTypes} from './types/entities';
 import {reduxStateType, reduxStoreType} from './redux/redux-store';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import NavbarContainer from './components/Navbar/NavbarContainer';
 
 type AppType = {
   store: reduxStoreType
+  state: reduxStateType
+  dispatch: (dispatch: ActionTypes) => void
 }
 
 const App: React.FC<AppType> = (props) => {
   return (
     <div className={'app-wrapper'}>
       <Header/>
-      <Navbar store={props.store}/>
+      <NavbarContainer store={props.store}/>
       <div className={'app-wrapper-content'}>
         <Route path="/dialogs" render={() => <DialogsContainer store={props.store}/>}/>
         <Route path="/profile" render={ () => <Profile store={props.store} />}/>
