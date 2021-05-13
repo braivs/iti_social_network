@@ -3,21 +3,18 @@ import s from './Dialogs.module.scss'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
 
-import {
-  sendMessageCreator,
-  updateNewMessageAuthorCreator,
-  updateNewMessageBodyCreator
-} from '../../redux/dialogs-reducer';
-import {ActionTypes} from '../../types/entities';
-import {reduxStateType} from '../../redux/redux-store';
+import {updateNewMessageAuthorCreator} from '../../redux/dialogs-reducer';
+import {dialogsPageType} from '../../types/entities';
 
 type DialogsType = {
-  state: reduxStateType
-  dispatch: (dispatch: ActionTypes) => void
+  updateNewMessageBody: (body: string) => void
+  updateNewMessageAuthor: (author: string) => void
+  sendMessage: () => void
+  dialogsPage: dialogsPageType
 }
 
 const Dialogs: React.FC<DialogsType> = (props) => {
-  let state = props.state.dialogsReducer;
+  let state = props.dialogsPage;
 
   let dialogsElements = state.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
   let messagesElements = state.messages.map(m =>
@@ -29,16 +26,16 @@ const Dialogs: React.FC<DialogsType> = (props) => {
   let newMessageBody = state.newMessageBody;
 
   let onSendMessageClick = () => {
-    props.dispatch(sendMessageCreator())
+    props.sendMessage();
   }
 
   const onNewAuthorChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let author = e.target.value;
-    props.dispatch(updateNewMessageAuthorCreator(author))
+    props.updateNewMessageAuthor(author)
   }
   const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     let body = e.target.value;
-    props.dispatch(updateNewMessageBodyCreator(body))
+    props.updateNewMessageBody(body)
   }
 
   return (
