@@ -39,25 +39,8 @@ type friendsType = {
 export type sidebarType = {
   friends: Array<friendsType>
 }
-type stateType = {
-  dialogsPage: dialogsPageType
-  profilePage: profilePageType
-  sidebar: sidebarType
-}
 
 //Autocreated types from Action Creators:
 export type ActionTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator>
   | ReturnType<typeof sendMessageCreator> | ReturnType<typeof updateNewMessageAuthorCreator> |
   ReturnType<typeof updateNewMessageBodyCreator>;
-
-export type StoreType = {
-  _state: stateType
-  _callSubscriber: () => void
-  getState: () => stateType
-  subscribe: (observer: () => void) => void
-  dispatch: (action: ActionTypes) => void
-}
-
-
-
-

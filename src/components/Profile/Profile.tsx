@@ -4,8 +4,6 @@ import MyPosts from './MyPosts/MyPosts';
 import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import {ActionTypes, profilePageType} from '../../types/entities';
 
-
-
 type ProfileType = {
   profilePage: profilePageType
   dispatch: (action: ActionTypes) => void

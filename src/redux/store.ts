@@ -1,9 +1,21 @@
 import profileReducer from './profile-reducer';
 import dialogsReducer from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
-import {ActionTypes, StoreType} from '../types/entities';
+import {ActionTypes, dialogsPageType, profilePageType, sidebarType} from '../types/entities';
 
 
+type stateType = {
+  dialogsPage: dialogsPageType
+  profilePage: profilePageType
+  sidebar: sidebarType
+}
+export type StoreType = {
+  _state: stateType
+  _callSubscriber: () => void
+  getState: () => stateType
+  subscribe: (observer: () => void) => void
+  dispatch: (action: ActionTypes) => void
+}
 let store: StoreType = {
   _state : {
     dialogsPage: {
