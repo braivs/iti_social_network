@@ -11,6 +11,8 @@ let reducers = combineReducers({ //этот объект надо восприн
 
 // создаёт внутри себя state у которого есть 3 свойства выше
 let store = createStore(reducers);
+
 export type reduxStateType = ReturnType<typeof reducers>
+export type reduxStoreType = typeof store
 
 export default store;

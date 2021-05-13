@@ -9,15 +9,15 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import {ActionTypes} from './types/entities';
-import {reduxStateType} from './redux/redux-store';
+import {reduxStateType, reduxStoreType} from './redux/redux-store';
 
 type AppType = {
   state: reduxStateType
   dispatch: (dispatch: ActionTypes) => void
+  store: reduxStoreType
 }
 
 const App: React.FC<AppType> = (props) => {
-
   return (
     <div className={'app-wrapper'}>
       <Header/>
@@ -25,10 +25,7 @@ const App: React.FC<AppType> = (props) => {
       <div className={'app-wrapper-content'}>
         <Route path="/dialogs" render={() => <Dialogs state={props.state} dispatch={props.dispatch}/>}/>
         <Route path="/profile"
-               render={() => <Profile
-                 profilePage={props.state.profileReducer}
-                 dispatch={props.dispatch}
-                 />}
+               render={ () => <Profile store={props.store} /> }
         />
         <Route path="/news" render={() => <News/>}/>
         <Route path="/music" render={() => <Music/>}/>

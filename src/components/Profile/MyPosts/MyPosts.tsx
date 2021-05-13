@@ -1,28 +1,28 @@
 import React from 'react';
 import Post from './Post/Post';
 import s from './MyPost.module.css'
-import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/profile-reducer';
-import {ActionTypes, postsType} from '../../../types/entities';
+import {postsType} from '../../../types/entities';
 
 type MyPostsPropsType = {
+  updateNewPostText: (text: string) => void
+  addPost: () => void
   posts: Array<postsType>
   newPostText: string
-  dispatch: (action: ActionTypes) => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   let postElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
 
   let newPostElement = React.createRef<HTMLTextAreaElement>();
-  let addPost = () => {
-    props.dispatch(addPostActionCreator());
+
+  let onAddPost = () => {
+    props.addPost();
   }
 
   let onPostChange = () => {
     if (newPostElement.current) { // current - ссылается на нативный html элемент
       let text = newPostElement.current.value;
-      let action = updateNewPostTextActionCreator(text);
-      props.dispatch(action)
+      props.updateNewPostText(text)
     }
   }
 
@@ -35,7 +35,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
                     value={props.newPostText}/>
         </div>
         <div>
-          <button onClick={addPost}>Add post</button>
+          <button onClick={onAddPost}>Add post</button>
         </div>
       </div>
       <div>
