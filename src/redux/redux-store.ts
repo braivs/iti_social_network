@@ -11,7 +11,7 @@ let reducers = combineReducers({ //этот объект надо восприн
     sidebarReducer: sidebarReducer
   })
 
-// создаёт внутри себя state у которого есть 3 свойста выше
+// создаёт внутри себя state у которого есть 3 свойства выше
 let store = createStore(reducers);
 export type reduxStoreType = ReturnType<typeof reducers>
 

@@ -1,10 +1,14 @@
-import {sidebarType} from '../types/entities';
+import {ActionTypes, sidebarType} from '../types/entities';
 
-type sidebarActionTypes = {
-
+let initialState: sidebarType = {
+  friends: [
+    { name: 'Liza', avatar: 'img/ava.png' },
+    { name: 'Masha', avatar: 'img/ava.png' },
+    { name: 'Diana', avatar: 'img/ava.png' }
+  ]
 }
 
-const sidebarReducer = (state: sidebarType, action: sidebarActionTypes) => {
+const sidebarReducer = (state = initialState, action: ActionTypes) => {
 
   return state;
 }
