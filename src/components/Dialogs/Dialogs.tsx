@@ -9,15 +9,15 @@ import {
   updateNewMessageBodyCreator
 } from '../../redux/dialogs-reducer';
 import {ActionTypes} from '../../types/entities';
-import {reduxStoreType} from '../../redux/redux-store';
+import {reduxStateType} from '../../redux/redux-store';
 
 type DialogsType = {
-  store: reduxStoreType
+  state: reduxStateType
   dispatch: (dispatch: ActionTypes) => void
 }
 
 const Dialogs: React.FC<DialogsType> = (props) => {
-  let state = props.store.dialogsReducer;
+  let state = props.state.dialogsReducer;
 
   let dialogsElements = state.dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
   let messagesElements = state.messages.map(m =>

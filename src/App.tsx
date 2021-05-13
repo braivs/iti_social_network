@@ -9,10 +9,10 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import {ActionTypes} from './types/entities';
-import {reduxStoreType} from './redux/redux-store';
+import {reduxStateType} from './redux/redux-store';
 
 type AppType = {
-  store: reduxStoreType
+  state: reduxStateType
   dispatch: (dispatch: ActionTypes) => void
 }
 
@@ -21,12 +21,12 @@ const App: React.FC<AppType> = (props) => {
   return (
     <div className={'app-wrapper'}>
       <Header/>
-      <Navbar sidebar={props.store.sidebarReducer}/>
+      <Navbar sidebar={props.state.sidebarReducer}/>
       <div className={'app-wrapper-content'}>
-        <Route path="/dialogs" render={() => <Dialogs store={props.store} dispatch={props.dispatch}/>}/>
+        <Route path="/dialogs" render={() => <Dialogs state={props.state} dispatch={props.dispatch}/>}/>
         <Route path="/profile"
                render={() => <Profile
-                 profilePage={props.store.profileReducer}
+                 profilePage={props.state.profileReducer}
                  dispatch={props.dispatch}
                  />}
         />
