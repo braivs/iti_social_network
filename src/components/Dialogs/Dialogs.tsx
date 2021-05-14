@@ -2,8 +2,6 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.scss'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-
-import {updateNewMessageAuthorCreator} from '../../redux/dialogs-reducer';
 import {dialogsPageType} from '../../types/entities';
 
 type DialogsType = {

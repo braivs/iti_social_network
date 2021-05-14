@@ -7,12 +7,12 @@ type ProfileInfoType = {
 }
 
 export const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
-  return (
-    <>
-      <img src={props.top.imgSrc} alt=""/>
-      <div className={s.descriptionBlock}>
-        ava + description
-      </div>
-    </>
-  )
+  return <>
+    <img src={props.top.imgSrc} alt=""/>
+    <div className={s.descriptionBlock}>
+      ava + description
+    </div>
+  </>
 }
+
+export default ProfileInfo;

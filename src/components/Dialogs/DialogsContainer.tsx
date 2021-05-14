@@ -5,31 +5,34 @@ import {
   updateNewMessageAuthorCreator,
   updateNewMessageBodyCreator
 } from '../../redux/dialogs-reducer';
-import {reduxStoreType} from '../../redux/redux-store';
 import Dialogs from './Dialogs';
+import StoreContext from '../../StoreContext';
 
 type DialogsType = {
-  store: reduxStoreType
+  // store: ReduxStoreType
 }
 
-const DialogsContainer: React.FC<DialogsType> = (props) => {
-  let state = props.store.getState().dialogsReducer;
-
-  let onSendMessageClick = () => {
-    props.store.dispatch(sendMessageCreator())
+const DialogsContainer: React.FC<DialogsType> = () => {
+  return <StoreContext.Consumer>
+    {
+    (store) => {
+      let state = store.getState().dialogsReducer;
+      let onSendMessageClick = () => {
+        store.dispatch(sendMessageCreator())
+      }
+      const onNewAuthorChange = (author: string) => {
+        store.dispatch(updateNewMessageAuthorCreator(author))
+      }
+      const onNewMessageChange = (body: string) => {
+        store.dispatch(updateNewMessageBodyCreator(body))
+      }
+      return <Dialogs updateNewMessageBody={onNewMessageChange}
+                      updateNewMessageAuthor={onNewAuthorChange}
+                      sendMessage={onSendMessageClick}
+                      dialogsPage={state}/>
+    }
   }
-
-  const onNewAuthorChange = (author: string) => {
-    props.store.dispatch(updateNewMessageAuthorCreator(author))
-  }
-  const onNewMessageChange = (body: string) => {
-    props.store.dispatch(updateNewMessageBodyCreator(body))
-  }
-
-  return <Dialogs updateNewMessageBody={onNewMessageChange}
-                  updateNewMessageAuthor={onNewAuthorChange}
-                  sendMessage={onSendMessageClick}
-                  dialogsPage={state}/>
+  </StoreContext.Consumer>
 }
 
 export default DialogsContainer;

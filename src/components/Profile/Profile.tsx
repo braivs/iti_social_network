@@ -1,18 +1,17 @@
 import React from 'react';
 import s from './Profile.module.css'
-import {ProfileInfo} from './ProfileInfo/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
-import {reduxStoreType} from '../../redux/redux-store';
+import ProfileInfoContainer from './ProfileInfo/ProfileInfoContainer';
 
 type ProfileType = {
-  store: reduxStoreType
+  // store: ReduxStoreType
 }
 
 const Profile:React.FC<ProfileType> = (props) => {
   return (
     <div className={s.content}>
-      <ProfileInfo top={props.store.getState().profileReducer.top} />
-      <MyPostsContainer store={props.store} />
+      <ProfileInfoContainer/>
+      <MyPostsContainer />
     </div>
   )
 }
