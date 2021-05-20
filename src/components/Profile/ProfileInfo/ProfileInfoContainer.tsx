@@ -1,12 +1,10 @@
 import React from 'react';
-import StoreContext from '../../../StoreContext';
 import ProfileInfo from './ProfileInfo';
+import {connect} from 'react-redux';
+import {topType} from '../../../types/entities';
+import {ReduxStateType} from '../../../redux/redux-store';
 
-type ProfileInfoType = {
-  // top: topType
-}
-
-export const ProfileInfoContainer: React.FC<ProfileInfoType> = () => {
+/*export const ProfileInfoContainer: React.FC<ProfileInfoType> = () => {
   return (
     <StoreContext.Consumer>
       {
@@ -18,6 +16,18 @@ export const ProfileInfoContainer: React.FC<ProfileInfoType> = () => {
       }
     </StoreContext.Consumer>
   )
+}*/
+
+type mapStateToPropsType = {
+  top: topType
 }
+
+const mapStateToProps = (state: ReduxStateType): mapStateToPropsType => {
+  return {
+    top: state.profileReducer.top
+  }
+}
+
+const ProfileInfoContainer = connect(mapStateToProps)(ProfileInfo)
 
 export default ProfileInfoContainer;

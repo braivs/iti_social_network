@@ -3,11 +3,7 @@ import s from './Profile.module.css'
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import ProfileInfoContainer from './ProfileInfo/ProfileInfoContainer';
 
-type ProfileType = {
-  // store: ReduxStoreType
-}
-
-const Profile:React.FC<ProfileType> = (props) => {
+const Profile = () => {
   return (
     <div className={s.content}>
       <ProfileInfoContainer/>

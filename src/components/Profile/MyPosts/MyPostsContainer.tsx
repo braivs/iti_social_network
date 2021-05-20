@@ -20,17 +20,17 @@ const mapStateToProps = (state: ReduxStateType):mapStateToPropsType => {
 
 type mapDispatchToPropsType = {
   updateNewPostText:(text: string) => void
-  onPostChange: (text: string) => void
+  addPost: () => void
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
   return {
     updateNewPostText: (text: string) => {
-      dispatch(addPostActionCreator());
-    },
-    onPostChange: (text: string) => {
       let action = updateNewPostTextActionCreator(text);
       dispatch(action)
+    },
+    addPost: () => {
+      dispatch(addPostActionCreator());
     }
   }
 }
