@@ -1,36 +1,14 @@
 import React from 'react';
 import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/profile-reducer';
 import MyPosts from './MyPosts';
-import StoreContext from '../../../StoreContext';
 import {connect} from 'react-redux';
 import {ReduxStateType} from '../../../redux/redux-store';
-
-const MyPostsContainer: React.FC<MyPostsPropsType> = (props) => {
-  return (
-    <StoreContext.Consumer>
-      {
-        (store) => {
-          let state = store.getState();
-          let addPost = () => {
-            store.dispatch(addPostActionCreator());
-          }
-          let onPostChange = (text: string) => {
-            let action = updateNewPostTextActionCreator(text);
-            store.dispatch(action)
-          }
-
-          return <MyPosts updateNewPostText={onPostChange}
-                          addPost={addPost}
-                          posts={state.profileReducer.posts}
-                          newPostText={state.profileReducer.newPostText}/>
-        }
-      }
-    </StoreContext.Consumer>
-  )
-}
+import {postsType} from '../../../types/entities';
+import {Dispatch} from 'redux';
 
 type mapStateToPropsType = {
-
+  posts: Array<postsType>
+  newPostText: string
 }
 
 const mapStateToProps = (state: ReduxStateType):mapStateToPropsType => {
@@ -40,6 +18,23 @@ const mapStateToProps = (state: ReduxStateType):mapStateToPropsType => {
   }
 }
 
-const MyPostsContainerSuper = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+type mapDispatchToPropsType = {
+  updateNewPostText:(text: string) => void
+  onPostChange: (text: string) => void
+}
+
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+  return {
+    updateNewPostText: (text: string) => {
+      dispatch(addPostActionCreator());
+    },
+    onPostChange: (text: string) => {
+      let action = updateNewPostTextActionCreator(text);
+      dispatch(action)
+    }
+  }
+}
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 
 export default MyPostsContainer;
