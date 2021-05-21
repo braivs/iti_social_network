@@ -9,13 +9,7 @@ import Settings from './components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 
-type AppType = {
-  /*store: ReduxStoreType
-  state: ReduxStateType
-  dispatch: (dispatch: ActionTypes) => void*/
-}
-
-const App: React.FC<AppType> = (props) => {
+const App = () => {
   return (
     <div className={'app-wrapper'}>
       <Header/>
