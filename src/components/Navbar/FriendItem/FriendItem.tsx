@@ -2,6 +2,7 @@ import React from 'react';
 import s from './FriendsItem.module.scss'
 
 type FriendItemType = {
+  id: number
   name: string,
   avatar: string
 }

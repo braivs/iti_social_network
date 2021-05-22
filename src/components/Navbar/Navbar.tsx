@@ -10,7 +10,7 @@ type NavbarType = {
 
 const Navbar:React.FC<NavbarType> = (props) => {
 
-  let FriendsElements = props.sidebar.friends.map(f => <FriendItem name={f.name} avatar={f.avatar}/>)
+  let FriendsElements = props.sidebar.friends.map(f => <FriendItem key={f.id} id={f.id} name={f.name} avatar={f.avatar}/>)
 
   return (
     <div className={s.navbarContainer}>

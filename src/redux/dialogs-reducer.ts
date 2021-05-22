@@ -1,8 +1,5 @@
 import {ActionTypes, dialogsPageType, messagesType} from '../types/entities';
 
-/*type dialogsActionTypes = ReturnType<typeof sendMessageCreator> | ReturnType<typeof updateNewMessageAuthorCreator> |
-  ReturnType<typeof updateNewMessageBodyCreator>*/
-
 let initialState: dialogsPageType = {
   dialogs: [
     {id: 1, name: 'Briws'},
@@ -25,28 +22,32 @@ let initialState: dialogsPageType = {
 const dialogsReducer = (state = initialState, action: ActionTypes): dialogsPageType => {
   switch (action.type) {
     case 'UPDATE-NEW-MESSAGE-AUTHOR': {
-      let stateCopy = {...state}
-      stateCopy.newMessageAuthor = action.newAuthor;
-      return stateCopy;
+      return {
+        ...state,
+        newMessageAuthor: action.newAuthor
+      }
     };
     case 'UPDATE_NEW_MESSAGE_BODY': {
-      let stateCopy = {...state}
-      stateCopy.newMessageBody = action.body;
-      return stateCopy;
+      return {
+        ...state,
+        newMessageBody: action.body
+      };
     };
     case 'SEND-MESSAGE': {
+      let body = state.newMessageBody;
+      let author = state.newMessageAuthor;
       const newMessage: messagesType = {
         id: new Date().getTime(),
-        message: state.newMessageBody,
-        author: state.newMessageAuthor,
+        message: body,
+        author: author,
         avatar: 'img/ava.png'
       };
-      let stateCopy = {...state}
-      stateCopy.messages = [...state.messages]
-      stateCopy.messages.push(newMessage);
-      stateCopy.newMessageAuthor = '';
-      stateCopy.newMessageBody = '';
-      return stateCopy;
+      return {
+        ...state,
+        newMessageAuthor: '',
+        newMessageBody: '',
+        messages: [...state.messages, newMessage]
+      }
     }
     default:
       return state;

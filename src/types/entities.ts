@@ -33,6 +33,7 @@ export type profilePageType = {
   newPostText: string
 }
 type friendsType = {
+  id: number
   name: string,
   avatar: string
 }

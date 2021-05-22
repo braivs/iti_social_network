@@ -52,9 +52,9 @@ let store: StoreType = {
     },
     sidebar: {
       friends: [
-        { name: 'Liza', avatar: 'img/ava.png' },
-        { name: 'Masha', avatar: 'img/ava.png' },
-        { name: 'Diana', avatar: 'img/ava.png' }
+        {id: 1, name: 'Liza', avatar: 'img/ava.png' },
+        {id: 2, name: 'Masha', avatar: 'img/ava.png' },
+        {id: 3, name: 'Diana', avatar: 'img/ava.png' }
       ]
     }
   },
