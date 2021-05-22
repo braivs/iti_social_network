@@ -4,6 +4,7 @@ import sidebarReducer from './sidebar-reducer';
 import profileReducer from './profile-reducer';
 
 let reducers = combineReducers({ //этот объект надо воспринимать как state
+    // вот тут похоже ошибка надо profileReducer->profilePage и прочие
     profileReducer: profileReducer,
     dialogsReducer: dialogsReducer,
     sidebarReducer: sidebarReducer
