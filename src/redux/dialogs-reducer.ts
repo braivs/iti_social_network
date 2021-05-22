@@ -24,23 +24,30 @@ let initialState: dialogsPageType = {
 
 const dialogsReducer = (state = initialState, action: ActionTypes): dialogsPageType => {
   switch (action.type) {
-    case 'UPDATE-NEW-MESSAGE-AUTHOR':
-      state.newMessageAuthor = action.newAuthor;
-      return state;
-    case 'UPDATE_NEW_MESSAGE_BODY':
-      state.newMessageBody = action.body;
-      return state;
-    case 'SEND-MESSAGE':
+    case 'UPDATE-NEW-MESSAGE-AUTHOR': {
+      let stateCopy = {...state}
+      stateCopy.newMessageAuthor = action.newAuthor;
+      return stateCopy;
+    };
+    case 'UPDATE_NEW_MESSAGE_BODY': {
+      let stateCopy = {...state}
+      stateCopy.newMessageBody = action.body;
+      return stateCopy;
+    };
+    case 'SEND-MESSAGE': {
       const newMessage: messagesType = {
         id: new Date().getTime(),
         message: state.newMessageBody,
         author: state.newMessageAuthor,
         avatar: 'img/ava.png'
       };
-      state.messages.push(newMessage);
-      state.newMessageAuthor = '';
-      state.newMessageBody = '';
-      return state;
+      let stateCopy = {...state}
+      stateCopy.messages = [...state.messages]
+      stateCopy.messages.push(newMessage);
+      stateCopy.newMessageAuthor = '';
+      stateCopy.newMessageBody = '';
+      return stateCopy;
+    }
     default:
       return state;
   }
