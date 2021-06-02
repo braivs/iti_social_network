@@ -24,7 +24,7 @@ type mapStateToPropsType = {
 
 const mapStateToProps = (state: ReduxStateType): mapStateToPropsType => {
   return {
-    top: state.profileReducer.top
+    top: state.profilePage.top
   }
 }
 

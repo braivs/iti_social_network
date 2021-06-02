@@ -5,10 +5,9 @@ import profileReducer from './profile-reducer';
 import usersReducer from './users-reducer';
 
 let reducers = combineReducers({ //этот объект надо воспринимать как state
-    // вот тут похоже ошибка надо profileReducer->profilePage и прочие
-    profileReducer: profileReducer, // profileReducer->profilePage
-    dialogsReducer: dialogsReducer, // dialogsReducer -> dialogsPage
-    sidebarReducer: sidebarReducer, // ->sidebar
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
+    sidebar: sidebarReducer,
     usersPage: usersReducer
   })
 
@@ -19,6 +18,5 @@ let store = createStore(reducers);
 window.store = store;
 
 export type ReduxStateType = ReturnType<typeof reducers>
-export type ReduxStoreType = typeof store
 
 export default store;

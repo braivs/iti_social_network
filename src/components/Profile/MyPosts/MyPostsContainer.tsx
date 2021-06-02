@@ -13,8 +13,8 @@ type mapStateToPropsType = {
 
 const mapStateToProps = (state: ReduxStateType):mapStateToPropsType => {
   return {
-    posts: state.profileReducer.posts,
-    newPostText: state.profileReducer.newPostText
+    posts: state.profilePage.posts,
+    newPostText: state.profilePage.newPostText
   }
 }
 

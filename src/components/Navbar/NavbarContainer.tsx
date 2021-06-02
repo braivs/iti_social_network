@@ -10,7 +10,7 @@ type mapStateToPropsType = {
 
 const mapStateToProps = (state: ReduxStateType): mapStateToPropsType => {
   return {
-    sidebar: state.sidebarReducer
+    sidebar: state.sidebar
   }
 }
 
