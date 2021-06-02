@@ -48,8 +48,9 @@ type locationType = {
 }
 export type usersType = {
   id: number
+  photoUrl: string
   followed: boolean
-  name: string
+  fullName: string
   status: string
   location: locationType
 }

@@ -1,11 +1,8 @@
 import {ActionTypes, usersPageType, usersType} from '../types/entities';
+import defaultAva from '../img/ava_orange.png'
 
 let initialState: usersPageType = {
-  users: [
-    {id: 1, followed: false, name: 'Dmitry', status: 'I am boss', location: {city: 'Minsk', country: 'Belarus'}},
-    {id: 2, followed: true, name: 'Sasha', status: 'I am boss too', location: {city: 'Moscow', country: 'Russia'}},
-    {id: 3, followed: false, name: 'Andrew', status: 'I am boss too', location: {city: 'Kiew', country: 'Ukraine'}}
-  ]
+  users: [ ]
 }
 
 const usersReducer = (state = initialState, action: ActionTypes): usersPageType => {
