@@ -7,14 +7,14 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import NavbarContainer from './components/Navbar/NavbarContainer';
 import {UsersContainer} from './components/Users/UsersContainer';
+import SidebarContainer from './components/Sidebar/SidebarContainer';
 
 const App = () => {
   return (
     <div className={'app-wrapper'}>
       <Header/>
-      <NavbarContainer />
+      <SidebarContainer />
       <div className={'app-wrapper-content'}>
         <Route path="/dialogs" render={() => <DialogsContainer />}/>
         <Route path="/profile" render={ () => <Profile />}/>

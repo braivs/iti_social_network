@@ -8,7 +8,7 @@ const rootReducer = combineReducers({ //этот объект надо восп�
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
-    users: usersReducer
+    usersPage: usersReducer
   })
 
 export type AppStateType = ReturnType<typeof rootReducer>

@@ -2,16 +2,9 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.scss'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {dialogsPageType} from '../../redux/dialogs-reducer';
+import {DialogsPropsType} from './DialogsContainer';
 
-type DialogsType = {
-  updateNewMessageBody: (body: string) => void
-  updateNewMessageAuthor: (author: string) => void
-  sendMessage: () => void
-  dialogsPage: dialogsPageType
-}
-
-const Dialogs: React.FC<DialogsType> = (props) => {
+const Dialogs: React.FC<DialogsPropsType> = (props) => {
   let state = props.dialogsPage;
 
   let dialogsElements = state.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name}/>)
@@ -47,7 +40,7 @@ const Dialogs: React.FC<DialogsType> = (props) => {
         <div className={s.newMessageContainer}>
           <div className={s.newMessageAuthor}>
             <div>Author:</div>
-            <textarea placeholder='Enter your name' onChange={onNewAuthorChange} value={newMessageAuthor}/>
+            <textarea placeholder="Enter your name" onChange={onNewAuthorChange} value={newMessageAuthor}/>
           </div>
           <div className={s.newMessageText}>
             <div>Text:</div>
@@ -55,9 +48,6 @@ const Dialogs: React.FC<DialogsType> = (props) => {
           </div>
           <button onClick={onSendMessageClick}>Send</button>
         </div>
-      </div>
-
-      <div>
       </div>
     </div>
   )

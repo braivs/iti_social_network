@@ -1,12 +1,8 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
-import {topType} from '../../../types/entities';
+import {ProfileInfoPropsType} from './ProfileInfoContainer';
 
-type ProfileInfoType = {
-  top: topType
-}
-
-export const ProfileInfo: React.FC<ProfileInfoType> = (props) => {
+export const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
   return <>
     <img src={props.top.imgSrc} alt=""/>
     <div className={s.descriptionBlock}>

@@ -1,6 +1,22 @@
-import {ActionTypes, postsType, profilePageType} from '../types/entities';
+import {ActionTypes} from '../types/entities';
 
-let initialState: profilePageType = {
+export type TopType = {
+  imgSrc: string
+  imgAlt: string
+  description: string
+}
+export type PostsType = {
+  id: number
+  message: string
+  likesCount: number
+}
+export type ProfilePageType = {
+  top: TopType
+  posts: Array<PostsType>
+  newPostText: string
+}
+
+let initialState: ProfilePageType = {
   top: {
     imgSrc: 'img/main.jpg',
     imgAlt: '',
@@ -15,10 +31,10 @@ let initialState: profilePageType = {
   newPostText: ''
 }
 
-const profileReducer = (state = initialState, action: ActionTypes): profilePageType => {
+const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes): ProfilePageType => {
   switch (action.type) {
     case 'ADD-POST': {
-      const newPost: postsType = {
+      const newPost: PostsType = {
         id: new Date().getTime(),
         message: state.newPostText,
         likesCount: 0
@@ -39,7 +55,6 @@ const profileReducer = (state = initialState, action: ActionTypes): profilePageT
       return state;
   }
 }
-
 
 // Action Creators:
 export const addPostActionCreator = () => ({type: 'ADD-POST'} as const)

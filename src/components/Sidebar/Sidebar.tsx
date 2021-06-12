@@ -1,14 +1,10 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import s from './Navbar.module.scss'
+import s from './Sidebar.module.scss'
 import {FriendItem} from './FriendItem/FriendItem';
-import {sidebarType} from '../../types/entities';
+import {SidebarPropsType} from './SidebarContainer';
 
-type NavbarType = {
-  sidebar: sidebarType
-}
-
-const Navbar:React.FC<NavbarType> = (props) => {
+const Sidebar:React.FC<SidebarPropsType> = (props) => {
 
   let FriendsElements = props.sidebar.friends.map(f => <FriendItem key={f.id} id={f.id} name={f.name} avatar={f.avatar}/>)
 
@@ -44,4 +40,4 @@ const Navbar:React.FC<NavbarType> = (props) => {
   )
 }
 
-export default Navbar;
+export default Sidebar;

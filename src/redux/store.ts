@@ -1,13 +1,12 @@
-import profileReducer from './profile-reducer';
-import dialogsReducer, {dialogsPageType} from './dialogs-reducer';
-import sidebarReducer from './sidebar-reducer';
-import {ActionTypes, profilePageType, sidebarType} from '../types/entities';
-
+import profileReducer, {ProfilePageType} from './profile-reducer';
+import dialogsReducer, {DialogsPageType} from './dialogs-reducer';
+import sidebarReducer, {SidebarType} from './sidebar-reducer';
+import {ActionTypes} from '../types/entities';
 
 type stateType = {
-  dialogsPage: dialogsPageType
-  profilePage: profilePageType
-  sidebar: sidebarType
+  dialogsPage: DialogsPageType
+  profilePage: ProfilePageType
+  sidebar: SidebarType
 }
 export type StoreType = {
   _state: stateType

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  dialogsPageType,
+  DialogsPageType,
   sendMessageCreator,
   updateNewMessageAuthorCreator,
   updateNewMessageBodyCreator
@@ -10,23 +10,25 @@ import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import {Dispatch} from 'redux';
 
-type mapStateToPropsType = {
-  dialogsPage: dialogsPageType
+type MapStatePropsType = {
+  dialogsPage: DialogsPageType
 }
 
-const mapStateToProps = (state: AppStateType):mapStateToPropsType => {
-  return {
-    dialogsPage: state.dialogsPage
-  }
-}
-
-type mapDispatchToPropsType = {
+type MapDispatchPropsType = {
   updateNewMessageAuthor: (author: string) => void
   updateNewMessageBody: (body: string) => void
   sendMessage: () => void
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+const mapStateToProps = (state: AppStateType):MapStatePropsType => {
+  return {
+    dialogsPage: state.dialogsPage
+  }
+}
+
+export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType
+
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
   return {
     updateNewMessageAuthor: (author: string) => {
       dispatch(updateNewMessageAuthorCreator(author));

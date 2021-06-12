@@ -6,7 +6,7 @@ import {UsersPropsType} from './UsersContainer';
 
 let Users: React.FC<UsersPropsType> = (props) => {
 
-  if (props.usersPage.users.length === 0) {
+  if (props.users.length === 0) {
     props.setUsers([
         {
           id: 1, photoUrl: defaultAva, followed: false, fullName: 'Dmitry', status: 'I am boss',
@@ -26,7 +26,7 @@ let Users: React.FC<UsersPropsType> = (props) => {
 
   return <div>
     {
-      props.usersPage.users.map(u => <div key={u.id}>
+      props.users.map(u => <div key={u.id}>
         <span>
           <div>
             <img src={u.photoUrl} className={s.userPhoto}/>

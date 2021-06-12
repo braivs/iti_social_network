@@ -14,15 +14,15 @@ export type UserType = {
   location: locationType
 }
 
-export type InitialStateType = {
+export type UsersPageType = {
   users: Array<UserType>
 }
 
-const initialState: InitialStateType = {
+const initialState: UsersPageType = {
   users: []
 }
 
-const usersReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
+const usersReducer = (state: UsersPageType = initialState, action: ActionTypes): UsersPageType => {
   switch (action.type) {
     case 'FOLLOW':
       return {

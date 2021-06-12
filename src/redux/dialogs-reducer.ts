@@ -11,37 +11,33 @@ type DialogsType = {
   name: string
 }
 
-export type dialogsPageType = {
+export type DialogsPageType = {
   dialogs: Array<DialogsType>
   messages: Array<MessagesType>
   newMessageAuthor: string
   newMessageBody: string
 }
 
-let initialState = {
+let initialState: DialogsPageType = {
   dialogs: [
-    {id: 1, name: 'Briws'},
+    {id: 1, name: 'BriWS'},
     {id: 2, name: 'Masha'},
     {id: 3, name: 'Lera'},
     {id: 4, name: 'Liza'},
     {id: 5, name: 'Diana'},
     {id: 6, name: 'Kristina'}
-  ] as Array<DialogsType>,
+  ],
   messages: [
     {id: 1, message: 'Lorem ipsum dolor sit amet', author: 'Masha', avatar: 'img/ava.png'},
     {id: 2, message: 'Lorem ipsum dolor sit amet', author: 'Briws', avatar: 'img/ava.png'},
     {id: 3, message: 'Lorem ipsum dolor sit amet', author: 'Lera', avatar: 'img/ava.png'},
     {id: 4, message: 'Lorem ipsum dolor sit amet', author: 'Liza', avatar: 'img/ava.png'}
-  ] as Array<MessagesType>,
+  ],
   newMessageAuthor: '',
   newMessageBody: ''
 }
 
-export type InitialStateType = typeof initialState;
-
-let state: InitialStateType;
-
-const dialogsReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
+const dialogsReducer = (state: DialogsPageType = initialState, action: ActionTypes): DialogsPageType => {
   switch (action.type) {
     case 'UPDATE-NEW-MESSAGE-AUTHOR': {
       return {
