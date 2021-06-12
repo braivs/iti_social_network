@@ -26,13 +26,13 @@ const dialogsReducer = (state = initialState, action: ActionTypes): dialogsPageT
         ...state,
         newMessageAuthor: action.newAuthor
       }
-    };
+    }
     case 'UPDATE_NEW_MESSAGE_BODY': {
       return {
         ...state,
         newMessageBody: action.body
       };
-    };
+    }
     case 'SEND-MESSAGE': {
       let body = state.newMessageBody;
       let author = state.newMessageAuthor;

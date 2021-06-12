@@ -1,14 +1,14 @@
 import React from 'react';
 import Navbar from './Navbar';
 import {sidebarType} from '../../types/entities';
-import {ReduxStateType} from '../../redux/redux-store';
+import {AppStateType} from '../../redux/redux-store';
 import {connect} from 'react-redux';
 
 type mapStateToPropsType = {
   sidebar: sidebarType
 }
 
-const mapStateToProps = (state: ReduxStateType): mapStateToPropsType => {
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
   return {
     sidebar: state.sidebar
   }

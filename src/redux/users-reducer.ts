@@ -1,11 +1,28 @@
-import {ActionTypes, usersPageType, usersType} from '../types/entities';
-import defaultAva from '../img/ava_orange.png'
+import {ActionTypes} from '../types/entities';
 
-let initialState: usersPageType = {
-  users: [ ]
+type locationType = {
+  city: string
+  country: string
 }
 
-const usersReducer = (state = initialState, action: ActionTypes): usersPageType => {
+export type UserType = {
+  id: number
+  photoUrl: string
+  followed: boolean
+  fullName: string
+  status: string
+  location: locationType
+}
+
+export type InitialStateType = {
+  users: Array<UserType>
+}
+
+const initialState: InitialStateType = {
+  users: []
+}
+
+const usersReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
   switch (action.type) {
     case 'FOLLOW':
       return {
@@ -36,7 +53,7 @@ const usersReducer = (state = initialState, action: ActionTypes): usersPageType 
 
 export const followAC = (userId: number) => ({type: 'FOLLOW', userId} as const)
 export const unfollowAC = (userId: number) => ({type: 'UNFOLLOW', userId} as const)
-export const setUsersAC = (users: Array<usersType>) => ({type: 'SET-USERS', users} as const)
+export const setUsersAC = (users: Array<UserType>) => ({type: 'SET-USERS', users} as const)
 
 export default usersReducer
 

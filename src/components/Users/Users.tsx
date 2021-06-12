@@ -1,13 +1,13 @@
 import React from 'react';
-import {usersType} from '../../types/entities';
 import s from './Users.module.css'
 import defaultAva from '../../img/ava_orange.png';
+import {UserType} from '../../redux/users-reducer';
 
 type UsersPropsType = {
-  users: Array<usersType>
+  users: Array<UserType>
   follow: (userId: number) => void
   unfollow: (userId: number) => void
-  setUsers: (users: Array<usersType>) => void
+  setUsers: (users: Array<UserType>) => void
 }
 
 let Users: React.FC<UsersPropsType> = (props) => {

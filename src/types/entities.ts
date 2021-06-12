@@ -1,6 +1,6 @@
 import {sendMessageCreator, updateNewMessageAuthorCreator, updateNewMessageBodyCreator} from '../redux/dialogs-reducer';
 import {addPostActionCreator, updateNewPostTextActionCreator} from '../redux/profile-reducer';
-import {followAC, setUsersAC, unfollowAC} from '../redux/users-reducer';
+import {followAC, setUsersAC, unfollowAC, UserType} from '../redux/users-reducer';
 
 type dialogsType = {
   id: number
@@ -42,21 +42,9 @@ export type sidebarType = {
   friends: Array<friendsType>
 }
 
-type locationType = {
-  city: string
-  country: string
-}
-export type usersType = {
-  id: number
-  photoUrl: string
-  followed: boolean
-  fullName: string
-  status: string
-  location: locationType
-}
-export type usersPageType = {
-  users: Array<usersType>
-}
+
+
+
 
 
 //Autocreated types from Action Creators:

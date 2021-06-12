@@ -2,7 +2,7 @@ import React from 'react';
 import ProfileInfo from './ProfileInfo';
 import {connect} from 'react-redux';
 import {topType} from '../../../types/entities';
-import {ReduxStateType} from '../../../redux/redux-store';
+import {AppStateType} from '../../../redux/redux-store';
 
 /*export const ProfileInfoContainer: React.FC<ProfileInfoType> = () => {
   return (
@@ -22,7 +22,7 @@ type mapStateToPropsType = {
   top: topType
 }
 
-const mapStateToProps = (state: ReduxStateType): mapStateToPropsType => {
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
   return {
     top: state.profilePage.top
   }

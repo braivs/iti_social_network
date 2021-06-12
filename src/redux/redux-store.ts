@@ -4,19 +4,17 @@ import sidebarReducer from './sidebar-reducer';
 import profileReducer from './profile-reducer';
 import usersReducer from './users-reducer';
 
-let reducers = combineReducers({ //этот объект надо воспринимать как state
+export const rootReducer = combineReducers({ //этот объект надо воспринимать как state
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer
   })
 
+export type AppStateType = ReturnType<typeof rootReducer>
+
 // создаёт внутри себя state у которого есть 3 свойства выше
-let store = createStore(reducers);
+export const store = createStore(rootReducer);
 
 // @ts-ignore
 window.store = store;
-
-export type ReduxStateType = ReturnType<typeof reducers>
-
-export default store;

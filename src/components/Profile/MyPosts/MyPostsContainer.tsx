@@ -2,7 +2,7 @@ import React from 'react';
 import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/profile-reducer';
 import MyPosts from './MyPosts';
 import {connect} from 'react-redux';
-import {ReduxStateType} from '../../../redux/redux-store';
+import {AppStateType} from '../../../redux/redux-store';
 import {postsType} from '../../../types/entities';
 import {Dispatch} from 'redux';
 
@@ -11,7 +11,7 @@ type mapStateToPropsType = {
   newPostText: string
 }
 
-const mapStateToProps = (state: ReduxStateType):mapStateToPropsType => {
+const mapStateToProps = (state: AppStateType):mapStateToPropsType => {
   return {
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText
