@@ -5,10 +5,10 @@ import {
   updateNewMessageAuthorCreator,
   updateNewMessageBodyCreator
 } from '../../redux/dialogs-reducer';
-import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import {Dispatch} from 'redux';
+import {Dialogs} from './Dialogs';
 
 type MapStatePropsType = {
   dialogsPage: DialogsPageType
@@ -42,6 +42,4 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
   }
 }
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps )(Dialogs);
-
-export default DialogsContainer;
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps )(Dialogs);

@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header/Header';
-import Profile from './components/Profile/Profile';
 import {Route} from 'react-router-dom';
-import News from './components/News/News';
-import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
 import {UsersContainer} from './components/Users/UsersContainer';
-import SidebarContainer from './components/Sidebar/SidebarContainer';
+import {Header} from './components/Header/Header';
+import {SidebarContainer} from './components/Sidebar/SidebarContainer';
+import {DialogsContainer} from './components/Dialogs/DialogsContainer';
+import {Profile} from './components/Profile/Profile';
+import {News} from './components/News/News';
+import {Music} from './components/Music/Music';
+import {Settings} from './components/Settings/Settings';
 
-const App = () => {
+export const App = () => {
   return (
     <div className={'app-wrapper'}>
       <Header/>
@@ -26,6 +26,3 @@ const App = () => {
     </div>
   );
 }
-
-
-export default App;

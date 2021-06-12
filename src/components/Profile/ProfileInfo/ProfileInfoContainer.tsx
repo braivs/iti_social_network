@@ -1,8 +1,8 @@
 import React from 'react';
-import ProfileInfo from './ProfileInfo';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../../redux/redux-store';
 import {TopType} from '../../../redux/profile-reducer';
+import {ProfileInfo} from './ProfileInfo';
 
 type MapStatePropsType = {
   top: TopType
@@ -16,6 +16,4 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
   }
 }
 
-const ProfileInfoContainer = connect(mapStateToProps)(ProfileInfo)
-
-export default ProfileInfoContainer;
+export const ProfileInfoContainer = connect(mapStateToProps)(ProfileInfo)

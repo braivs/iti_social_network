@@ -4,7 +4,7 @@ import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
 import {DialogsPropsType} from './DialogsContainer';
 
-const Dialogs: React.FC<DialogsPropsType> = (props) => {
+export const Dialogs: React.FC<DialogsPropsType> = (props) => {
   let state = props.dialogsPage;
 
   let dialogsElements = state.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name}/>)
@@ -52,5 +52,3 @@ const Dialogs: React.FC<DialogsPropsType> = (props) => {
     </div>
   )
 }
-
-export default Dialogs;

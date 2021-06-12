@@ -2,7 +2,7 @@ import React from 'react';
 import {AppStateType} from '../../redux/redux-store';
 import {connect} from 'react-redux';
 import {SidebarType} from '../../redux/sidebar-reducer';
-import Sidebar from './Sidebar';
+import {Sidebar} from './Sidebar';
 
 type MapStatePropsType = {
   sidebar: SidebarType
@@ -16,5 +16,4 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
   }
 }
 
-const SidebarContainer = connect(mapStateToProps)(Sidebar)
-export default SidebarContainer;
+export const SidebarContainer = connect(mapStateToProps)(Sidebar)

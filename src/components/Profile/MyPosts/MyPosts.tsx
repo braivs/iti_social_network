@@ -3,7 +3,7 @@ import Post from './Post/Post';
 import s from './MyPost.module.css'
 import {MyPostsPropsType} from './MyPostsContainer';
 
-const MyPosts: React.FC<MyPostsPropsType> = (props) => {
+export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
   let postElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
 
   let newPostElement = React.createRef<HTMLTextAreaElement>();
@@ -39,5 +39,3 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     </div>
   )
 }
-
-export default MyPosts;

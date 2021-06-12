@@ -4,7 +4,7 @@ import defaultAva from '../../img/ava_orange.png';
 import {UserType} from '../../redux/users-reducer';
 import {UsersPropsType} from './UsersContainer';
 
-let Users: React.FC<UsersPropsType> = (props) => {
+export const Users: React.FC<UsersPropsType> = (props) => {
 
   if (props.users.length === 0) {
     props.setUsers([
@@ -55,5 +55,3 @@ let Users: React.FC<UsersPropsType> = (props) => {
     }
   </div>
 }
-
-export default Users;

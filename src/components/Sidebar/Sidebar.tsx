@@ -4,7 +4,7 @@ import s from './Sidebar.module.scss'
 import {FriendItem} from './FriendItem/FriendItem';
 import {SidebarPropsType} from './SidebarContainer';
 
-const Sidebar:React.FC<SidebarPropsType> = (props) => {
+export const Sidebar:React.FC<SidebarPropsType> = (props) => {
 
   let FriendsElements = props.sidebar.friends.map(f => <FriendItem key={f.id} id={f.id} name={f.name} avatar={f.avatar}/>)
 
@@ -35,9 +35,5 @@ const Sidebar:React.FC<SidebarPropsType> = (props) => {
         <div className={s.friendsContainer}>{FriendsElements}</div>
       </div>
     </div>
-
-
   )
 }
-
-export default Sidebar;

@@ -10,5 +10,3 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
     </div>
   </>
 }
-
-export default ProfileInfo;
