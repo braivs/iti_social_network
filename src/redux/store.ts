@@ -1,7 +1,7 @@
 import profileReducer from './profile-reducer';
-import dialogsReducer from './dialogs-reducer';
+import dialogsReducer, {dialogsPageType} from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
-import {ActionTypes, dialogsPageType, profilePageType, sidebarType} from '../types/entities';
+import {ActionTypes, profilePageType, sidebarType} from '../types/entities';
 
 
 type stateType = {

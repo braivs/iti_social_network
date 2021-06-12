@@ -4,11 +4,11 @@ import sidebarReducer from './sidebar-reducer';
 import profileReducer from './profile-reducer';
 import usersReducer from './users-reducer';
 
-export const rootReducer = combineReducers({ //этот объект надо воспринимать как state
+const rootReducer = combineReducers({ //этот объект надо воспринимать как state
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
-    usersPage: usersReducer
+    users: usersReducer
   })
 
 export type AppStateType = ReturnType<typeof rootReducer>

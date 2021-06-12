@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  dialogsPageType,
   sendMessageCreator,
   updateNewMessageAuthorCreator,
   updateNewMessageBodyCreator
@@ -7,7 +8,6 @@ import {
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
-import {dialogsPageType} from '../../types/entities';
 import {Dispatch} from 'redux';
 
 type mapStateToPropsType = {

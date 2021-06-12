@@ -2,22 +2,8 @@ import {sendMessageCreator, updateNewMessageAuthorCreator, updateNewMessageBodyC
 import {addPostActionCreator, updateNewPostTextActionCreator} from '../redux/profile-reducer';
 import {followAC, setUsersAC, unfollowAC, UserType} from '../redux/users-reducer';
 
-type dialogsType = {
-  id: number
-  name: string
-}
-export type messagesType = {
-  id: number
-  message: string
-  author: string
-  avatar: string
-}
-export type dialogsPageType = {
-  dialogs: Array<dialogsType>
-  messages: Array<messagesType>
-  newMessageAuthor: string
-  newMessageBody: string
-}
+
+
 export type topType = {
   imgSrc: string
   imgAlt: string

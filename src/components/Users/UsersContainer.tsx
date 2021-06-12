@@ -6,12 +6,12 @@ import {Dispatch} from 'redux';
 import {AppStateType} from '../../redux/redux-store';
 
 type MapStatePropsType = {
-  users: Array<UserType>
+  usersPage: InitialStateType
 }
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
-    users: state.usersPage.users
+    usersPage: state.users
   }
 }
 
@@ -20,6 +20,8 @@ type MapDispatchToPropsType = {
   unfollow: (userId: number) => void
   setUsers: (users: Array<UserType>) => void
 }
+
+export type UsersPropsType = MapStatePropsType & MapDispatchToPropsType
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
   return {

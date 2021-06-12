@@ -1,6 +1,24 @@
-import {ActionTypes, dialogsPageType, messagesType} from '../types/entities';
+import {ActionTypes} from '../types/entities';
 
-let initialState: dialogsPageType = {
+export type MessagesType = {
+  id: number
+  message: string
+  author: string
+  avatar: string
+}
+type DialogsType = {
+  id: number
+  name: string
+}
+
+export type dialogsPageType = {
+  dialogs: Array<DialogsType>
+  messages: Array<MessagesType>
+  newMessageAuthor: string
+  newMessageBody: string
+}
+
+let initialState = {
   dialogs: [
     {id: 1, name: 'Briws'},
     {id: 2, name: 'Masha'},
@@ -8,18 +26,22 @@ let initialState: dialogsPageType = {
     {id: 4, name: 'Liza'},
     {id: 5, name: 'Diana'},
     {id: 6, name: 'Kristina'}
-  ],
+  ] as Array<DialogsType>,
   messages: [
     {id: 1, message: 'Lorem ipsum dolor sit amet', author: 'Masha', avatar: 'img/ava.png'},
     {id: 2, message: 'Lorem ipsum dolor sit amet', author: 'Briws', avatar: 'img/ava.png'},
     {id: 3, message: 'Lorem ipsum dolor sit amet', author: 'Lera', avatar: 'img/ava.png'},
     {id: 4, message: 'Lorem ipsum dolor sit amet', author: 'Liza', avatar: 'img/ava.png'}
-  ],
+  ] as Array<MessagesType>,
   newMessageAuthor: '',
   newMessageBody: ''
 }
 
-const dialogsReducer = (state = initialState, action: ActionTypes): dialogsPageType => {
+export type InitialStateType = typeof initialState;
+
+let state: InitialStateType;
+
+const dialogsReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
   switch (action.type) {
     case 'UPDATE-NEW-MESSAGE-AUTHOR': {
       return {
@@ -36,7 +58,7 @@ const dialogsReducer = (state = initialState, action: ActionTypes): dialogsPageT
     case 'SEND-MESSAGE': {
       let body = state.newMessageBody;
       let author = state.newMessageAuthor;
-      const newMessage: messagesType = {
+      const newMessage: MessagesType = {
         id: new Date().getTime(),
         message: body,
         author: author,

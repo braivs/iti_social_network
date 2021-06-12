@@ -2,17 +2,11 @@ import React from 'react';
 import s from './Users.module.css'
 import defaultAva from '../../img/ava_orange.png';
 import {UserType} from '../../redux/users-reducer';
-
-type UsersPropsType = {
-  users: Array<UserType>
-  follow: (userId: number) => void
-  unfollow: (userId: number) => void
-  setUsers: (users: Array<UserType>) => void
-}
+import {UsersPropsType} from './UsersContainer';
 
 let Users: React.FC<UsersPropsType> = (props) => {
 
-  if (props.users.length === 0) {
+  if (props.usersPage.users.length === 0) {
     props.setUsers([
         {
           id: 1, photoUrl: defaultAva, followed: false, fullName: 'Dmitry', status: 'I am boss',
@@ -32,7 +26,7 @@ let Users: React.FC<UsersPropsType> = (props) => {
 
   return <div>
     {
-      props.users.map(u => <div key={u.id}>
+      props.usersPage.users.map(u => <div key={u.id}>
         <span>
           <div>
             <img src={u.photoUrl} className={s.userPhoto}/>
