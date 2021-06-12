@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/iti_social_network/static/css/main.e9887846.chunk.css",
+    "main.js": "/iti_social_network/static/js/main.2978c6da.chunk.js",
+    "main.js.map": "/iti_social_network/static/js/main.2978c6da.chunk.js.map",
+    "runtime-main.js": "/iti_social_network/static/js/runtime-main.a9068eaa.js",
+    "runtime-main.js.map": "/iti_social_network/static/js/runtime-main.a9068eaa.js.map",
+    "static/js/2.cc2d2c8c.chunk.js": "/iti_social_network/static/js/2.cc2d2c8c.chunk.js",
+    "static/js/2.cc2d2c8c.chunk.js.map": "/iti_social_network/static/js/2.cc2d2c8c.chunk.js.map",
+    "index.html": "/iti_social_network/index.html",
+    "static/css/main.e9887846.chunk.css.map": "/iti_social_network/static/css/main.e9887846.chunk.css.map",
+    "static/js/2.cc2d2c8c.chunk.js.LICENSE.txt": "/iti_social_network/static/js/2.cc2d2c8c.chunk.js.LICENSE.txt",
+    "static/media/ava_orange.b9b5b31c.png": "/iti_social_network/static/media/ava_orange.b9b5b31c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a9068eaa.js",
+    "static/js/2.cc2d2c8c.chunk.js",
+    "static/css/main.e9887846.chunk.css",
+    "static/js/main.2978c6da.chunk.js"
+  ]
+}
