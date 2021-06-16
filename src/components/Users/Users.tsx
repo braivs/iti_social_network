@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './Users.module.css'
 import defaultAva from '../../img/ava_orange.png';
-import {UserType} from '../../redux/users-reducer';
 import {UsersPropsType} from './UsersContainer';
 
 export const Users: React.FC<UsersPropsType> = (props) => {
@@ -29,7 +28,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
       props.users.map(u => <div key={u.id}>
         <span>
           <div>
-            <img src={u.photoUrl} className={s.userPhoto}/>
+            <img src={u.photoUrl} alt={'userPhoto'} className={s.userPhoto}/>
           </div>
           <div>
             {u.followed
