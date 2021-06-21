@@ -1,4 +1,5 @@
 import {ActionTypes} from '../types/entities';
+import mainImg from '../img/main.jpg'
 
 export type TopType = {
   imgSrc: string
@@ -18,7 +19,7 @@ export type ProfilePageType = {
 
 let initialState: ProfilePageType = {
   top: {
-    imgSrc: 'img/main.jpg',
+    imgSrc: mainImg,
     imgAlt: '',
     description: 'ava + description'
   },

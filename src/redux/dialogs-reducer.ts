@@ -1,4 +1,5 @@
 import {ActionTypes} from '../types/entities';
+import ava from '../img/ava.png'
 
 export type MessagesType = {
   id: number
@@ -28,10 +29,10 @@ let initialState: DialogsPageType = {
     {id: 6, name: 'Kristina'}
   ],
   messages: [
-    {id: 1, message: 'Lorem ipsum dolor sit amet', author: 'Masha', avatar: 'img/ava.png'},
-    {id: 2, message: 'Lorem ipsum dolor sit amet', author: 'Briws', avatar: 'img/ava.png'},
-    {id: 3, message: 'Lorem ipsum dolor sit amet', author: 'Lera', avatar: 'img/ava.png'},
-    {id: 4, message: 'Lorem ipsum dolor sit amet', author: 'Liza', avatar: 'img/ava.png'}
+    {id: 1, message: 'Lorem ipsum dolor sit amet', author: 'Masha', avatar: ava},
+    {id: 2, message: 'Lorem ipsum dolor sit amet', author: 'Briws', avatar: ava},
+    {id: 3, message: 'Lorem ipsum dolor sit amet', author: 'Lera', avatar: ava},
+    {id: 4, message: 'Lorem ipsum dolor sit amet', author: 'Liza', avatar: ava}
   ],
   newMessageAuthor: '',
   newMessageBody: ''
@@ -58,7 +59,7 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionTyp
         id: new Date().getTime(),
         message: body,
         author: author,
-        avatar: 'img/ava.png'
+        avatar: ava
       };
       return {
         ...state,

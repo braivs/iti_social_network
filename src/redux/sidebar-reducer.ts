@@ -1,4 +1,5 @@
 import {ActionTypes} from '../types/entities';
+import ava from '../img/ava.png'
 
 type FriendsType = {
   id: number
@@ -11,9 +12,9 @@ export type SidebarType = {
 
 let initialState: SidebarType = {
   friends: [
-    { id: 1, name: 'Liza', avatar: 'img/ava.png' },
-    { id: 2, name: 'Masha', avatar: 'img/ava.png' },
-    { id: 3, name: 'Diana', avatar: 'img/ava.png' }
+    { id: 1, name: 'Liza', avatar: ava},
+    { id: 2, name: 'Masha', avatar: ava},
+    { id: 3, name: 'Diana', avatar: ava},
   ]
 }
 
