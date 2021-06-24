@@ -1,5 +1,5 @@
 import {ActionTypes} from '../types/entities';
-import ava from '../img/ava.png'
+import ava from '../assets/images/ava.png'
 
 export type MessagesType = {
   id: number

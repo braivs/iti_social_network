@@ -1,5 +1,5 @@
 import {ActionTypes} from '../types/entities';
-import mainImg from '../img/main.jpg'
+import mainImg from '../assets/images/main.jpg'
 
 export type TopType = {
   imgSrc: string

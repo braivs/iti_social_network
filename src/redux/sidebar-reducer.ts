@@ -1,5 +1,5 @@
 import {ActionTypes} from '../types/entities';
-import ava from '../img/ava.png'
+import ava from '../assets/images/ava.png'
 
 type FriendsType = {
   id: number

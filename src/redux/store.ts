@@ -2,6 +2,7 @@ import profileReducer, {ProfilePageType} from './profile-reducer';
 import dialogsReducer, {DialogsPageType} from './dialogs-reducer';
 import sidebarReducer, {SidebarType} from './sidebar-reducer';
 import {ActionTypes} from '../types/entities';
+import mainImg from '../assets/images/main.jpg'
 
 type stateType = {
   dialogsPage: DialogsPageType
@@ -37,7 +38,7 @@ let store: StoreType = {
     },
     profilePage: {
       top: {
-        imgSrc: 'img/main.jpg',
+        imgSrc: mainImg,
         imgAlt: '',
         description: 'ava + description'
       },

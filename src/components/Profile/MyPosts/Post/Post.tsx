@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Post.module.css'
-import ava from '../../../../img/ava.png'
+import ava from '../../../../assets/images/ava.png'
 
 export type PostType = {
   message: string
