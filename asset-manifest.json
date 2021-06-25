@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/iti_social_network/static/css/main.09933160.chunk.css",
-    "main.js": "/iti_social_network/static/js/main.e76fd80c.chunk.js",
-    "main.js.map": "/iti_social_network/static/js/main.e76fd80c.chunk.js.map",
+    "main.js": "/iti_social_network/static/js/main.09342cc5.chunk.js",
+    "main.js.map": "/iti_social_network/static/js/main.09342cc5.chunk.js.map",
     "runtime-main.js": "/iti_social_network/static/js/runtime-main.a9068eaa.js",
     "runtime-main.js.map": "/iti_social_network/static/js/runtime-main.a9068eaa.js.map",
     "static/js/2.0cbce96d.chunk.js": "/iti_social_network/static/js/2.0cbce96d.chunk.js",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.a9068eaa.js",
     "static/js/2.0cbce96d.chunk.js",
     "static/css/main.09933160.chunk.css",
-    "static/js/main.e76fd80c.chunk.js"
+    "static/js/main.09342cc5.chunk.js"
   ]
 }
