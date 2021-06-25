@@ -7,13 +7,17 @@ import axios from 'axios';
 
 export const Users: React.FC<UsersPropsType> = (props) => {
 
-  if (props.users.length === 0) {
-    axios.get('https://social-network.samuraijs.com/api/1.0/users').then(responce => {
-      props.setUsers(responce.data.items)
-    });
+  const getUsers = () => {
+    if (props.users.length === 0) {
+      axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        .then(responce => {
+          props.setUsers(responce.data.items)
+        });
+    }
   }
 
   return <div>
+    <button onClick={getUsers}>Get Users</button>
     {
       props.users.map(u => <div key={u.id}>
         <span>
