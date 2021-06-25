@@ -2,24 +2,29 @@ import React from 'react';
 import s from './Users.module.css'
 import userPhoto from '../../assets/images/user.png';
 import {UsersPropsType} from './UsersContainer';
-// import * as axios from 'axios';
 import axios from 'axios';
 
-export const Users: React.FC<UsersPropsType> = (props) => {
+export class Users extends React.Component<UsersPropsType>{
 
-  const getUsers = () => {
-    if (props.users.length === 0) {
+  constructor(props: UsersPropsType) {
+    super(props);
+
+    if (this.props.users.length === 0) {
       axios.get('https://social-network.samuraijs.com/api/1.0/users', {withCredentials: true})
         .then(responce => {
-          props.setUsers(responce.data.items)
+          this.props.setUsers(responce.data.items)
         });
     }
   }
 
-  return <div>
-    <button onClick={getUsers}>Get Users</button>
-    {
-      props.users.map(u => <div key={u.id}>
+  getUsers = () => {
+
+  }
+
+  render() {
+    return <div>
+      {
+        this.props.users.map(u => <div key={u.id}>
         <span>
           <div>
             <img src={u.photos.small !== null ? u.photos.small : userPhoto} alt={'userPhoto'} className={s.userPhoto}/>
@@ -27,14 +32,14 @@ export const Users: React.FC<UsersPropsType> = (props) => {
           <div>
             {u.followed
               ? <button onClick={() => {
-                props.unfollow(u.id)
+                this.props.unfollow(u.id)
               }}>Unfollow</button>
               : <button onClick={() => {
-                props.follow(u.id)
+                this.props.follow(u.id)
               }}>Follow</button>}
           </div>
         </span>
-        <span>
+          <span>
           <span>
             <div>{u.name}</div>
             <div>{u.status}</div>
@@ -44,7 +49,8 @@ export const Users: React.FC<UsersPropsType> = (props) => {
             <div>{'u.location.city'}</div>
           </span>
         </span>
-      </div>)
-    }
-  </div>
+        </div>)
+      }
+    </div>
+  }
 }
