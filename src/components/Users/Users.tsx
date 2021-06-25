@@ -9,7 +9,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
 
   const getUsers = () => {
     if (props.users.length === 0) {
-      axios.get('https://social-network.samuraijs.com/api/1.0/users')
+      axios.get('https://social-network.samuraijs.com/api/1.0/users', {withCredentials: true})
         .then(responce => {
           props.setUsers(responce.data.items)
         });
