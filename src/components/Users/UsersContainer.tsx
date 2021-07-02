@@ -1,14 +1,13 @@
 import {connect} from 'react-redux';
 import {
-  followAC,
-  setCurrentPageAC,
-  setUsersAC,
-  setUsersTotalCountAC,
-  toggleIsFechingAC,
-  unfollowAC,
+  follow,
+  setCurrentPage,
+  setUsers,
+  setTotalUsersCount,
+  toggleIsFetching,
+  unfollow,
   UserType
 } from '../../redux/users-reducer';
-import {Dispatch} from 'redux';
 import {AppStateType} from '../../redux/redux-store';
 import React from "react";
 import axios from "axios";
@@ -90,34 +89,27 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType & MapStateToPro
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType & MapDispatchToPropsTypeAPIOnly => {
+/*const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType & MapDispatchToPropsTypeAPIOnly => {
   return {
     follow: (userId: number) => {
-      dispatch(followAC(userId))
+      dispatch(follow(userId))
     },
     unfollow: (userId: number) => {
-      dispatch(unfollowAC(userId))
+      dispatch(unfollow(userId))
     },
     setUsers: (users: Array<UserType>) => {
-      dispatch(setUsersAC(users))
+      dispatch(setUsers(users))
     },
     setCurrentPage: (pageNumber: number) => {
-      dispatch(setCurrentPageAC(pageNumber))
+      dispatch(setCurrentPage(pageNumber))
     },
-    setTotalUsersCount: (totalCount: number) => {
-      dispatch(setUsersTotalCountAC(totalCount))
+    setUsersTotalCount: (totalCount: number) => {
+      dispatch(setUsersTotalCount(totalCount))
     },
     toggleIsFetching: (isFetching: boolean) => {
-      dispatch(toggleIsFechingAC(isFetching))
+      dispatch(toggleIsFetching(isFetching))
     }
   }
-}
+}*/
 
-export default connect(mapStateToProps, {
-  follow: followAC,
-  unfollow: unfollowAC,
-  setUsers: setUsersAC,
-  setCurrentPage: setCurrentPageAC,
-  setTotalUsersCount: setUsersTotalCountAC,
-  toggleIsFetching: toggleIsFechingAC
-})(UsersContainer);
+export default connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching })(UsersContainer);
