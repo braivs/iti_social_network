@@ -22,12 +22,18 @@ type MapStatePropsType = {
 type MapDispatchToPropsType = {
   follow: (userId: number) => void
   unfollow: (userId: number) => void
+}
+
+type MapDispatchToPropsTypeApiOnly = {
   setUsers: (users: Array<UserType>) => void
   setCurrentPage: (pageNumber: number) => void
   setTotalUsersCount: (totalCount: number) => void
 }
 
 export type UsersAPIComponentPropsType = MapStatePropsType & MapDispatchToPropsType
+  & MapDispatchToPropsTypeApiOnly
+
+export type UsersPropsType = MapStatePropsType & MapDispatchToPropsType
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
@@ -38,7 +44,7 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType & MapDispatchToPropsTypeApiOnly => {
   return {
     follow: (userId: number) => {
       dispatch(followAC(userId))

@@ -33,9 +33,6 @@ export class UsersAPIComponent extends React.Component<UsersAPIComponentPropsTyp
                   users={this.props.users}
                   follow={this.props.follow}
                   unfollow={this.props.unfollow}
-                  setUsers={this.props.setUsers}
-                  setCurrentPage={this.props.setCurrentPage}
-                  setTotalUsersCount={this.props.setTotalUsersCount}
     />
   }
 }

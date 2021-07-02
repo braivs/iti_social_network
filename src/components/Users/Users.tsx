@@ -1,16 +1,15 @@
 import React from 'react';
 import s from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
-import {UsersAPIComponentPropsType} from "./UsersContainer";
+import {UsersPropsType} from "./UsersContainer";
 
 type UsersAdditionalPropsType = {
   onPageChanged: (p: number) => void
 }
 
-type UsersPropsType = UsersAdditionalPropsType & UsersAPIComponentPropsType
+type UsersPropsTypeUnion = UsersAdditionalPropsType & UsersPropsType
 
-
-export const Users: React.FC<UsersPropsType> = (props) => {
+export const Users: React.FC<UsersPropsTypeUnion> = (props) => {
 
   // let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pagesCount = 25; // временно захардкодил количество, если найду время, то переделаю
