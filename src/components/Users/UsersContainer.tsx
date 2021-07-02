@@ -44,7 +44,7 @@ export type UsersAPIComponentPropsType = MapStatePropsType & MapDispatchToPropsT
 
 export type UsersPropsType = MapStatePropsType & MapDispatchToPropsType
 
-class UsersСontainer extends React.Component<UsersAPIComponentPropsType> {
+class UsersContainer extends React.Component<UsersAPIComponentPropsType> {
   componentDidMount() {
     this.props.toggleIsFetching(true)
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
@@ -67,7 +67,7 @@ class UsersСontainer extends React.Component<UsersAPIComponentPropsType> {
 
   render() {
     return <>
-      {this.props.isFetching ? <Preloader /> : null}
+      {this.props.isFetching ? <Preloader/> : null}
       <Users totalUsersCount={this.props.totalUsersCount}
              pageSize={this.props.pageSize}
              currentPage={this.props.currentPage}
@@ -113,4 +113,11 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType & MapDis
   }
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersСontainer);
+export default connect(mapStateToProps, {
+  follow: followAC,
+  unfollow: unfollowAC,
+  setUsers: setUsersAC,
+  setCurrentPage: setCurrentPageAC,
+  setTotalUsersCount: setUsersTotalCountAC,
+  toggleIsFetching: toggleIsFechingAC
+})(UsersContainer);
