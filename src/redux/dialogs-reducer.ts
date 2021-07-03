@@ -74,13 +74,13 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionTyp
 }
 
 // Action Creators:
-export const sendMessageCreator = () => ({type: 'SEND-MESSAGE'} as const)
-export const updateNewMessageAuthorCreator = (author: string) => {
+export const sendMessage = () => ({type: 'SEND-MESSAGE'} as const)
+export const updateNewMessageAuthor = (author: string) => {
   return {
     type: 'UPDATE-NEW-MESSAGE-AUTHOR', newAuthor: author
   } as const
 }
-export const updateNewMessageBodyCreator = (body: string) => {
+export const updateNewMessageBody = (body: string) => {
   return {
     type: 'UPDATE_NEW_MESSAGE_BODY',
     body: body
