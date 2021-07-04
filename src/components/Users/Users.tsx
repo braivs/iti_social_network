@@ -2,6 +2,7 @@ import React from 'react';
 import s from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {UsersPropsType} from "./UsersContainer";
+import {NavLink} from 'react-router-dom';
 
 type UsersAdditionalPropsType = {
   onPageChanged: (p: number) => void
@@ -32,8 +33,10 @@ export const Users: React.FC<UsersPropsTypeUnion> = (props) => {
       props.users.map(u => <div key={u.id}>
         <div>
           <div>
-            <img src={u.photos.small !== null ? u.photos.small : userPhoto} alt={'userPhoto'}
-                 className={s.userPhoto}/>
+            <NavLink to={'/profile/' + u.id}>
+              <img src={u.photos.small !== null ? u.photos.small : userPhoto} alt={'userPhoto'}
+                   className={s.userPhoto}/>
+            </NavLink>
           </div>
           <div>
             {u.followed
