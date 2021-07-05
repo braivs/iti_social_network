@@ -1,6 +1,17 @@
 .descriptionBlock {
   padding: 10px;
+
   img {
     width: 150px;
+  }
+
+  .jobContainer {
+    display: flex;
+    align-items: center;
+
+    .jobStatus {
+      width: 50px;
+      margin-left: 5px;
+    }
   }
 }

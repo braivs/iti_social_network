@@ -29,6 +29,7 @@ type photosType = {
 }
 
 export type profileType = null | {
+  aboutMe: string
   userId: number
   lookingForAJob: boolean
   lookingForAJobDescription: string
