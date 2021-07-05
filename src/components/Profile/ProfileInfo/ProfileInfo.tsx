@@ -1,10 +1,10 @@
 import React from 'react';
-import s from './ProfileInfo.module.css'
+import s from './ProfileInfo.module.scss'
 import {profileType, TopType} from "../../../redux/profile-reducer";
 import {Preloader} from "../../common/Preloader/Preloader";
 
 type ProfileInfoPropsType = {
-  // top: TopType
+  top: TopType
   profile: profileType
 }
 
@@ -13,9 +13,9 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
     return <Preloader />
   }
   return <>
-    {/*<img src={props.top.imgSrc} alt=""/>*/}
+    <img src={props.top.imgSrc} alt=""/>
     <div className={s.descriptionBlock}>
-      <img src={props.profile.photos.large} alt=""/>
+      <img src={props.profile.photos.small} alt=""/>
       ava + description
     </div>
   </>;
