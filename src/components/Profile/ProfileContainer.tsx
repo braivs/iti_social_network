@@ -1,32 +1,39 @@
 import React from 'react';
 import {Profile} from "./Profile";
 import axios from "axios";
-import {UserType} from "../../redux/users-reducer";
 import {connect} from "react-redux";
-import {setUserProfile} from "../../redux/profile-reducer";
+import {profileType, setUserProfile} from "../../redux/profile-reducer";
+import {AppStateType} from "../../redux/redux-store";
+
+type MapStatePropsType = {
+  profile: profileType
+}
 
 
+type MapDispatchPropsType = {
+  setUserProfile: (profile: profileType) => void
+}
 
-class ProfileContainer extends React.Component{
+export type ProfilePropsType = MapStatePropsType & MapDispatchPropsType
 
-  // здесь сайд эффекты
+class ProfileContainer extends React.Component<ProfilePropsType>{
+
+// здесь сайд эффекты
   componentDidMount() {
     axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
       .then(response => {
-        // @ts-ignore
         this.props.setUserProfile(response.data)
       });
   }
 
   render() {
     return (
-      // @ts-ignore
       <Profile {...this.props} profile={this.props.profile}/>
     )
   }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
   profile: state.profilePage.profile
 })
 
