@@ -3,6 +3,7 @@ import s from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {UsersPropsType} from "./UsersContainer";
 import {NavLink} from 'react-router-dom';
+import axios from "axios";
 
 type UsersAdditionalPropsType = {
   onPageChanged: (p: number) => void
@@ -41,10 +42,36 @@ export const Users: React.FC<UsersPropsTypeUnion> = (props) => {
           <div>
             {u.followed
               ? <button onClick={() => {
-                props.unfollow(u.id)
+
+                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,  {
+                  withCredentials: true,
+                  headers: {
+                    'API-KEY': '06e9c310-f07c-441a-811c-ffc5ac00e636'
+                  }
+                })
+                  .then(response => {
+                    if (response.data.resultCode === 0) {
+                      props.unfollow(u.id)
+                    }
+                  });
+
+
+
               }}>Unfollow</button>
               : <button onClick={() => {
-                props.follow(u.id)
+
+                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                  withCredentials: true,
+                  headers: {
+                    'API-KEY': '06e9c310-f07c-441a-811c-ffc5ac00e636'
+                  }
+                })
+                  .then(response => {
+                    if (response.data.resultCode === 0) {
+                      props.follow(u.id)
+                    }
+                  });
+
               }}>Follow</button>}
           </div>
         </div>
