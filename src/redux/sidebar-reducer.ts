@@ -1,4 +1,3 @@
-import {ActionTypes} from '../types/entities';
 import ava from '../assets/images/ava.png'
 
 type FriendsType = {
@@ -18,9 +17,11 @@ let initialState: SidebarType = {
   ]
 }
 
-const sidebarReducer = (state: SidebarType = initialState, action: ActionTypes): SidebarType => {
+const sidebarReducer = (state: SidebarType = initialState, action: SidebarActionTypes): SidebarType => {
 
   return state;
 }
+
+export type SidebarActionTypes = {}
 
 export default sidebarReducer;

@@ -1,8 +1,10 @@
-import profileReducer, {ProfilePageType} from './profile-reducer';
-import dialogsReducer, {DialogsPageType} from './dialogs-reducer';
-import sidebarReducer, {SidebarType} from './sidebar-reducer';
-import {ActionTypes} from '../types/entities';
+import {ProfileActionTypes, ProfilePageType, profileReducer} from './profile-reducer';
+import dialogsReducer, {DialogsActionTypes, DialogsPageType} from './dialogs-reducer';
+import sidebarReducer, {SidebarActionTypes, SidebarType} from './sidebar-reducer';
 import mainImg from '../assets/images/main.jpg'
+import {UsersActionTypes} from "./users-reducer";
+
+type ActionTypes = ProfileActionTypes | DialogsActionTypes | UsersActionTypes | SidebarActionTypes;
 
 type stateType = {
   dialogsPage: DialogsPageType
@@ -71,8 +73,9 @@ let store: StoreType = {
   },
 
   dispatch(action: ActionTypes) {
-    this._state.profilePage = profileReducer(this._state.profilePage, action);
-    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    // old functionality, maybe fix later
+    // this._state.profilePage = profileReducer(this._state.profilePage, action);
+    // this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
     this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
     this._callSubscriber();

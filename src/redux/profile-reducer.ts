@@ -1,4 +1,3 @@
-import {ActionTypes} from '../types/entities';
 import mainImg from '../assets/images/main.jpg'
 
 export type TopType = {
@@ -61,7 +60,7 @@ let initialState: ProfilePageType = {
   profile: null
 }
 
-const profileReducer = (state: ProfilePageType = initialState, action: ActionTypes): ProfilePageType => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionTypes): ProfilePageType => {
   switch (action.type) {
     case 'ADD-POST': {
       const newPost: PostsType = {
@@ -96,6 +95,8 @@ export const updateNewPostText = (text: string) => ({
     type: 'UPDATE-NEW-POST-TEXT', newText: text
 } as const)
 
-export default profileReducer
+export type ProfileActionTypes = ReturnType<typeof addPost> | ReturnType<typeof setUserProfile>
+  | ReturnType<typeof updateNewPostText>
+
 
 
