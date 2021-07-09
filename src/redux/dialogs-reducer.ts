@@ -37,7 +37,7 @@ let initialState: DialogsPageType = {
   newMessageBody: ''
 }
 
-const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsActionTypes): DialogsPageType => {
+export const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsActionTypes): DialogsPageType => {
   switch (action.type) {
     case 'UPDATE-NEW-MESSAGE-AUTHOR': {
       return {
@@ -89,4 +89,3 @@ export const updateNewMessageBody = (body: string) => {
 export type DialogsActionTypes = ReturnType<typeof sendMessage> | ReturnType<typeof updateNewMessageAuthor> |
 ReturnType<typeof updateNewMessageBody>
 
-export default dialogsReducer;

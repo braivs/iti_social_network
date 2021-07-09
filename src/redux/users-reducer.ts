@@ -34,7 +34,7 @@ const initialState: UsersPageType = {
   isFetching: true
 };
 
-const usersReducer = (state: UsersPageType = initialState, action: UsersActionTypes): UsersPageType => {
+export const usersReducer = (state: UsersPageType = initialState, action: UsersActionTypes): UsersPageType => {
   switch (action.type) {
     case 'FOLLOW':
       return {
@@ -83,10 +83,6 @@ export const setTotalUsersCount = (totalUsersCount: number) => ({
 } as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', isFetching} as const)
 
-export type UsersActionTypes = ReturnType<typeof follow> | ReturnType<typeof unfollow> |
+type UsersActionTypes = ReturnType<typeof follow> | ReturnType<typeof unfollow> |
 ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> |
 ReturnType<typeof toggleIsFetching>;
-
-export default usersReducer
-
-

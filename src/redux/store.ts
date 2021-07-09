@@ -1,10 +1,9 @@
-import {ProfileActionTypes, ProfilePageType, profileReducer} from './profile-reducer';
-import dialogsReducer, {DialogsActionTypes, DialogsPageType} from './dialogs-reducer';
-import sidebarReducer, {SidebarActionTypes, SidebarType} from './sidebar-reducer';
+import {ProfileActionTypes, ProfilePageType} from './profile-reducer';
+import {DialogsActionTypes, DialogsPageType} from './dialogs-reducer';
+import {SidebarActionTypes, sidebarReducer, SidebarType} from './sidebar-reducer';
 import mainImg from '../assets/images/main.jpg'
-import {UsersActionTypes} from "./users-reducer";
 
-type ActionTypes = ProfileActionTypes | DialogsActionTypes | UsersActionTypes | SidebarActionTypes;
+type ActionTypes = ProfileActionTypes | DialogsActionTypes | SidebarActionTypes;
 
 type stateType = {
   dialogsPage: DialogsPageType
