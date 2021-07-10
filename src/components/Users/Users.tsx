@@ -41,22 +41,26 @@ export const Users: React.FC<UsersPropsTypeUnion> = (props) => {
           </div>
           <div>
             {u.followed
-              ? <button onClick={() => {
+              ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                props.toggleFollowingProgress(true, u.id)
                 usersAPI.unfollow(u.id)
                   .then(data => {
                     if (data.resultCode === 0) {
                       props.unfollow(u.id)
                     }
+                    props.toggleFollowingProgress(false, u.id)
                   });
 
 
               }}>Unfollow</button>
-              : <button onClick={() => {
+              : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                props.toggleFollowingProgress(true, u.id)
                 usersAPI.follow(u.id)
                   .then(data => {
                     if (data.resultCode === 0) {
                       props.follow(u.id)
                     }
+                    props.toggleFollowingProgress(false, u.id)
                   });
 
               }}>Follow</button>}
@@ -66,6 +70,7 @@ export const Users: React.FC<UsersPropsTypeUnion> = (props) => {
           <div>
             <div>{u.name}</div>
             <div>{u.status}</div>
+            <div>{u.id}</div>
           </div>
           <div>
             <div>{'u.location.country'}</div>
