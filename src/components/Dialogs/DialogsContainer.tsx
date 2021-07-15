@@ -1,6 +1,6 @@
 import {DialogsPageType, sendMessage, updateNewMessageAuthor, updateNewMessageBody} from '../../redux/dialogs-reducer';
 import {connect} from 'react-redux';
-import {AppStateType} from '../../redux/redux-store';
+import {AppRootStateType} from '../../redux/redux-store';
 import {Dialogs} from './Dialogs';
 
 type MapStatePropsType = {
@@ -13,7 +13,7 @@ type MapDispatchPropsType = {
   sendMessage: () => void
 }
 
-const mapStateToProps = (state: AppStateType): MapStatePropsType => {
+const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
   return {
     dialogsPage: state.dialogsPage
   }

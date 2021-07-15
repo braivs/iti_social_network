@@ -2,7 +2,7 @@ import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {ProfilePageType, profileType, setUserProfile} from "../../redux/profile-reducer";
-import {AppStateType} from "../../redux/redux-store";
+import {AppRootStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {usersAPI} from "../../api/api";
 
@@ -41,7 +41,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
   }
 }
 
-const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
+const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
   profilePage: state.profilePage
 })
 
