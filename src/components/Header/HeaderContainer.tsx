@@ -9,17 +9,12 @@ type MapStatePropsType = {
   login: string | null
 }
 type MapDispatchPropsType = {
-}
-
-type MapDispatchToPropsTypeAPI = {
   authenticate: () => void
 }
-type MapStateToPropsTypeAPI = {}
 
 export type HeaderPropsType = MapStatePropsType & MapDispatchPropsType
-type HeaderAPIPropsType = MapDispatchToPropsTypeAPI & HeaderPropsType
 
-class HeaderContainer extends React.Component<HeaderAPIPropsType> {
+class HeaderContainer extends React.Component<HeaderPropsType> {
   componentDidMount() {
     this.props.authenticate()
   }
@@ -30,7 +25,7 @@ class HeaderContainer extends React.Component<HeaderAPIPropsType> {
 
 }
 
-const mapStateToProps = (state: AppRootStateType): MapStatePropsType & MapStateToPropsTypeAPI => ({
+const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
   isAuth: state.auth.isAuth,
   login: state.auth.login
 });
