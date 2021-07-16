@@ -1,10 +1,9 @@
 import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {ProfilePageType, profileType, setUserProfile} from "../../redux/profile-reducer";
+import {getProfile, ProfilePageType} from "../../redux/profile-reducer";
 import {AppRootStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {usersAPI} from "../../api/api";
 
 type PathParamsType = {
   userId: string
@@ -15,7 +14,7 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-  setUserProfile: (profile: profileType) => void
+  getProfile: (userId: string) => void
 }
 
 type OwnPropsType = MapStatePropsType & MapDispatchPropsType
@@ -28,10 +27,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     if (!userId) {
       userId = '2';
     }
-    usersAPI.getProfile(userId)
-      .then(data => {
-        this.props.setUserProfile(data)
-      });
+    this.props.getProfile(userId)
   }
 
   render() {
@@ -47,5 +43,5 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
 
 const WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, {setUserProfile})(WithUrlDataContainerComponent)
+export default connect(mapStateToProps, {getProfile})(WithUrlDataContainerComponent)
 

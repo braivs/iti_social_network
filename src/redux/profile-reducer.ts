@@ -1,4 +1,6 @@
 import mainImg from '../assets/images/main.jpg'
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 export type TopType = {
   imgSrc: string
@@ -98,5 +100,12 @@ export const updateNewPostText = (text: string) => ({
 export type ProfileActionTypes = ReturnType<typeof addPost> | ReturnType<typeof setUserProfile>
   | ReturnType<typeof updateNewPostText>
 
-
+export const getProfile = (userId: string) => {
+  return (dispatch: Dispatch<ProfileActionTypes>) => {
+    usersAPI.getProfile(userId)
+      .then(data => {
+        dispatch(setUserProfile(data))
+      });
+  }
+}
 
