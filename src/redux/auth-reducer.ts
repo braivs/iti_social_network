@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {authAPI} from "../api/api";
 
 type AuthType = {
   id: number | null
@@ -29,19 +29,20 @@ export const authReducer = (state: AuthType = initialState, action: AuthActionTy
   }
 }
 
-export const setAuthUserData = (id: number, login: string, email: string) => ({type: 'SET-USER-DATA', data: {id, login, email}} as const)
+export const setAuthUserData = (id: number, login: string, email: string) => ({
+  type: 'SET-USER-DATA',
+  data: {id, login, email}
+} as const)
 
 type AuthActionTypes = ReturnType<typeof setAuthUserData>
 
-export const authenticate = () => {
-  return (dispatch: Dispatch<AuthActionTypes>) => {
-    usersAPI.auth()
-      .then(data => {
-        if (data.resultCode === 0) {
-          let {id, login, email} = data.data
-          dispatch(setAuthUserData(id, login, email))
-        }
-      });
-  }
+export const getAuthUserData = () => (dispatch: Dispatch<AuthActionTypes>) => {
+  authAPI.me()
+    .then(response => {
+      if (response.data.resultCode === 0) {
+        let {id, login, email} = response.data.data
+        dispatch(setAuthUserData(id, login, email))
+      }
+    });
 }
 

@@ -93,6 +93,13 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
 // Action Creators:
 export const addPost = () => ({type: 'ADD-POST'} as const)
 export const setUserProfile = (profile: profileType) => ({type: 'SET-USER-PROFILE', profile} as const)
+export const getUserProfile = (userId: string) => {
+  return (dispatch: Dispatch<ProfileActionTypes>) => {
+    usersAPI.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data))
+      });
+  }
+}
 export const updateNewPostText = (text: string) => ({
     type: 'UPDATE-NEW-POST-TEXT', newText: text
 } as const)
@@ -100,12 +107,5 @@ export const updateNewPostText = (text: string) => ({
 export type ProfileActionTypes = ReturnType<typeof addPost> | ReturnType<typeof setUserProfile>
   | ReturnType<typeof updateNewPostText>
 
-export const getProfile = (userId: string) => {
-  return (dispatch: Dispatch<ProfileActionTypes>) => {
-    usersAPI.getProfile(userId)
-      .then(data => {
-        dispatch(setUserProfile(data))
-      });
-  }
-}
+
 
