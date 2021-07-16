@@ -25,7 +25,6 @@ type MapStatePropsType = {
 type MapDispatchPropsType = {
   follow: (userId: number) => void
   unfollow: (userId: number) => void
-  toggleFollowingProgress: (isFetching: boolean, id: number) => void
 }
 
 type MapStateToPropsTypeAPI = {
@@ -62,7 +61,6 @@ class UsersContainer extends React.Component<UsersAPIPropsType> {
              users={this.props.users}
              follow={this.props.follow}
              unfollow={this.props.unfollow}
-             toggleFollowingProgress={this.props.toggleFollowingProgress}
              followingInProgress={this.props.followingInProgress}
       />
     </>
