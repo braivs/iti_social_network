@@ -1,5 +1,12 @@
 import ava from "../assets/images/ava.png";
-import {addPost, ProfilePageType, profileReducer, profileType, updateNewPostText} from "./profile-reducer";
+import {
+  addPost,
+  ProfilePageType,
+  profileReducer,
+  profileType,
+  setUserProfile,
+  updateNewPostText
+} from "./profile-reducer";
 import mainImg from '../assets/images/main.jpg'
 
 let startState: ProfilePageType
@@ -26,10 +33,11 @@ test('add post', () => {
   const endState = profileReducer(startState, addPost())
 
   expect(endState.posts.length).toBe(5)
-  expect(endState.posts)
 })
 
 test('set user profile', () => {
+  //const endState = profileReducer(startState, setUserProfile())
+
   console.log('I don`t know how to write')
 })
 

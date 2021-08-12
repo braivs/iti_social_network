@@ -15,6 +15,7 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
+
   getUserProfile: (userId: string) => void
 }
 

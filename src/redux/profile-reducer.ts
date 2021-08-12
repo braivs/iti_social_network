@@ -83,7 +83,9 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
       };
     }
     case 'SET-USER-PROFILE': {
-      return {...state, profile: action.profile}
+      return {
+        ...state,
+        profile: action.profile}
     }
     default:
       return state;
