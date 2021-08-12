@@ -1,16 +1,15 @@
 import React from 'react';
 import {ComponentMeta, ComponentStory} from '@storybook/react';
-import {Provider} from "react-redux";
-import {store} from "../../redux/redux-store";
-import {HashRouter} from "react-router-dom";
 import {DialogsContainer} from "./DialogsContainer";
+import {ReduxStoreProviderDecorator} from "../../redux/ReduxStoreProviderDecorator";
 
 
 export default {
   title: 'Social Network/Dialogs',
   component: DialogsContainer,
+  decorators: [ReduxStoreProviderDecorator]
 } as ComponentMeta<typeof DialogsContainer>;
 
-const Template: ComponentStory<typeof DialogsContainer> = () => <HashRouter><Provider store={store}><DialogsContainer /></Provider></HashRouter>;
+const Template: ComponentStory<typeof DialogsContainer> = () => <DialogsContainer />;
 
 export const DialogsStories = Template.bind({});
