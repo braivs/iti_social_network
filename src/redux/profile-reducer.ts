@@ -1,6 +1,11 @@
 import mainImg from '../assets/images/main.jpg'
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {profileAPI, usersAPI} from "../api/api";
+
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SET_USER_PROFILE = 'SET-USER-PROFILE';
+const SET_STATUS = 'SET-STATUS';
 
 export type TopType = {
   imgSrc: string
@@ -44,6 +49,7 @@ export type ProfilePageType = {
   posts: Array<PostsType>
   newPostText: string
   profile: profileType
+  status: string
 }
 
 let initialState: ProfilePageType = {
@@ -59,12 +65,13 @@ let initialState: ProfilePageType = {
     {id: 4, message: 'Dada', likesCount: 1}
   ],
   newPostText: '',
-  profile: null
+  profile: null,
+  status: ''
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionTypes): ProfilePageType => {
   switch (action.type) {
-    case 'ADD-POST': {
+    case ADD_POST: {
       const newPost: PostsType = {
         id: new Date().getTime(),
         message: state.newPostText,
@@ -76,37 +83,66 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
         newPostText: ''
       };
     }
-    case 'UPDATE-NEW-POST-TEXT': {
+    case UPDATE_NEW_POST_TEXT: {
       return {
         ...state,
         newPostText: action.newText
       };
     }
-    case 'SET-USER-PROFILE': {
+    case SET_STATUS: {
       return {
         ...state,
-        profile: action.profile}
+        status: action.status
+      }
     }
     default:
       return state;
   }
 }
 
-// Action Creators:
-export const addPost = () => ({type: 'ADD-POST'} as const)
-export const setUserProfile = (profile: profileType) => ({type: 'SET-USER-PROFILE', profile} as const)
+// Action creators and thunks:
+export const addPost = () => ({type: ADD_POST} as const)
+export const setUserProfile = (profile: profileType) => ({type: SET_USER_PROFILE, profile} as const)
+export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
+
 export const getUserProfile = (userId: string) => {
   return (dispatch: Dispatch<ProfileActionTypes>) => {
     usersAPI.getProfile(userId).then(response => {
-        dispatch(setUserProfile(response.data))
+      dispatch(setUserProfile(response.data))
+    });
+  }
+}
+
+export const getStatus = (userId: string) => {
+  return (dispatch: Dispatch<ProfileActionTypes>) => {
+    profileAPI.getStatus(userId)
+      .then(response => {
+        debugger
+        dispatch(setStatus(response.data))
       });
   }
 }
+
+export const updateStatus = (status: string) => {
+  return (dispatch: Dispatch<ProfileActionTypes>) => {
+    profileAPI.updateStatus(status)
+      .then(response => {
+        debugger
+        if (response.data.resultCode === 0) {
+          dispatch(setStatus(status))
+        }
+      });
+  }
+}
+
 export const updateNewPostText = (text: string) => ({
-    type: 'UPDATE-NEW-POST-TEXT', newText: text
+  type: UPDATE_NEW_POST_TEXT, newText: text
 } as const)
 
-export type ProfileActionTypes = ReturnType<typeof addPost> | ReturnType<typeof setUserProfile>
+export type ProfileActionTypes =
+  ReturnType<typeof addPost>
+  | ReturnType<typeof setUserProfile>
+  | ReturnType<typeof setStatus>
   | ReturnType<typeof updateNewPostText>
 
 

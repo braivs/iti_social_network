@@ -50,7 +50,8 @@ let store: StoreType = {
         {id: 4, message: 'Dada', likesCount: 1}
       ],
       newPostText: '',
-      profile: null
+      profile: null,
+      status: ''
     },
     sidebar: {
       friends: [

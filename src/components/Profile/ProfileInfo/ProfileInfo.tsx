@@ -1,18 +1,22 @@
 import React from 'react';
 import s from './ProfileInfo.module.scss'
-import {profileType, TopType} from "../../../redux/profile-reducer";
+import {ProfileActionTypes, profileType, TopType} from "../../../redux/profile-reducer";
 import {Preloader} from "../../common/Preloader/Preloader";
 import jobYes from '../../../assets/images/jobYes.png'
 import jobNo from '../../../assets/images/jobNo.png'
 import defaultAva from '../../../assets/images/default_ava.png'
 import {ProfileStatus} from "./ProfileStatus";
+import {Dispatch} from "redux";
 
 type ProfileInfoPropsType = {
   top: TopType
   profile: profileType
+  status: string
+  updateStatus: (status: string) => void // ? Dispatch<ProfileActionTypes>
 }
 
 export const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
+  debugger
   if (!props.profile) {
     return <Preloader />
   }
@@ -20,7 +24,7 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
     {/*<img src={props.top.imgSrc} alt=""/>*/}
     <div className={s.descriptionBlock}>
       <img src={props.profile.photos.large ? props.profile.photos.large : defaultAva} alt=""/>
-      <ProfileStatus status={'Hello my friends'}/>
+      <ProfileStatus status={props.status}/>
       <hr/>
       <div>Full Name: {props.profile.fullName}</div>
       <div>About Me: {props.profile.aboutMe}</div>
