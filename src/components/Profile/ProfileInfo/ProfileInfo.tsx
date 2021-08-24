@@ -12,11 +12,10 @@ type ProfileInfoPropsType = {
   top: TopType
   profile: profileType
   status: string
-  updateStatus: (status: string) => void // ? Dispatch<ProfileActionTypes>
+  updateStatus: (status: string) => void
 }
 
 export const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
-  debugger
   if (!props.profile) {
     return <Preloader />
   }
@@ -24,7 +23,7 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
     {/*<img src={props.top.imgSrc} alt=""/>*/}
     <div className={s.descriptionBlock}>
       <img src={props.profile.photos.large ? props.profile.photos.large : defaultAva} alt=""/>
-      <ProfileStatus status={props.status}/>
+      <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
       <hr/>
       <div>Full Name: {props.profile.fullName}</div>
       <div>About Me: {props.profile.aboutMe}</div>

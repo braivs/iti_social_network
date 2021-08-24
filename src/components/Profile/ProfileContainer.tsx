@@ -19,13 +19,13 @@ type PathParamsType = {
 
 type MapStatePropsType = {
   profilePage: ProfilePageType
-  status: string // ?
+  status: string
 }
 
 type MapDispatchPropsType = {
   getUserProfile: (userId: string) => void
   getStatus: (userId: string) => void
-  updateStatus: (status: string) => void // Dispatch<ProfileActionTypes>
+  updateStatus: (status: string) => void
 }
 
 type OwnPropsType = MapStatePropsType & MapDispatchPropsType
@@ -34,20 +34,18 @@ export type ProfilePropsType = RouteComponentProps<PathParamsType> & OwnPropsTyp
 class ProfileContainer extends React.Component<ProfilePropsType> {
 
   componentDidMount() {
-    debugger
     let userId = this.props.match.params.userId
     if (!userId) {
-      userId = '2';
+      userId = '1049';
     }
     this.props.getUserProfile(userId)
     this.props.getStatus(userId)
-
   }
 
   render() {
-    debugger
     return (
-      <Profile {...this.props} profilePage={this.props.profilePage} status={this.props.status} updateStatus={this.props.updateStatus}/>
+      <Profile {...this.props} profilePage={this.props.profilePage} status={this.props.status}
+               updateStatus={this.props.updateStatus}/>
     )
   }
 }

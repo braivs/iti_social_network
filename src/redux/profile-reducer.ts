@@ -89,6 +89,11 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
         newPostText: action.newText
       };
     }
+    case SET_USER_PROFILE: {
+      return {
+        ...state,
+        profile: action.profile}
+    }
     case SET_STATUS: {
       return {
         ...state,
@@ -117,7 +122,6 @@ export const getStatus = (userId: string) => {
   return (dispatch: Dispatch<ProfileActionTypes>) => {
     profileAPI.getStatus(userId)
       .then(response => {
-        debugger
         dispatch(setStatus(response.data))
       });
   }
@@ -127,7 +131,6 @@ export const updateStatus = (status: string) => {
   return (dispatch: Dispatch<ProfileActionTypes>) => {
     profileAPI.updateStatus(status)
       .then(response => {
-        debugger
         if (response.data.resultCode === 0) {
           dispatch(setStatus(status))
         }
