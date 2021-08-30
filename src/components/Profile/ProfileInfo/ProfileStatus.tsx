@@ -5,13 +5,17 @@ type ProfileStatusPropsType = {
   updateStatus: (status: string) => void
 }
 
-// type inStateType = ReturnType<typeof ProfileStatus.state>
+type stateType = {
+  editMode: boolean
+  status: string
+}
 
-export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
+export class ProfileStatus extends React.Component<ProfileStatusPropsType, stateType> {
   state = {
     editMode: false,
     status: this.props.status
   }
+
   activateEditMode = () => {
     this.setState({
       editMode: true
@@ -30,8 +34,7 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
   }
 
-  // todo: need to fix any
-  componentDidUpdate(prevProps: ProfileStatusPropsType, prevState: any) {
+  componentDidUpdate(prevProps: ProfileStatusPropsType, prevState: stateType) {
     if (prevProps.status !== this.props.status) {
       this.setState({
         status: this.props.status
@@ -40,6 +43,7 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
     console.log('componentDidUpdate')
   }
+
 
   render() {
     console.log('render')
