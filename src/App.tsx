@@ -9,6 +9,7 @@ import {Settings} from './components/Settings/Settings';
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import LoginContainer from "./components/Login/LoginContainer";
 import {Login} from "./components/Login/Login";
 
 
