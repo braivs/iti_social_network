@@ -1,17 +1,10 @@
 import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {
-  getStatus,
-  getUserProfile,
-  ProfileActionTypes,
-  ProfilePageType,
-  updateStatus
-} from "../../redux/profile-reducer";
+import {getStatus, getUserProfile, ProfilePageType, updateStatus} from "../../redux/profile-reducer";
 import {AppRootStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import {compose, Dispatch} from "redux";
+import {compose} from "redux";
 
 type PathParamsType = {
   userId: string
