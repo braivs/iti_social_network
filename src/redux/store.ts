@@ -47,7 +47,6 @@ let store: StoreType = {
         {id: 3, message: 'Bugaga', likesCount: 5},
         {id: 4, message: 'Dada', likesCount: 1}
       ],
-      newPostText: '',
       profile: null,
       status: ''
     },
