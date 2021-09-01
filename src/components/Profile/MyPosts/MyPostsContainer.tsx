@@ -1,4 +1,4 @@
-import {addPost, PostsType, updateNewPostText} from '../../../redux/profile-reducer';
+import {addPost, PostsType} from '../../../redux/profile-reducer';
 import {connect} from 'react-redux';
 import {AppRootStateType} from '../../../redux/redux-store';
 import {MyPosts} from './MyPosts';

@@ -3,7 +3,6 @@ import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
 
@@ -129,15 +128,10 @@ export const updateStatus = (status: string) => {
   }
 }
 
-export const updateNewPostText = (text: string) => ({
-  type: UPDATE_NEW_POST_TEXT, newText: text
-} as const)
-
 export type ProfileActionTypes =
   ReturnType<typeof addPost>
   | ReturnType<typeof setUserProfile>
   | ReturnType<typeof setStatus>
-  | ReturnType<typeof updateNewPostText>
 
 
 
