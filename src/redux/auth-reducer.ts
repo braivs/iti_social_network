@@ -46,3 +46,13 @@ export const getAuthUserData = () => (dispatch: Dispatch<AuthActionTypes>) => {
     });
 }
 
+export const loginUser = (email: string, password: string, rememberMe: boolean) =>
+  (dispatch: Dispatch<AuthActionTypes>) => {
+  authAPI.login(email, password, rememberMe)
+    .then(response => {
+      if (response.data.resultCode === 0) {
+        console.log('login ok')
+      }
+    })
+}
+
