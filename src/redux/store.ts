@@ -29,13 +29,11 @@ let store: StoreType = {
         {id: 6, name: 'Kristina'}
       ],
       messages: [
-        {id: 1, message: 'Lorem ipsum dolor sit amet', author: 'Masha', avatar: 'img/ava.png'},
-        {id: 2, message: 'Lorem ipsum dolor sit amet', author: 'Briws', avatar: 'img/ava.png'},
-        {id: 3, message: 'Lorem ipsum dolor sit amet', author: 'Lera', avatar: 'img/ava.png'},
-        {id: 4, message: 'Lorem ipsum dolor sit amet', author: 'Liza', avatar: 'img/ava.png'}
+        {id: 1, message: 'Lorem ipsum dolor sit amet', avatar: 'img/ava.png'},
+        {id: 2, message: 'Lorem ipsum dolor sit amet', avatar: 'img/ava.png'},
+        {id: 3, message: 'Lorem ipsum dolor sit amet', avatar: 'img/ava.png'},
+        {id: 4, message: 'Lorem ipsum dolor sit amet', avatar: 'img/ava.png'}
       ],
-      newMessageAuthor: '',
-      newMessageBody: ''
     },
     profilePage: {
       top: {

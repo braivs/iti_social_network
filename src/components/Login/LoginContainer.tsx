@@ -4,11 +4,7 @@ import {Login} from "./Login";
 import {connect} from "react-redux";
 import {loginUser} from "../../redux/auth-reducer";
 
-export type FormDataType = {
-  login: string
-  password: string
-  rememberBe: boolean
-}
+
 
 type MapStatePropsType = { }
 type MapDispatchPropsType = {

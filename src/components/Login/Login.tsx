@@ -1,10 +1,12 @@
 import React from 'react';
-import {InjectedFormProps, reduxForm, Field} from "redux-form";
-import {FormDataType, LoginPropsType} from "./LoginContainer";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {LoginPropsType} from "./LoginContainer";
 
-/*type PropsType = {
-  onSubmit:(formData: FormDataType) => void
-}*/
+type FormDataType = {
+  login: string
+  password: string
+  rememberBe: boolean
+}
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
   return (
