@@ -16,13 +16,10 @@ const rootReducer = combineReducers({ //этот объект надо восп�
     form: formReducer
   })
 
-export type AppRootStateType = ReturnType<typeof rootReducer>
-
 // создаёт внутри себя state у которого есть 3 свойства выше
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 // @ts-ignore
 window.store = store;
 
-// все типы экшенов для всего app. Это пример был в видео по типизации thunk-ок, но пока решил так не делать
-// export type AppActionsType = ProfileActionTypes | DialogsActionTypes | SidebarActionTypes | UsersActionTypes
+export type AppRootStateType = ReturnType<typeof rootReducer>
