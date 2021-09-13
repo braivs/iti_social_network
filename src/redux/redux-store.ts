@@ -7,7 +7,9 @@ import {authReducer} from "./auth-reducer";
 import thunkMiddleware from 'redux-thunk'
 import { reducer as formReducer } from 'redux-form'
 
-const rootReducer = combineReducers({ //этот объект надо воспринимать как state
+// объединяя reducer-ы с помощью combineReducers,
+// мы задаём структуру нашего единственного объекта-состояния
+const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
@@ -16,10 +18,12 @@ const rootReducer = combineReducers({ //этот объект надо восп�
     form: formReducer
   })
 
-// создаёт внутри себя state у которого есть 3 свойства выше
+// непосредственно создаём store
 export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
+// определить автоматически тип всего объекта состояния
+export type AppRootStateType = ReturnType<typeof rootReducer>
+
+// а это, чтобы можно было в консоли браузера обращаться к store в любой момент
 // @ts-ignore
 window.store = store;
-
-export type AppRootStateType = ReturnType<typeof rootReducer>

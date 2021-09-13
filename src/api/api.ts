@@ -44,10 +44,17 @@ export const authAPI = {
     return instance.get(`auth/me`);
   },
   login(email: string, password: string, rememberMe: boolean = false) {
-    return instance.post('auth/login', {email, password, rememberMe });
+    return instance.post<ResponseType<{userId?: number}>>('auth/login', {email, password, rememberMe });
   },
   logout() {
-    return instance.delete('auth/login');
+    return instance.delete<ResponseType>('auth/login');
   },
 
+}
+
+export type ResponseType<D = {}> = {
+  fieldsErrors: Array<string>
+  resultCode: number
+  messages: Array<string>
+  data: D
 }
