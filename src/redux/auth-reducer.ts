@@ -4,6 +4,16 @@ import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {AppRootStateType} from "./redux-store";
 import {FormAction, stopSubmit} from "redux-form";
 
+type AuthType = {
+    id: string | null
+    email: string | null
+    login: string | null
+    isAuth: boolean
+}
+type AuthActionTypes = ReturnType<typeof setAuthUserData>
+// type DispatchType = ThunkDispatch<AppRootStateType, unknown, AuthActionTypes | FormAction>
+type ThunkType = ThunkAction<void, AppRootStateType, unknown, AuthActionTypes | FormAction>
+
 const initialState: AuthType = {
     id: null,
     email: null,
@@ -31,7 +41,7 @@ export const setAuthUserData = (id: string | null, login: string | null, email: 
 
 
 export const getAuthUserData = () => (dispatch: Dispatch<AuthActionTypes>) => {
-    authAPI.me()
+    return authAPI.me()
         .then(response => {
             if (response.data.resultCode === 0) {
                 let {id, login, email} = response.data.data
@@ -41,21 +51,19 @@ export const getAuthUserData = () => (dispatch: Dispatch<AuthActionTypes>) => {
 }
 
 
-export const login = (email: string, password: string, rememberMe: boolean) =>
-    (dispatch: ThunkDispatch<AppRootStateType, unknown, AuthActionTypes | FormAction>) => {
+export const login = (email: string, password: string, rememberMe: boolean): ThunkType => (dispatch) => {
+    authAPI.login(email, password, rememberMe)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(getAuthUserData())
+            } else {
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
+                dispatch(stopSubmit('login', {_error: message}))
+            }
+        })
+}
 
-        authAPI.login(email, password, rememberMe)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(getAuthUserData())
-                } else {
-                    let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
-                    dispatch(stopSubmit('login', {_error: message}))
-                }
-            })
-    }
-
-export const logout = (): ThunkAction<void, AppRootStateType, unknown, AuthActionTypes> => (dispatch) => {
+export const logout = (): ThunkType => (dispatch) => {
     authAPI.logout()
         .then(response => {
             if (response.data.resultCode === 0) {
@@ -63,11 +71,3 @@ export const logout = (): ThunkAction<void, AppRootStateType, unknown, AuthActio
             }
         })
 }
-
-type AuthType = {
-    id: string | null
-    email: string | null
-    login: string | null
-    isAuth: boolean
-}
-type AuthActionTypes = ReturnType<typeof setAuthUserData>
