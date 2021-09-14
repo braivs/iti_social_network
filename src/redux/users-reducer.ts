@@ -105,7 +105,7 @@ export type UsersActionTypes = ReturnType<typeof followSuccess> | ReturnType<typ
   ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> |
   ReturnType<typeof toggleIsFetching> | ReturnType<typeof toggleFollowingProgress>;
 
-export const getUsers = (currentPage: number, pageSize: number) => {
+export const requestUsers = (currentPage: number, pageSize: number) => {
 
   return (dispatch: Dispatch<UsersActionTypes>) => {
 
