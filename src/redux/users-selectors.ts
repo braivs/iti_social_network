@@ -1,8 +1,15 @@
 import {AppRootStateType} from "./redux-store";
 
-export const getUsers = (state: AppRootStateType) => {
+/*export const getUsers = (state: AppRootStateType) => {
     return state.usersPage.users
+}*/
+export const getUsers = (state: AppRootStateType) => {
+    return state.usersPage.users.filter(u => true)
 }
+
+/*export const getTempSavedUsers = (state: AppRootStateType) => {
+    return state.usersPage.users.filter(u => true /!*that are in tempSavedArray*!/)
+}*/
 export const getPageSize = (state: AppRootStateType) => {
     return state.usersPage.pageSize;
 }
@@ -17,4 +24,11 @@ export const getIsFetching = (state: AppRootStateType) => {
 }
 export const getFollowingInProgress = (state: AppRootStateType) => {
     return state.usersPage.followingInProgress
+}
+
+export const countSomethingDifficult = (state: AppRootStateType) => {
+    debugger
+    // for ... math ... big arrays
+    let count = 23
+    return count
 }

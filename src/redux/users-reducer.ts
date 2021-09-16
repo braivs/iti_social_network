@@ -28,6 +28,7 @@ export type UsersPageType = {
   currentPage: number
   isFetching: boolean
   followingInProgress: Array<number>
+  fake: number
 }
 
 const initialState: UsersPageType = {
@@ -36,11 +37,13 @@ const initialState: UsersPageType = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: true,
-  followingInProgress: []
+  followingInProgress: [],
+  fake: 10
 };
 
 export const usersReducer = (state: UsersPageType = initialState, action: UsersActionTypes): UsersPageType => {
   switch (action.type) {
+    case 'FAKE': return {...state, fake: state.fake + 1}
     case 'FOLLOW':
       return {
         ...state,
@@ -86,6 +89,7 @@ export const usersReducer = (state: UsersPageType = initialState, action: UsersA
   }
 }
 
+export const fake = () => ({type: 'FAKE'} as const)
 export const followSuccess = (userId: number) => ({type: 'FOLLOW', userId} as const)
 export const unfollowSuccess = (userId: number) => ({type: 'UNFOLLOW', userId} as const)
 export const setUsers = (users: Array<UserType>) => ({type: 'SET-USERS', users} as const)
@@ -103,7 +107,7 @@ export const toggleFollowingProgress = (isFetching: boolean, userId: number) => 
 
 export type UsersActionTypes = ReturnType<typeof followSuccess> | ReturnType<typeof unfollowSuccess> |
   ReturnType<typeof setUsers> | ReturnType<typeof setCurrentPage> | ReturnType<typeof setTotalUsersCount> |
-  ReturnType<typeof toggleIsFetching> | ReturnType<typeof toggleFollowingProgress>;
+  ReturnType<typeof toggleIsFetching> | ReturnType<typeof toggleFollowingProgress> | ReturnType<typeof fake>;
 
 export const requestUsers = (currentPage: number, pageSize: number) => {
 
