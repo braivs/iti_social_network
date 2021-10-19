@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/iti_social_network/static/css/main.dcaf3494.chunk.css",
-    "main.js": "/iti_social_network/static/js/main.2a691396.chunk.js",
-    "main.js.map": "/iti_social_network/static/js/main.2a691396.chunk.js.map",
+    "main.js": "/iti_social_network/static/js/main.5d40a6a5.chunk.js",
+    "main.js.map": "/iti_social_network/static/js/main.5d40a6a5.chunk.js.map",
     "runtime-main.js": "/iti_social_network/static/js/runtime-main.a9068eaa.js",
     "runtime-main.js.map": "/iti_social_network/static/js/runtime-main.a9068eaa.js.map",
-    "static/js/2.288c58ea.chunk.js": "/iti_social_network/static/js/2.288c58ea.chunk.js",
-    "static/js/2.288c58ea.chunk.js.map": "/iti_social_network/static/js/2.288c58ea.chunk.js.map",
+    "static/js/2.616dfa4f.chunk.js": "/iti_social_network/static/js/2.616dfa4f.chunk.js",
+    "static/js/2.616dfa4f.chunk.js.map": "/iti_social_network/static/js/2.616dfa4f.chunk.js.map",
     "index.html": "/iti_social_network/index.html",
     "static/css/main.dcaf3494.chunk.css.map": "/iti_social_network/static/css/main.dcaf3494.chunk.css.map",
-    "static/js/2.288c58ea.chunk.js.LICENSE.txt": "/iti_social_network/static/js/2.288c58ea.chunk.js.LICENSE.txt",
+    "static/js/2.616dfa4f.chunk.js.LICENSE.txt": "/iti_social_network/static/js/2.616dfa4f.chunk.js.LICENSE.txt",
     "static/media/ava.485fc51f.png": "/iti_social_network/static/media/ava.485fc51f.png",
     "static/media/default_ava.6bc6b03f.png": "/iti_social_network/static/media/default_ava.6bc6b03f.png",
     "static/media/logo.8a6a21ee.png": "/iti_social_network/static/media/logo.8a6a21ee.png",
@@ -19,8 +19,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.a9068eaa.js",
-    "static/js/2.288c58ea.chunk.js",
+    "static/js/2.616dfa4f.chunk.js",
     "static/css/main.dcaf3494.chunk.css",
-    "static/js/main.2a691396.chunk.js"
+    "static/js/main.5d40a6a5.chunk.js"
   ]
 }
