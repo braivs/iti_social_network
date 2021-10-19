@@ -1,24 +1,26 @@
 {
   "files": {
-    "main.css": "/iti_social_network/static/css/main.09933160.chunk.css",
-    "main.js": "/iti_social_network/static/js/main.09342cc5.chunk.js",
-    "main.js.map": "/iti_social_network/static/js/main.09342cc5.chunk.js.map",
+    "main.css": "/iti_social_network/static/css/main.dcaf3494.chunk.css",
+    "main.js": "/iti_social_network/static/js/main.2a691396.chunk.js",
+    "main.js.map": "/iti_social_network/static/js/main.2a691396.chunk.js.map",
     "runtime-main.js": "/iti_social_network/static/js/runtime-main.a9068eaa.js",
     "runtime-main.js.map": "/iti_social_network/static/js/runtime-main.a9068eaa.js.map",
-    "static/js/2.0cbce96d.chunk.js": "/iti_social_network/static/js/2.0cbce96d.chunk.js",
-    "static/js/2.0cbce96d.chunk.js.map": "/iti_social_network/static/js/2.0cbce96d.chunk.js.map",
+    "static/js/2.288c58ea.chunk.js": "/iti_social_network/static/js/2.288c58ea.chunk.js",
+    "static/js/2.288c58ea.chunk.js.map": "/iti_social_network/static/js/2.288c58ea.chunk.js.map",
     "index.html": "/iti_social_network/index.html",
-    "static/css/main.09933160.chunk.css.map": "/iti_social_network/static/css/main.09933160.chunk.css.map",
-    "static/js/2.0cbce96d.chunk.js.LICENSE.txt": "/iti_social_network/static/js/2.0cbce96d.chunk.js.LICENSE.txt",
+    "static/css/main.dcaf3494.chunk.css.map": "/iti_social_network/static/css/main.dcaf3494.chunk.css.map",
+    "static/js/2.288c58ea.chunk.js.LICENSE.txt": "/iti_social_network/static/js/2.288c58ea.chunk.js.LICENSE.txt",
     "static/media/ava.485fc51f.png": "/iti_social_network/static/media/ava.485fc51f.png",
+    "static/media/default_ava.6bc6b03f.png": "/iti_social_network/static/media/default_ava.6bc6b03f.png",
     "static/media/logo.8a6a21ee.png": "/iti_social_network/static/media/logo.8a6a21ee.png",
     "static/media/main.d266ffeb.jpg": "/iti_social_network/static/media/main.d266ffeb.jpg",
+    "static/media/preloader.7f937069.svg": "/iti_social_network/static/media/preloader.7f937069.svg",
     "static/media/user.b9b5b31c.png": "/iti_social_network/static/media/user.b9b5b31c.png"
   },
   "entrypoints": [
     "static/js/runtime-main.a9068eaa.js",
-    "static/js/2.0cbce96d.chunk.js",
-    "static/css/main.09933160.chunk.css",
-    "static/js/main.09342cc5.chunk.js"
+    "static/js/2.288c58ea.chunk.js",
+    "static/css/main.dcaf3494.chunk.css",
+    "static/js/main.2a691396.chunk.js"
   ]
 }
