@@ -1,16 +1,15 @@
 import React from 'react';
 import s from './ProfileInfo.module.scss'
-import {profileType, TopType} from "../../../redux/profile-reducer";
+import {ProfileType} from "../../../redux/profile-reducer";
 import {Preloader} from "../../common/Preloader/Preloader";
 import jobYes from '../../../assets/images/jobYes.png'
 import jobNo from '../../../assets/images/jobNo.png'
 import defaultAva from '../../../assets/images/default_ava.png'
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
-import {ProfileStatus} from "./ProfileStatus";
 
 type ProfileInfoPropsType = {
-  top: TopType
-  profile: profileType
+  // top: TopType
+  profile: null | ProfileType
   status: string
   updateStatus: (status: string) => void
 }

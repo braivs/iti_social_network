@@ -1,4 +1,3 @@
-import mainImg from '../assets/images/main.jpg'
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 
@@ -6,18 +5,12 @@ const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
 
-export type TopType = {
-  imgSrc: string
-  imgAlt: string
-  description: string
-}
 export type PostsType = {
   id: number
   message: string
   likesCount: number
 }
-
-type contactsType = {
+type ContactsType = {
   github: string
   vk: string
   facebook: string
@@ -27,46 +20,35 @@ type contactsType = {
   youtube: string
   mainLink: string
 }
-
-type photosType = {
-  small: string
-  large: string
+type PhotosType = {
+  small: string | null
+  large: string | null
 }
-
-export type profileType = null | {
+export type ProfileType = {
   aboutMe: string
   userId: number
   lookingForAJob: boolean
   lookingForAJobDescription: string
   fullName: string
-  contacts: contactsType
-  photos: photosType
+  contacts: ContactsType
+  photos: PhotosType
 }
 
-export type ProfilePageType = {
-  top: TopType
-  posts: Array<PostsType>
-  profile: profileType
-  status: string
-}
-
-let initialState: ProfilePageType = {
-  top: {
-    imgSrc: mainImg,
-    imgAlt: '',
-    description: 'ava + description'
-  },
+let initialState = {
   posts: [
     {id: 1, message: 'I will be React Developer!', likesCount: 12},
     {id: 2, message: 'It\'s my first post', likesCount: 11},
     {id: 3, message: 'Bugaga', likesCount: 5},
     {id: 4, message: 'Dada', likesCount: 1}
-  ],
-  profile: null,
-  status: ''
+  ] as Array<PostsType>,
+  profile: null as ProfileType | null,
+  status: '',
+  newPostText: ''
 }
 
-export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionTypes): ProfilePageType => {
+export type InitialProfileStateType = typeof initialState
+
+export const profileReducer = (state = initialState, action: ProfileActionTypes): InitialProfileStateType => {
   switch (action.type) {
     case ADD_POST: {
       const newPost: PostsType = {
@@ -76,7 +58,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
       };
       return {
         ...state,
-        posts: [...state.posts, newPost]
+        posts: [...state.posts, newPost],
+        newPostText: ''
       };
     }
     case SET_USER_PROFILE: {
@@ -97,7 +80,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
 
 // Action creators and thunks:
 export const addPost = (newPostBody: string) => ({type: ADD_POST, newPostBody} as const)
-export const setUserProfile = (profile: profileType) => ({type: SET_USER_PROFILE, profile} as const)
+export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
 
 export const getUserProfile = (userId: string) => {

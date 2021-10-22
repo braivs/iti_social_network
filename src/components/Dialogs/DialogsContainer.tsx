@@ -1,4 +1,4 @@
-import {DialogsPageType, sendMessage} from '../../redux/dialogs-reducer';
+import {InitialDialogsStateType, sendMessage} from '../../redux/dialogs-reducer';
 import {connect} from 'react-redux';
 import {AppRootStateType} from '../../redux/redux-store';
 import {Dialogs} from './Dialogs';
@@ -7,7 +7,7 @@ import {compose, Dispatch} from "redux";
 import {ComponentType} from "react";
 
 type MapStatePropsType = {
-  dialogsPage: DialogsPageType
+  dialogsPage: InitialDialogsStateType
 }
 
 type MapDispatchPropsType = {

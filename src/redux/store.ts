@@ -1,13 +1,12 @@
-import {ProfileActionTypes, ProfilePageType} from './profile-reducer';
-import {DialogsActionTypes, DialogsPageType} from './dialogs-reducer';
+import {InitialProfileStateType, ProfileActionTypes} from './profile-reducer';
+import {DialogsActionTypes, InitialDialogsStateType} from './dialogs-reducer';
 import {SidebarActionTypes, sidebarReducer, SidebarType} from './sidebar-reducer';
-import mainImg from '../assets/images/main.jpg'
 
 type ActionTypes = ProfileActionTypes | DialogsActionTypes | SidebarActionTypes;
 
 type stateType = {
-  dialogsPage: DialogsPageType
-  profilePage: ProfilePageType
+  dialogsPage: InitialDialogsStateType
+  profilePage: InitialProfileStateType
   sidebar: SidebarType
 }
 export type StoreType = {
@@ -36,11 +35,6 @@ let store: StoreType = {
       ],
     },
     profilePage: {
-      top: {
-        imgSrc: mainImg,
-        imgAlt: '',
-        description: 'ava + description'
-      },
       posts: [
         {id: 1, message: 'I will be React Developer!', likesCount: 12},
         {id: 2, message: 'It\'s my first post', likesCount: 11},
@@ -48,7 +42,8 @@ let store: StoreType = {
         {id: 4, message: 'Dada', likesCount: 1}
       ],
       profile: null,
-      status: ''
+      status: '',
+      newPostText: ''
     },
     sidebar: {
       friends: [

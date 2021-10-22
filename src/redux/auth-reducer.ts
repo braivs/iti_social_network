@@ -4,24 +4,19 @@ import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {AppRootStateType} from "./redux-store";
 import {FormAction, stopSubmit} from "redux-form";
 
-type AuthType = {
-    id: string | null
-    email: string | null
-    login: string | null
-    isAuth: boolean
-}
 type AuthActionTypes = ReturnType<typeof setAuthUserData>
-// type DispatchType = ThunkDispatch<AppRootStateType, unknown, AuthActionTypes | FormAction>
 type ThunkType = ThunkAction<void, AppRootStateType, unknown, AuthActionTypes | FormAction>
 
-const initialState: AuthType = {
-    id: null,
-    email: null,
-    login: null,
+const initialState = {
+    id: null as string | null,
+    email: null as string | null,
+    login: null as string | null,
     isAuth: false
 };
 
-export const authReducer = (state: AuthType = initialState, action: AuthActionTypes): AuthType => {
+type InitialStateType = typeof initialState;
+
+export const authReducer = (state = initialState, action: AuthActionTypes): InitialStateType => {
     switch (action.type) {
         case "SET-USER-DATA": {
             return {
@@ -38,7 +33,6 @@ export const setAuthUserData = (id: string | null, login: string | null, email: 
     type: 'SET-USER-DATA',
     payload: {id, login, email, isAuth}
 } as const)
-
 
 export const getAuthUserData = () => (dispatch: Dispatch<AuthActionTypes>) => {
     return authAPI.me()

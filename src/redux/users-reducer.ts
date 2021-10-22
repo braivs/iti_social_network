@@ -41,7 +41,7 @@ const initialState: UsersPageType = {
   fake: 10
 };
 
-export const usersReducer = (state: UsersPageType = initialState, action: UsersActionTypes): UsersPageType => {
+export const usersReducer = (state = initialState, action: UsersActionTypes): UsersPageType => {
   switch (action.type) {
     case 'FAKE': return {...state, fake: state.fake + 1}
     case 'FOLLOW':
