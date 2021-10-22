@@ -1,6 +1,6 @@
-import {UsersPageType, UserType} from "./users-reducer";
+import {InitialStateType, UserType} from "./users-reducer";
 
-let startState: UsersPageType
+let startState: InitialStateUsersType
 
 beforeEach(() => {
   startState = {

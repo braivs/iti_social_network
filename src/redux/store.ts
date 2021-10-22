@@ -1,13 +1,13 @@
-import {InitialProfileStateType, ProfileActionTypes} from './profile-reducer';
-import {DialogsActionTypes, InitialDialogsStateType} from './dialogs-reducer';
-import {SidebarActionTypes, sidebarReducer, SidebarType} from './sidebar-reducer';
+import {InitialStateProfileType, ProfileActionTypes} from './profile-reducer';
+import {DialogsActionTypes, InitialStateDialogsType} from './dialogs-reducer';
+import {SidebarActionTypes, sidebarReducer, InitialStateSidebarType} from './sidebar-reducer';
 
 type ActionTypes = ProfileActionTypes | DialogsActionTypes | SidebarActionTypes;
 
 type stateType = {
-  dialogsPage: InitialDialogsStateType
-  profilePage: InitialProfileStateType
-  sidebar: SidebarType
+  dialogsPage: InitialStateDialogsType
+  profilePage: InitialStateProfileType
+  sidebar: InitialStateSidebarType
 }
 export type StoreType = {
   _state: stateType

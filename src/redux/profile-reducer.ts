@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
+import {PhotosType} from "../types/types";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -20,10 +21,7 @@ type ContactsType = {
   youtube: string
   mainLink: string
 }
-type PhotosType = {
-  small: string | null
-  large: string | null
-}
+
 export type ProfileType = {
   aboutMe: string
   userId: number
@@ -46,9 +44,9 @@ let initialState = {
   newPostText: ''
 }
 
-export type InitialProfileStateType = typeof initialState
+export type InitialStateProfileType = typeof initialState
 
-export const profileReducer = (state = initialState, action: ProfileActionTypes): InitialProfileStateType => {
+export const profileReducer = (state = initialState, action: ProfileActionTypes): InitialStateProfileType => {
   switch (action.type) {
     case ADD_POST: {
       const newPost: PostsType = {
@@ -78,11 +76,12 @@ export const profileReducer = (state = initialState, action: ProfileActionTypes)
   }
 }
 
-// Action creators and thunks:
+// Action creators
 export const addPost = (newPostBody: string) => ({type: ADD_POST, newPostBody} as const)
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
 
+//Thunks
 export const getUserProfile = (userId: string) => {
   return (dispatch: Dispatch<ProfileActionTypes>) => {
     usersAPI.getProfile(userId).then(response => {

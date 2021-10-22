@@ -1,7 +1,7 @@
 import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {getStatus, getUserProfile, InitialProfileStateType, updateStatus} from "../../redux/profile-reducer";
+import {getStatus, getUserProfile, InitialStateProfileType, updateStatus} from "../../redux/profile-reducer";
 import {AppRootStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {compose} from "redux";
@@ -10,7 +10,7 @@ type PathParamsType = {
     userId: string | undefined
 }
 type MapStatePropsType = {
-    profilePage: InitialProfileStateType
+    profilePage: InitialStateProfileType
     status: string
     authorizedUserId: string | null
     isAuth: boolean

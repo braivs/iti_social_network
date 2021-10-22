@@ -1,10 +1,10 @@
 import {AppRootStateType} from '../../redux/redux-store';
 import {connect} from 'react-redux';
-import {SidebarType} from '../../redux/sidebar-reducer';
+import {InitialStateSidebarType} from '../../redux/sidebar-reducer';
 import {Sidebar} from './Sidebar';
 
 type MapStatePropsType = {
-  sidebar: SidebarType
+  sidebar: InitialStateSidebarType
 }
 
 export type SidebarPropsType = MapStatePropsType

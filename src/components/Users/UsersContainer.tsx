@@ -5,7 +5,6 @@ import {
     setUsers,
     toggleFollowingProgress,
     unfollow,
-    UserType
 } from '../../redux/users-reducer';
 import {AppRootStateType} from '../../redux/redux-store';
 import React from "react";
@@ -19,6 +18,7 @@ import {
     getPageSize,
     getTotalUsersCount, getUsers
 } from "../../redux/users-selectors";
+import {UserType} from "../../types/types";
 
 
 type MapStatePropsType = {
