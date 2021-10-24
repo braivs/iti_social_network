@@ -22,27 +22,31 @@ import {UserType} from "../../types/types";
 
 
 type MapStatePropsType = {
-    users: Array<UserType>
+    currentPage: number
     pageSize: number
     totalUsersCount: number
-    currentPage: number
+    users: Array<UserType>
     followingInProgress: Array<number>
 }
 type MapDispatchPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
 }
+
 type MapStateToPropsTypeAPI = {
     isFetching: boolean
 }
-type MapDispatchToPropsTypeAPI = {
+
+type OwnPropsType = {
     setCurrentPage: (pageNumber: number) => void
     requestUsers: (currentPage: number, pageSize: number) => void
 }
-export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
-type UsersAPIPropsType = MapDispatchToPropsTypeAPI & MapStateToPropsTypeAPI & UsersPropsType
 
-class UsersContainer extends React.Component<UsersAPIPropsType> {
+export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
+
+type PropsType =  UsersPropsType & OwnPropsType & MapStateToPropsTypeAPI
+
+class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
 
         this.props.requestUsers(this.props.currentPage, this.props.pageSize);
@@ -51,11 +55,9 @@ class UsersContainer extends React.Component<UsersAPIPropsType> {
     onPageChanged = (pageNumber: number) => {
         this.props.requestUsers(pageNumber, this.props.pageSize)
         this.props.setCurrentPage(pageNumber)
-
     }
 
     render() {
-        console.log('USERS')
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users totalUsersCount={this.props.totalUsersCount}
@@ -71,18 +73,7 @@ class UsersContainer extends React.Component<UsersAPIPropsType> {
     }
 }
 
-/*const mapStateToProps = (state: AppRootStateType): MapStatePropsType & MapStateToPropsTypeAPI => {
-    return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
-    }
-}*/
 const mapStateToProps = (state: AppRootStateType): MapStatePropsType & MapStateToPropsTypeAPI => {
-    console.log('mapStateToProps USERS')
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
