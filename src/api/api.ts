@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 
 const instance = axios.create({
     withCredentials: true,
@@ -41,15 +41,44 @@ export const profileAPI = {
 
 export const authAPI = {
     me() {
-        return instance.get(`auth/me`);
+        return instance.get<MeResponseType>(`auth/me`).then(res => res.data)
     },
-    login(email: string, password: string, rememberMe: boolean = false) {
-        return instance.post<ResponseType<{ userId?: number }>>('auth/login', {email, password, rememberMe});
+    login(email: string, password: string, rememberMe = false) {
+        // return instance.post<ResponseType<{ userId: number }>>('auth/login', {email, password, rememberMe});
+        return instance.post<LoginResponseType>('auth/login', {email, password, rememberMe})
+            .then(res => res.data)
     },
     logout() {
         return instance.delete<ResponseType>('auth/login');
     },
 
+}
+
+export enum ResultCodesEnum {
+    Success = 0,
+    Error = 1
+}
+
+export enum ResultCodeForCaptcha {
+    CaptchaIsRequired = 10
+}
+
+type MeResponseType = {
+    data: {
+        id: number
+        email: string
+        login: string
+    }
+    resultCode: ResultCodesEnum
+    messages: Array<string>
+}
+
+type LoginResponseType = {
+    data: {
+        userId: number
+    }
+    resultCode: ResultCodesEnum | ResultCodeForCaptcha
+    messages: Array<string>
 }
 
 export type ResponseType<D = {}> = {
