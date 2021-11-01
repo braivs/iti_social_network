@@ -27,7 +27,6 @@ export const getFollowingInProgress = (state: AppRootStateType) => {
 }
 
 export const countSomethingDifficult = (state: AppRootStateType) => {
-    debugger
     // for ... math ... big arrays
     let count = 23
     return count

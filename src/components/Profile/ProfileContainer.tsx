@@ -7,17 +7,19 @@ import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {compose} from "redux";
 
 type PathParamsType = {
-    userId: string | undefined
+    //todo: need to fix any
+    userId: any
 }
 type MapStatePropsType = {
     profilePage: InitialStateProfileType
     status: string
-    authorizedUserId: string | null
+    //todo: need to fix any
+    authorizedUserId: any
     isAuth: boolean
 }
 type MapDispatchPropsType = {
-    getUserProfile: (userId: string | null) => void
-    getStatus: (userId: string | null) => void
+    getUserProfile: (userId: number) => void
+    getStatus: (userId: number) => void
     updateStatus: (status: string) => void
 }
 type OwnPropsType = MapStatePropsType & MapDispatchPropsType
@@ -25,7 +27,7 @@ export type ProfilePropsType = RouteComponentProps<PathParamsType> & OwnPropsTyp
 
 class ProfileContainer extends React.Component<ProfilePropsType> {
     componentDidMount() {
-        let userId: string | undefined | null = this.props.match.params.userId
+        let userId = this.props.match.params.userId
         if (!userId) {
             userId = this.props.authorizedUserId
             if (!userId) {
