@@ -8,7 +8,15 @@ import {Redirect} from "react-router-dom";
 import {AppRootStateType} from "../../redux/redux-store";
 import style from './../common/FormsControls/FormsControls.module.css'
 
-const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+type MapStatePropsType = {
+    isAuth: boolean
+}
+type MapDispatchPropsType = {
+    login: (email: string, password: string, rememberMe: boolean) => void
+}
+type PropsType = MapStatePropsType & MapDispatchPropsType
+
+const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -36,11 +44,18 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     )
 }
 
-const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
+type LoginFormValuesType = {
+    email: string
+    password: string
+    rememberMe: boolean
+}
+type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType,string> //for create fields (in future)
+
+const LoginReduxForm = reduxForm<LoginFormValuesType>({form: 'login'})(LoginForm)
 
 const Login: React.FC<PropsType> = (props) => {
-    const onSubmit = (formData: FormDataType) => {
-        props.login(formData.email, formData.password, formData.rememberBe)
+    const onSubmit = (formData: LoginFormValuesType) => {
+        props.login(formData.email, formData.password, formData.rememberMe)
     }
 
     if (props.isAuth) {
@@ -58,17 +73,3 @@ const mapStateToProps = (state: AppRootStateType):MapStatePropsType => ({
 })
 
 export default connect(mapStateToProps, {login})(Login)
-
-type MapStatePropsType = {
-    isAuth: boolean
-}
-type MapDispatchPropsType = {
-    login: (email: string, password: string, rememberMe: boolean) => void
-}
-export type PropsType = MapStatePropsType & MapDispatchPropsType
-type FormDataType = {
-    email: string
-    password: string
-    rememberBe: boolean
-}
-
