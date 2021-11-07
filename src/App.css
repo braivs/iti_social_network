@@ -1,21 +1,40 @@
 * {
-  font-family: sans-serif;
-  font-size: 25px;
-  box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+.back {
+    background-color: #ffd200;
+    min-height: 100vh;
 }
 
 .app-wrapper {
-  margin: 0 auto;
-  display: grid;
-  width: 1600px;
-  grid-template-areas:
+    margin: 0 auto;
+    padding: 80px 0;
+    display: grid;
+    width: 1600px;
+    grid-template-areas:
   "h h"
   "n c";
-  grid-template-rows: 100px 1fr;
-  grid-template-columns: 2fr 10fr;
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: 2fr 10fr;
+    background-color: #ffd200;
+    /*box-shadow: 0 3px 88px 24px #ffd200;*/
 }
 
 .app-wrapper-content {
-  grid-area: c;
-  background-color: darkgoldenrod;
+    grid-area: c;
+    background-color: #ffdf00;
+}
+
+button {
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  padding: 8px 30px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 300;
 }

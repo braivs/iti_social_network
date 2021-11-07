@@ -1,10 +1,16 @@
 .header {
   grid-area: h;
-  background-color: darkorange;
+  background-color: #ffdf00;
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: repeat(2, auto);
+  align-items: center;
 }
 
-.header img {
-  width: 100px;
+.logo {
+  font-family: 'Mochiy Pop P One', sans-serif;
+  font-size: 40px;
+  padding-left: 20px;
 }
 
 .loginBlock {

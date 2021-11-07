@@ -1,32 +1,47 @@
 .navbarContainer {
-  background-color: coral;
-  h3 {
-    color: white;
-    font-size: 40px;
-    padding-left: 20px;
-    font-weight: lighter;
-  }
-  .nav {
-    padding: 10px 20px;
+    background-color: #ffdf00;
 
-    .item {
-      color: white;
-
-      a {
-        text-decoration: none;
+    h3 {
         color: white;
+        font-size: 40px;
+        padding-left: 20px;
+        font-weight: lighter;
+    }
 
-        &.active {
-          color: gold;
+    .nav {
+        padding: 10px 20px;
+
+        .item {
+            color: black;
+            .navLink {
+                display: flex;
+                img {
+                    margin-right: 10px;
+                }
+            }
+            a {
+                text-decoration: none;
+                color: black;
+                display: block;
+                padding: 10px;
+                &:hover {
+                    background-color: white;
+                }
+
+                &.active {
+                    //color: gold;
+
+                    background-color: white;
+                }
+            }
         }
-      }
     }
-  }
-  .friends {
-    .friendsContainer {
-      margin: 0 10px 0 10px;
-      display: flex;
+
+    .friends {
+        .friendsContainer {
+            margin: 0 10px 0 10px;
+            display: flex;
+        }
     }
-  }
 
 }
