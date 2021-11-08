@@ -4,6 +4,10 @@
     font-size: 20px;
     box-sizing: border-box;
     color: black;
+    &::selection {
+        color: white;
+        background: #f5df4e;
+    }
 }
 
 .back {

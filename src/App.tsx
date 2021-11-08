@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
-import {Route, withRouter} from 'react-router-dom';
+import './App.scss';
+import {Redirect, Route, withRouter} from 'react-router-dom';
 import {SidebarContainer} from './components/Sidebar/SidebarContainer';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import {News} from './components/News/News';
@@ -47,6 +47,7 @@ class App extends React.Component<AppPropsType> {
                         <Route path="/settings" render={() => <Settings/>}/>
                         <Route path="/users" render={() => <UsersContainer/>}/>
                         <Route path="/login" render={() => <Login/>}/>
+                        <Redirect from={'/'} to={'/profile'} />
                     </div>
                 </div>
             </div>
