@@ -1,7 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import s from './Sidebar.module.scss'
-import {FriendItem} from './FriendItem/FriendItem';
 import {SidebarPropsType} from './SidebarContainer';
 import profileImg from '../../assets/images/sidebar/user.png'
 import dialogsImg from '../../assets/images/sidebar/comment.png'
@@ -9,13 +8,10 @@ import usersImg from '../../assets/images/sidebar/group.png'
 import newsImg from '../../assets/images/sidebar/newspaper.png'
 import musicImg from '../../assets/images/sidebar/musical-note.png'
 import settingsImg from '../../assets/images/sidebar/settings.png'
+import {Friends} from "./Friends/Friends";
 
 
 export const Sidebar: React.FC<SidebarPropsType> = (props) => {
-
-    let FriendsElements = props.sidebar.friends.map(f => <FriendItem key={f.id} id={f.id} name={f.name}
-                                                                     avatar={f.avatar}/>)
-
     return (
         <div className={s.navbarContainer}>
             <nav className={s.nav}>
@@ -50,10 +46,7 @@ export const Sidebar: React.FC<SidebarPropsType> = (props) => {
                     </NavLink>
                 </div>
             </nav>
-            <div className={s.friends}>
-                <h3>Friends</h3>
-                <div className={s.friendsContainer}>{FriendsElements}</div>
-            </div>
+            <Friends friends={props.sidebar.friends}/>
         </div>
     )
 }

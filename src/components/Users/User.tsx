@@ -45,11 +45,7 @@ export const User: React.FC<UserPropsType> = (props) => {
                 <div>
                     <div>{props.user.name}</div>
                     <div>{props.user.status}</div>
-                    <div>{props.user.id}</div>
-                </div>
-                <div>
-                    <div>{'props.location.country'}</div>
-                    <div>{'props.location.city'}</div>
+                    <div>id: {props.user.id}</div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 import ava from '../assets/images/ava.png'
 
-type FriendsType = {
+export type FriendsType = {
   id: number
   name: string,
   avatar: string

@@ -22,10 +22,10 @@ export const Users: React.FC<UsersPropsTypeUnion> = (props) => {
     return <div>
         <div className={s.pagesContainer}>
             {pages.map(p => {
-                return <span className={props.currentPage === p ? s.selectedPage : ""}
+                return <div className={props.currentPage === p ? s.selectedPage : ""}
                              onClick={() => {
                                  props.onPageChanged(p)
-                             }}>{p}</span>
+                             }}>{p}</div>
             })}
         </div>
         {

@@ -9,30 +9,30 @@ export type DialogsFormDataType = {
     newMessageBody: string
 }
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
-  let state = props.dialogsPage;
+    let state = props.dialogsPage;
 
-  let dialogsElements = state.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name}/>)
-  let messagesElements = state.messages.map(m =>
-    <Message key={m.id}
-             message={m.message}
-             avatar={m.avatar}
-    />)
+    let dialogsElements = state.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name}/>)
+    let messagesElements = state.messages.map(m =>
+        <Message key={m.id}
+                 message={m.message}
+                 avatar={m.avatar}
+        />)
 
-  const addNewMessage = (values: DialogsFormDataType) => {
-    props.sendMessage(values.newMessageBody);
-  }
+    const addNewMessage = (values: DialogsFormDataType) => {
+        props.sendMessage(values.newMessageBody);
+    }
 
-  // if (!props.isAuth) return <Redirect to={'/login'}/>
+    // if (!props.isAuth) return <Redirect to={'/login'}/>
 
-  return (
-    <div className={s.dialogs}>
-      <div className={s.dialogItems}>
-        {dialogsElements}
-      </div>
-      <div className={s.messages}>
-        <div>{messagesElements}</div>
-      </div>
-      <AddMessageForm onSubmit={addNewMessage}/>
-    </div>
-  )
+    return (
+        <div className={s.dialogs}>
+            <div className={s.dialogItems}>
+                {dialogsElements}
+            </div>
+            <div className={s.messages}>
+                <div>{messagesElements}</div>
+            </div>
+            <AddMessageForm onSubmit={addNewMessage}/>
+        </div>
+    )
 }
