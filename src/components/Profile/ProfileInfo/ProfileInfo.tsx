@@ -20,24 +20,28 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
     }
     return <>
         <div className={s.descriptionBlock}>
-            <img src={props.profile.photos.large ? props.profile.photos.large : defaultAva} alt=""/>
-            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
-            {/*<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>*/}
-            <hr/>
-            <div>Full Name: {props.profile.fullName}</div>
-            <div>About Me: {props.profile.aboutMe}</div>
-            <div>Contacts:</div>
-            <ul className={s.contacts}>
-                <li>facebook: {props.profile.contacts.facebook}</li>
-                <li>vk: {props.profile.contacts.vk}</li>
-                <li>twitter: {props.profile.contacts.twitter}</li>
-                <li>instagram: {props.profile.contacts.instagram}</li>
-            </ul>
-            <div className={s.jobContainer}>
-                <div>Looking for a job:</div>
-                <img className={s.jobStatus} src={props.profile.lookingForAJob ? jobYes : jobNo} alt=""/>
+            <div className={s.left}>
+                <img src={props.profile.photos.large ? props.profile.photos.large : defaultAva} alt=""/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
             </div>
-            <div>Job Description: {props.profile.lookingForAJobDescription}</div>
+            <div className={s.right}>
+                {/*<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>*/}
+                <div>Full Name: {props.profile.fullName}</div>
+                <div>About Me: {props.profile.aboutMe}</div>
+                <div>Contacts:</div>
+                <ul className={s.contacts}>
+                    <li>facebook: {props.profile.contacts.facebook}</li>
+                    <li>vk: {props.profile.contacts.vk}</li>
+                    <li>twitter: {props.profile.contacts.twitter}</li>
+                    <li>instagram: {props.profile.contacts.instagram}</li>
+                </ul>
+                <div className={s.jobContainer}>
+                    <div>Looking for a job:</div>
+                    <img className={s.jobStatus} src={props.profile.lookingForAJob ? jobYes : jobNo} alt=""/>
+                </div>
+                <div>Job Description: {props.profile.lookingForAJobDescription}</div>
+            </div>
+
 
         </div>
     </>;

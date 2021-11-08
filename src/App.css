@@ -38,3 +38,7 @@ button {
   border: none;
   font-weight: 300;
 }
+
+textarea {
+    resize: none;
+}

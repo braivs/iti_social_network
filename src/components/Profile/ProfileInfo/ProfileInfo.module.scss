@@ -1,8 +1,12 @@
 .descriptionBlock {
   padding: 10px;
-
+  display: flex;
+  .right {
+    margin-left: 100px;
+  }
   img {
     width: 300px;
+    //border: 10px solid white;
   }
 
   .jobContainer {
