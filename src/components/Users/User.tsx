@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 import userPhoto from "../../assets/images/user.png";
-import s from "./Users.module.css";
+import s from "./Users.module.scss";
 import {PhotosType} from "../../types/types";
 
 

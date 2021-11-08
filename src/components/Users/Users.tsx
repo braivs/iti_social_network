@@ -1,5 +1,5 @@
 import React from 'react';
-import s from "./Users.module.css";
+import s from "./Users.module.scss";
 import {UsersPropsType} from "./UsersContainer";
 import {User} from "./User";
 
@@ -22,10 +22,17 @@ export const Users: React.FC<UsersPropsTypeUnion> = (props) => {
     return <div>
         <div className={s.pagesContainer}>
             {pages.map(p => {
-                return <div className={props.currentPage === p ? s.selectedPage : ""}
-                             onClick={() => {
-                                 props.onPageChanged(p)
-                             }}>{p}</div>
+                // return <div className={props.currentPage === p ? s.selectedPage : ""}
+                //              onClick={() => {
+                //                  props.onPageChanged(p)
+                //              }}>{p}</div>
+                return <div
+                    onClick={() => {
+                        props.onPageChanged(p)
+                    }}>
+                    <div className={
+                        `${s.circle} ${props.currentPage === p ? s.selectedPage : ""}`}>{p}</div>
+                </div>
             })}
         </div>
         {
@@ -35,7 +42,7 @@ export const Users: React.FC<UsersPropsTypeUnion> = (props) => {
                                        followed={u.followed}
                                        unfollow={props.unfollow}
                                        follow={props.follow}
-            />
+                />
             )
         }
     </div>
