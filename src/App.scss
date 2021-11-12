@@ -4,6 +4,7 @@
     font-size: 20px;
     box-sizing: border-box;
     color: black;
+
     &::selection {
         color: white;
         background: #f5df4e;
@@ -32,17 +33,18 @@
 .app-wrapper-content {
     grid-area: c;
     background-color: #ffdf00;
+    padding-left: 20px;
 }
 
 button {
-  background-color: black;
-  color: white;
-  font-size: 16px;
-  padding: 8px 30px;
-  border-radius: 30px;
-  border: none;
-  font-weight: 300;
-  cursor: pointer;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    padding: 8px 30px;
+    border-radius: 30px;
+    border: none;
+    font-weight: 300;
+    cursor: pointer;
 }
 
 textarea {
@@ -50,6 +52,7 @@ textarea {
     border: none;
     padding: 20px;
 }
+
 input {
     border: none;
     margin-bottom: 10px;

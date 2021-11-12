@@ -26,12 +26,15 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
     return (
         <div className={s.dialogs}>
-            <div className={s.dialogItems}>
-                {dialogsElements}
+            <div className={s.dialogContainer}>
+                <div className={s.dialogItems}>
+                    {dialogsElements}
+                </div>
+                <div className={s.messages}>
+                    <div>{messagesElements}</div>
+                </div>
             </div>
-            <div className={s.messages}>
-                <div>{messagesElements}</div>
-            </div>
+
             <AddMessageForm onSubmit={addNewMessage}/>
         </div>
     )

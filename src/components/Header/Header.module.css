@@ -1,24 +1,24 @@
 .header {
-  grid-area: h;
-  background-color: #ffdf00;
-  display: grid;
-  justify-content: space-between;
-  grid-template-columns: repeat(2, auto);
-  align-items: center;
+    grid-area: h;
+    background-color: #ffdf00;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
 }
 
 .logo {
-  font-family: 'Mochiy Pop P One', sans-serif;
-  font-size: 40px;
-  padding-left: 20px;
+    font-family: 'Mochiy Pop P One', sans-serif;
+    font-size: 40px;
+    padding-left: 20px;
 }
 
 .loginBlock {
-  float: right;
-  color: white;
-  margin-right: 20px;
+    float: right;
+    color: white;
+    margin-right: 20px;
 }
 
 .loginBlock a {
-  color: white;
+    color: white;
 }

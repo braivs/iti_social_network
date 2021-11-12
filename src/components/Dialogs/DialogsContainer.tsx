@@ -7,29 +7,29 @@ import {compose, Dispatch} from "redux";
 import {ComponentType} from "react";
 
 type MapStatePropsType = {
-  dialogsPage: InitialStateDialogsType
+    dialogsPage: InitialStateDialogsType
 }
 
 type MapDispatchPropsType = {
-  sendMessage: (newMessageBody: string) => void
+    sendMessage: (newMessageBody: string) => void
 }
 
 const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
-  return {
-    dialogsPage: state.dialogsPage
-  }
+    return {
+        dialogsPage: state.dialogsPage
+    }
 }
 const mapDispatchToProps = (dispatch: Dispatch) => {
-  return {
-    sendMessage: (newMessageBody: string) => {
-      dispatch(sendMessage(newMessageBody))
+    return {
+        sendMessage: (newMessageBody: string) => {
+            dispatch(sendMessage(newMessageBody))
+        }
     }
-  }
 }
 
 export type DialogsPropsType = MapStatePropsType & MapDispatchPropsType
 
 export const DialogsContainer = compose<ComponentType>(
-  connect(mapStateToProps, mapDispatchToProps),
-  withAuthRedirect
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
 )(Dialogs)
