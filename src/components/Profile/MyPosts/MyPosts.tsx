@@ -8,7 +8,10 @@ import {Textarea} from "../../common/FormsControls/FormsControls";
 
 export const MyPosts: React.FC<MyPostsPropsType> = React.memo(props => {
     console.log('RENDER MyPosts')
-    let postElements = props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
+    let postElements =
+        [...props.posts]
+        .reverse()
+        .map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
 
     const onAddPost = (values: FormDataType) => {
         props.addPost(values.newPostText)
