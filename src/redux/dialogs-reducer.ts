@@ -1,10 +1,10 @@
 import ava from '../assets/images/ava.png'
 
-type DialogType = {
+export type DialogType = {
     id: number
     name: string
 }
-type MessageType = {
+export type MessageType = {
     id: number
     message: string
     avatar: string
