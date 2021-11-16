@@ -10,10 +10,4 @@ setInterval(() => {
     store.dispatch({type: 'FAKE'})
 }, 1000)
 
-ReactDOM.render(
-  <HashRouter>
-    <Provider store={store}>
-        <App/>
-    </Provider>
-  </HashRouter>, document.getElementById('root')
-);
+ReactDOM.render(<App/>, document.getElementById('root'));

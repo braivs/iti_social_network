@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import {Redirect, Route, withRouter} from 'react-router-dom';
+import {HashRouter, Redirect, Route, withRouter} from 'react-router-dom';
 import {SidebarContainer} from './components/Sidebar/SidebarContainer';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import {News} from './components/News/News';
@@ -10,10 +10,10 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
-import {AppRootStateType} from "./redux/redux-store";
+import {AppRootStateType, store} from "./redux/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
 
 type MapStateToPropsType = {
@@ -32,25 +32,29 @@ class App extends React.Component<AppPropsType> {
 
     render() {
         if (!this.props.initialized) {
-            return <Preloader />
+            return <Preloader/>
         }
         return (
-            <div className={'back'}>
-                <div className={'app-wrapper'}>
-                    <HeaderContainer/>
-                    <SidebarContainer/>
-                    <div className={'app-wrapper-content'}>
-                        <Route path="/dialogs" render={() => <DialogsContainer/>}/>
-                        <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
-                        <Route path="/news" render={() => <News/>}/>
-                        <Route path="/music" render={() => <Music/>}/>
-                        <Route path="/settings" render={() => <Settings/>}/>
-                        <Route path="/users" render={() => <UsersContainer/>}/>
-                        <Route path="/login" render={() => <Login/>}/>
-                        <Redirect from={'/'} to={'/profile'} />
+            <HashRouter>
+                <Provider store={store}>
+                    <div className={'back'}>
+                        <div className={'app-wrapper'}>
+                            <HeaderContainer/>
+                            <SidebarContainer/>
+                            <div className={'app-wrapper-content'}>
+                                <Route path="/dialogs" render={() => <DialogsContainer/>}/>
+                                <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
+                                <Route path="/news" render={() => <News/>}/>
+                                <Route path="/music" render={() => <Music/>}/>
+                                <Route path="/settings" render={() => <Settings/>}/>
+                                <Route path="/users" render={() => <UsersContainer/>}/>
+                                <Route path="/login" render={() => <Login/>}/>
+                                <Redirect from={'/'} to={'/profile'}/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </Provider>
+            </HashRouter>
 
         );
     }

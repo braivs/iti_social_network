@@ -52,6 +52,8 @@ export const profileReducer = (state = initialState, action: ProfileActionTypes)
                 status: action.status
             }
         }
+        case "DELETE-POST":
+            return {...state, posts: state.posts.filter(p => p.id != action.postId)}
         default:
             return state;
     }
@@ -61,6 +63,7 @@ export const profileReducer = (state = initialState, action: ProfileActionTypes)
 export const addPost = (newPostBody: string) => ({type: ADD_POST, newPostBody} as const)
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
+export const deletePost = (postId: number) => ({type: 'DELETE-POST', postId} as const)
 
 //Thunks
 export const getUserProfile = (userId: string) => {
@@ -96,6 +99,7 @@ export type ProfileActionTypes =
     ReturnType<typeof addPost>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof deletePost>
 
 
 
