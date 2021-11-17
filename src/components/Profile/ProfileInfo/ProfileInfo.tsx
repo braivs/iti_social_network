@@ -8,38 +8,36 @@ import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import {ProfileType} from "../../../types/types";
 
 type ProfileInfoPropsType = {
-    // top: TopType
     profile: null | ProfileType
     status: string
     updateStatus: (status: string) => void
 }
 
-export const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
-    if (!props.profile) {
+export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateStatus}) => {
+    if (!profile) {
         return <Preloader/>
     }
     return <>
         <div className={s.descriptionBlock}>
             <div className={s.left}>
-                <img src={props.profile.photos.large ? props.profile.photos.large : defaultAva} alt=""/>
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                <img src={profile.photos.large ? profile.photos.large : defaultAva} alt=""/>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
             <div className={s.right}>
-                {/*<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>*/}
-                <div>Full Name: {props.profile.fullName}</div>
-                <div>About Me: {props.profile.aboutMe}</div>
+                <div>Full Name: {profile.fullName}</div>
+                <div>About Me: {profile.aboutMe}</div>
                 <div>Contacts:</div>
                 <ul className={s.contacts}>
-                    <li>facebook: {props.profile.contacts.facebook}</li>
-                    <li>vk: {props.profile.contacts.vk}</li>
-                    <li>twitter: {props.profile.contacts.twitter}</li>
-                    <li>instagram: {props.profile.contacts.instagram}</li>
+                    <li>facebook: {profile.contacts.facebook}</li>
+                    <li>vk: {profile.contacts.vk}</li>
+                    <li>twitter: {profile.contacts.twitter}</li>
+                    <li>instagram: {profile.contacts.instagram}</li>
                 </ul>
                 <div className={s.jobContainer}>
                     <div>Looking for a job:</div>
-                    <img className={s.jobStatus} src={props.profile.lookingForAJob ? jobYes : jobNo} alt=""/>
+                    <img className={s.jobStatus} src={profile.lookingForAJob ? jobYes : jobNo} alt=""/>
                 </div>
-                <div>Job Description: {props.profile.lookingForAJobDescription}</div>
+                <div>Job Description: {profile.lookingForAJobDescription}</div>
             </div>
 
 

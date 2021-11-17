@@ -20,32 +20,32 @@ type UserPropsType = {
     follow: (userId: number) => void
 }
 
-export const User: React.FC<UserPropsType> = (props) => {
+export const User: React.FC<UserPropsType> = ({user, followed, followingInProgress, unfollow, follow}) => {
     return (<div>
-        <div key={props.user.id}>
+        <div key={user.id}>
             <div>
                 <div>
-                    <NavLink to={'/profile/' + props.user.id}>
-                        <img src={props.user.photos.small !== null ? props.user.photos.small : userPhoto} alt={'userPhoto'}
+                    <NavLink to={'/profile/' + user.id}>
+                        <img src={user.photos.small !== null ? user.photos.small : userPhoto} alt={'userPhoto'}
                              className={s.userPhoto}/>
                     </NavLink>
                 </div>
                 <div>
-                    {props.followed
-                        ? <button disabled={props.followingInProgress
-                            .some(id => id === props.user.id)} onClick={() => {
-                            props.unfollow(props.user.id)
+                    {followed
+                        ? <button disabled={followingInProgress
+                            .some((id: number) => id === user.id)} onClick={() => {
+                            unfollow(user.id)
                         }}>Unfollow</button>
-                        : <button disabled={props.followingInProgress.some(id => id === props.user.id)} onClick={() => {
-                            props.follow(props.user.id)
+                        : <button disabled={followingInProgress.some((id: number) => id === user.id)} onClick={() => {
+                            follow(user.id)
                         }}>Follow</button>}
                 </div>
             </div>
             <div>
                 <div>
-                    <div>{props.user.name}</div>
-                    <div>{props.user.status}</div>
-                    <div>id: {props.user.id}</div>
+                    <div>{user.name}</div>
+                    <div>{user.status}</div>
+                    <div>id: {user.id}</div>
                 </div>
             </div>
         </div>

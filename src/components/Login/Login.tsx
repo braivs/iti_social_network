@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Input} from "../common/FormsControls/FormsControls";
+import {createField, Input} from "../common/FormsControls/FormsControls";
 import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
@@ -16,29 +16,16 @@ type MapDispatchPropsType = {
 }
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
-const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = (props) => {
+const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({handleSubmit, error}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field placeholder={'Email'} name={'email'}
-                       validate={[required]}
-                       component={Input}/>
-            </div>
-            <div>
-                <Field placeholder={'Password'} name={'password'}
-                       validate={[required]}
-                       component={Input}
-                       type={'password'}
-                />
-            </div>
-            <div>
-                <label className={s.rememberMe}>
-                    <Field type={"checkbox"} name={'rememberBe'} component={Input}/>
-                    remember me
-                </label>
-            </div>
-            {props.error && <div className={s.formSummaryError}>
-                {props.error}
+        <form onSubmit={handleSubmit}>
+
+            {createField('Email', 'email', [required], Input)}
+            {createField('Password', 'password', [required], Input, {type: 'password'})}
+            {createField(null, 'rememberBe', [], Input, {type: 'checkbox'}, 'remember me')}
+
+            {error && <div className={s.formSummaryError}>
+                {error}
             </div>}
             <div>
                 <button>Login</button>
@@ -52,7 +39,7 @@ type LoginFormValuesType = {
     password: string
     rememberMe: boolean
 }
-type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType,string> //for create fields (in future)
+type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType, string> //for create fields (in future)
 
 const LoginReduxForm = reduxForm<LoginFormValuesType>({form: 'login'})(LoginForm)
 
@@ -62,7 +49,7 @@ const Login: React.FC<PropsType> = (props) => {
     }
 
     if (props.isAuth) {
-        return <Redirect to={'/profile'} />
+        return <Redirect to={'/profile'}/>
     }
 
     return <div>
@@ -71,7 +58,7 @@ const Login: React.FC<PropsType> = (props) => {
     </div>
 }
 
-const mapStateToProps = (state: AppRootStateType):MapStatePropsType => ({
+const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
     isAuth: state.auth.isAuth
 })
 

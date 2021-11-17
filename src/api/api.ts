@@ -42,14 +42,13 @@ export const profileAPI = {
 
 export const authAPI = {
     me() {
-        return instance.get<ResponseType<{id: number,email: string,login: string}>>(`auth/me`).then(res => res.data)
+        return instance.get<ResponseType<{id: number,email: string,login: string}>>(`auth/me`)
     },
     login(email: string, password: string, rememberMe = false) {
         return instance.post<ResponseType<{ userId: number }>>('auth/login', {email, password, rememberMe})
-            .then(res => res.data)
     },
     logout() {
-        return instance.delete<ResponseType>('auth/login');
+        return instance.delete<ResponseType>('auth/login')
     },
 }
 

@@ -66,32 +66,20 @@ export const setStatus = (status: string) => ({type: SET_STATUS, status} as cons
 export const deletePost = (postId: number) => ({type: 'DELETE-POST', postId} as const)
 
 //Thunks
-export const getUserProfile = (userId: string) => {
-    return (dispatch: Dispatch<ProfileActionTypes>) => {
-        usersAPI.getProfile(userId)
-            .then(response => {
-                dispatch(setUserProfile(response.data))
-            });
-    }
+export const getUserProfile = (userId: string) => async (dispatch: Dispatch<ProfileActionTypes>) => {
+    let response = await usersAPI.getProfile(userId);
+    dispatch(setUserProfile(response.data))
 }
 
-export const getStatus = (userId: string) => {
-    return (dispatch: Dispatch<ProfileActionTypes>) => {
-        profileAPI.getStatus(userId)
-            .then(response => {
-                dispatch(setStatus(response.data))
-            });
-    }
+export const getStatus = (userId: string) => async (dispatch: Dispatch<ProfileActionTypes>) => {
+    let response = await profileAPI.getStatus(userId);
+    dispatch(setStatus(response.data))
 }
 
-export const updateStatus = (status: string) => {
-    return (dispatch: Dispatch<ProfileActionTypes>) => {
-        profileAPI.updateStatus(status)
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    dispatch(setStatus(status))
-                }
-            });
+export const updateStatus = (status: string) => async (dispatch: Dispatch<ProfileActionTypes>) => {
+    let response = await profileAPI.updateStatus(status);
+    if (response.data.resultCode === 0) {
+        dispatch(setStatus(status))
     }
 }
 

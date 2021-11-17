@@ -1,7 +1,7 @@
 import React from 'react';
-import s from "./Users.module.scss";
 import {UsersPropsType} from "./UsersContainer";
 import {User} from "./User";
+import {Paginator} from "../common/Paginator/Paginator";
 
 type UsersAdditionalPropsType = {
     onPageChanged: (p: number) => void
@@ -9,41 +9,28 @@ type UsersAdditionalPropsType = {
 
 type UsersPropsTypeUnion = UsersAdditionalPropsType & UsersPropsType
 
-export const Users: React.FC<UsersPropsTypeUnion> = (props) => {
-
-    // let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pagesCount = 25; // временно захардкодил количество, если найду время, то переделаю
-
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
-
+export const Users: React.FC<UsersPropsTypeUnion> = ({
+                                                         currentPage,
+                                                         totalUsersCount,
+                                                         pageSize,
+                                                         onPageChanged,
+                                                         users,
+                                                         ...props
+                                                     }) => {
     return <div>
-        <div className={s.pagesContainer}>
-            {pages.map(p => {
-                // return <div className={props.currentPage === p ? s.selectedPage : ""}
-                //              onClick={() => {
-                //                  props.onPageChanged(p)
-                //              }}>{p}</div>
-                return <div
-                    onClick={() => {
-                        props.onPageChanged(p)
-                    }}>
-                    <div className={
-                        `${s.circle} ${props.currentPage === p ? s.selectedPage : ""}`}>{p}</div>
-                </div>
-            })}
+        <Paginator onPageChanged={onPageChanged} currentPage={currentPage} pageSize={pageSize}
+                   totalUsersCount={totalUsersCount}/>
+        <div>
+            {
+                users.map(u => <User key={u.id}
+                                     user={u}
+                                     followingInProgress={props.followingInProgress}
+                                     followed={u.followed}
+                                     unfollow={props.unfollow}
+                                     follow={props.follow}
+                    />
+                )
+            }
         </div>
-        {
-            props.users.map(u => <User key={u.id}
-                                       user={u}
-                                       followingInProgress={props.followingInProgress}
-                                       followed={u.followed}
-                                       unfollow={props.unfollow}
-                                       follow={props.follow}
-                />
-            )
-        }
     </div>
 }
