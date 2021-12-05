@@ -9,7 +9,7 @@ type UserType = {
     id: number
     photos: PhotosType
     name: string
-    status: string
+    status: string | null
 }
 
 type UserPropsType = {

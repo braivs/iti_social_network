@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
@@ -20,13 +20,15 @@ const rootReducer = combineReducers({
     app: appReducer
   })
 
+// @ts-ignore
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // непосредственно создаём store
-export const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)));
+
+// а это, чтобы можно было в консоли браузера обращаться к store в любой момент
+// @ts-ignore
+window.__store__ = store
 
 // определить автоматически тип всего объекта состояния
 type RootReducerType = typeof rootReducer
 export type AppRootStateType = ReturnType<RootReducerType>
-
-// а это, чтобы можно было в консоли браузера обращаться к store в любой момент
-// @ts-ignore
-window.store = store
