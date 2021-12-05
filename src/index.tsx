@@ -6,10 +6,6 @@ import {Provider} from 'react-redux';
 import {store} from './redux/redux-store';
 import App from "./App";
 
-setInterval(() => {
-    store.dispatch({type: 'FAKE'})
-}, 1000)
-
 ReactDOM.render(
     <HashRouter>
         <Provider store={store}>
