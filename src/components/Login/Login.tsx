@@ -63,3 +63,5 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
 })
 
 export default connect(mapStateToProps, {login})(Login)
+
+// todo: fix style label for remember me
