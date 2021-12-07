@@ -1,10 +1,12 @@
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
-import {ProfileType} from "../types/types";
+import {PhotosType, ProfileType} from "../types/types";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 const SET_STATUS = 'SET-STATUS';
+const DELETE_POST = 'DELETE-POST'
+const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
 
 export type PostsType = {
     id: number
@@ -52,8 +54,10 @@ export const profileReducer = (state = initialState, action: ProfileActionTypes)
                 status: action.status
             }
         }
-        case "DELETE-POST":
+        case DELETE_POST:
             return {...state, posts: state.posts.filter(p => p.id != action.postId)}
+        case SAVE_PHOTO_SUCCESS:
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state;
     }
@@ -63,7 +67,8 @@ export const profileReducer = (state = initialState, action: ProfileActionTypes)
 export const addPost = (newPostBody: string) => ({type: ADD_POST, newPostBody} as const)
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
-export const deletePost = (postId: number) => ({type: 'DELETE-POST', postId} as const)
+export const deletePost = (postId: number) => ({type: DELETE_POST, postId} as const)
+export const savePhotoSuccess = (photos: PhotosType) => ({type: SAVE_PHOTO_SUCCESS, photos} as const)
 
 //Thunks
 export const getUserProfile = (userId: string) => async (dispatch: Dispatch<ProfileActionTypes>) => {
@@ -83,11 +88,20 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch<Profil
     }
 }
 
+export const savePhoto = (file: File) => async (dispatch: Dispatch<ProfileActionTypes>) => {
+    let response = await profileAPI.savePhoto(file);
+
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.photos))
+    }
+}
+
 export type ProfileActionTypes =
-    ReturnType<typeof addPost>
+    | ReturnType<typeof addPost>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof deletePost>
+    | ReturnType<typeof savePhotoSuccess>
 
 
 

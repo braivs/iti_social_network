@@ -1,21 +1,28 @@
 .descriptionBlock {
-  padding: 10px;
-  display: flex;
-  .right {
-    margin-left: 100px;
-  }
-  img {
-    width: 300px;
-    //border: 10px solid white;
-  }
-
-  .jobContainer {
+    padding: 10px;
     display: flex;
-    align-items: center;
 
-    .jobStatus {
-      width: 50px;
-      margin-left: 5px;
+    .left {
+        display: flex;
+        flex-direction: column;
+
+        .mainPhoto {
+            max-width: 300px;
+        }
     }
-  }
+
+    .right {
+        margin-left: 100px;
+    }
+
+
+    .jobContainer {
+        display: flex;
+        align-items: center;
+
+        .jobStatus {
+            width: 50px;
+            margin-left: 5px;
+        }
+    }
 }

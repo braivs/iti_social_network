@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './ProfileInfo.module.scss'
 import {Preloader} from "../../common/Preloader/Preloader";
 import jobYes from '../../../assets/images/jobYes.png'
@@ -8,19 +8,29 @@ import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import {ProfileType} from "../../../types/types";
 
 type ProfileInfoPropsType = {
+    isOwner?: boolean
     profile: null | ProfileType
     status: string
     updateStatus: (status: string) => void
+    savePhoto: (file: File) => void
 }
 
-export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateStatus}) => {
+export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateStatus, isOwner, savePhoto}) => {
     if (!profile) {
         return <Preloader/>
     }
+
+    const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files.length) {
+            savePhoto(e.target.files[0])
+        }
+    }
+
     return <>
         <div className={s.descriptionBlock}>
             <div className={s.left}>
-                <img src={profile.photos.large ? profile.photos.large : defaultAva} alt=""/>
+                <img src={profile.photos.large || defaultAva} alt="" className={s.mainPhoto}/>
+                {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
             <div className={s.right}>
