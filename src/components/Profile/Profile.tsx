@@ -8,8 +8,11 @@ import {ProfilePropsType} from "./ProfileContainer";
 export const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div className={s.content}>
-            <ProfileInfo isOwner={props.isOwner} profile={props.profilePage.profile} status={props.status}
-                         updateStatus={props.updateStatus} savePhoto={props.savePhoto}/>
+            <ProfileInfo savePhoto={props.savePhoto}
+                         isOwner={props.isOwner}
+                         profile={props.profilePage.profile}
+                         status={props.status}
+                         updateStatus={props.updateStatus}/>
             <MyPostsContainer/>
         </div>
     )

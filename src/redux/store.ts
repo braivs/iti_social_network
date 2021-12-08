@@ -1,3 +1,5 @@
+export let a = 1;
+/*
 import {InitialStateProfileType, ProfileActionTypes} from './profile-reducer';
 import {DialogsActionTypes, InitialStateDialogsType} from './dialogs-reducer';
 import {SidebarActionTypes, sidebarReducer, InitialStateSidebarType} from './sidebar-reducer';
@@ -80,3 +82,4 @@ let store: StoreType = {
 export default store;
 
 
+*/

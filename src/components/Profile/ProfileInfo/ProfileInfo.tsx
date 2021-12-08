@@ -9,14 +9,14 @@ import {ProfileType} from "../../../types/types";
 
 type ProfileInfoPropsType = {
     isOwner?: boolean
-    profile: null | ProfileType
+    profile: ProfileType
     status: string
     updateStatus: (status: string) => void
     savePhoto: (file: File) => void
 }
 
 export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateStatus, isOwner, savePhoto}) => {
-    if (!profile) {
+    if (!Object.keys(profile).length) {
         return <Preloader/>
     }
 
@@ -29,7 +29,7 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, up
     return <>
         <div className={s.descriptionBlock}>
             <div className={s.left}>
-                <img src={profile.photos.large || defaultAva} alt="" className={s.mainPhoto}/>
+                <img src={profile.photos.large ? profile.photos.large : defaultAva  } alt="" className={s.mainPhoto}/>
                 {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>

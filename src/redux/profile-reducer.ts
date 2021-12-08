@@ -21,7 +21,7 @@ let initialState = {
         {id: 3, message: 'Bugaga', likesCount: 5},
         {id: 4, message: 'Dada', likesCount: 1}
     ] as Array<PostsType>,
-    profile: null as ProfileType | null,
+    profile: {} as ProfileType,
     status: '',
     newPostText: ''
 }
@@ -91,7 +91,7 @@ export const updateStatus = (status: string) => async (dispatch: Dispatch<Profil
 export const savePhoto = (file: File) => async (dispatch: Dispatch<ProfileActionTypes>) => {
     let response = await profileAPI.savePhoto(file);
 
-    if (response.data.resultCode === 0) {
+    if (response.resultCode === 0) {
         dispatch(savePhotoSuccess(response.data.photos))
     }
 }
@@ -102,6 +102,14 @@ export type ProfileActionTypes =
     | ReturnType<typeof setStatus>
     | ReturnType<typeof deletePost>
     | ReturnType<typeof savePhotoSuccess>
+
+export type ResponseFilePhotoType = {
+    data: {
+        photos: PhotosType
+    }
+    resultCode: number
+    messages: Array<string>
+}
 
 
 
