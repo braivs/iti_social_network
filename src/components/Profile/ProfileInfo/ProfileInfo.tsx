@@ -6,7 +6,7 @@ import jobNo from '../../../assets/images/jobNo.png'
 import defaultAva from '../../../assets/images/default_ava.png'
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import {ContactsType, ProfileType} from "../../../types/types";
-import {ProfileDataForm} from "./ProfileDataForm";
+import {ProfileDataForm, ProfileFormValuesType} from "./ProfileDataForm";
 
 type ProfileInfoPropsType = {
     isOwner?: boolean
@@ -29,6 +29,11 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, up
         }
     }
 
+    // todo: need to fix any
+    const onSubmit = (formData: ProfileFormValuesType) => {
+        console.log(formData)
+    }
+
     return <>
         <div className={s.descriptionBlock}>
             <div className={s.left}>
@@ -39,7 +44,7 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, up
             </div>
             <div className={s.right}>
                 { editMode 
-                    ? <ProfileDataForm profile={profile}/> 
+                    ? <ProfileDataForm onSubmit={onSubmit}/>
                     : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner}/> }
 
             </div>
@@ -56,7 +61,9 @@ type ProfileDataPropsType = {
 const ProfileData: React.FC<ProfileDataPropsType> = ({profile, isOwner, goToEditMode}) => {
     return <div>
         {isOwner && <div><button onClick={goToEditMode}>edit</button></div>}
-        <div><b>Full Name</b>: {profile.fullName}</div>
+        <div>
+            <b>Full Name</b>: {profile.fullName}
+        </div>
         <div className={s.jobContainer}>
             <b>Looking for a job:</b>
             <img className={s.jobStatus} src={profile.lookingForAJob ? jobYes : jobNo} alt=""/>

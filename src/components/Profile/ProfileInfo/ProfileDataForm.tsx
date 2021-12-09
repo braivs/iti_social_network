@@ -1,36 +1,47 @@
 import React from "react";
-import {ContactsType, ProfileType} from "../../../types/types";
 import s from "./ProfileInfo.module.scss";
-import jobYes from "../../../assets/images/jobYes.png";
-import jobNo from "../../../assets/images/jobNo.png";
+import {createField, Input, Textarea} from "../../common/FormsControls/FormsControls";
+import {InjectedFormProps, reduxForm} from "redux-form";
 
-type ProfileDataFormPropsType = {
-    profile: ProfileType
-    isOwner?: boolean | undefined
-    goToEditMode?: () => void
-}
-export const ProfileDataForm: React.FC<ProfileDataFormPropsType> = ({profile}) => {
-    return <form>
-        {/*<div><button onClick={goToEditMode}>save</button></div>
-        <div><b>Full Name</b>: {profile.fullName}</div>
+export const ProfileDataFormPre: React.FC<InjectedFormProps<ProfileFormValuesType>> = ({handleSubmit}) => {
+    return <form onSubmit={handleSubmit}>
+        <div><button onClick={() => {}}>save</button></div>
+        <div>
+            <b>Full Name</b>: {createField('placeholder', 'FullName', [], Input)}
+        </div>
         <div className={s.jobContainer}>
-            <b>Looking for a job:</b>
-            <img className={s.jobStatus} src={profile.lookingForAJob ? jobYes : jobNo} alt=""/>
-        </div>
-        {profile.lookingForAJob &&
-            <div className={s.jobContainer}>
-                <b>My professional skills:</b>: {profile.lookingForAJobDescription}
-            </div>
-        }
-        <div>
-            <b>About Me</b>: {profile.aboutMe}
+            <b>Looking for a job:</b> {createField('placeholder', 'lookingForAJob', [], Input, {type: 'checkbox'})}
         </div>
         <div>
-            <b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
-            return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}/>
-        })}
+            <b>My professional skills:</b>
+            {createField('My professional skills', 'lookingForAJobDescription', [], Textarea)}
+        </div>
+        <div>
+            <b>About Me</b>:
+            {createField('About Me', 'aboutMe', [], Textarea)}
         </div>
 
-        <div>Job Description: {profile.lookingForAJobDescription}</div>*/}
     </form>
 }
+
+export type ProfileFormValuesType = {
+    FullName: string
+    lookingForAJob: string
+    lookingForAJobDescription: string
+    aboutMe: string
+}
+
+ const ProfileDataFormReduxForm = reduxForm<ProfileFormValuesType>({form: 'edit-profile'})(ProfileDataFormPre)
+
+type PropsType = {
+    onSubmit: (formData: ProfileFormValuesType) => void
+}
+
+export const ProfileDataForm: React.FC<PropsType> = (props) => {
+    const onSubmit = (formData: ProfileFormValuesType) => {
+        props.onSubmit(formData)
+    }
+
+    return <ProfileDataFormReduxForm onSubmit={onSubmit}/>
+}
+

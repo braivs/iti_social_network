@@ -39,8 +39,6 @@ type LoginFormValuesType = {
     password: string
     rememberMe: boolean
 }
-type LoginFormValuesTypeKeys = Extract<keyof LoginFormValuesType, string> //for create fields (in future)
-
 const LoginReduxForm = reduxForm<LoginFormValuesType>({form: 'login'})(LoginForm)
 
 const Login: React.FC<PropsType> = (props) => {
@@ -63,5 +61,3 @@ const mapStateToProps = (state: AppRootStateType): MapStatePropsType => ({
 })
 
 export default connect(mapStateToProps, {login})(Login)
-
-// todo: fix style label for remember me
