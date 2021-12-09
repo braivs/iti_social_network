@@ -1,11 +1,12 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import s from './ProfileInfo.module.scss'
 import {Preloader} from "../../common/Preloader/Preloader";
 import jobYes from '../../../assets/images/jobYes.png'
 import jobNo from '../../../assets/images/jobNo.png'
 import defaultAva from '../../../assets/images/default_ava.png'
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
-import {ProfileType} from "../../../types/types";
+import {ContactsType, ProfileType} from "../../../types/types";
+import {ProfileDataForm} from "./ProfileDataForm";
 
 type ProfileInfoPropsType = {
     isOwner?: boolean
@@ -16,6 +17,8 @@ type ProfileInfoPropsType = {
 }
 
 export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateStatus, isOwner, savePhoto}) => {
+    let [editMode, setEditMode] = useState(false);
+
     if (!Object.keys(profile).length) {
         return <Preloader/>
     }
@@ -29,28 +32,58 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, up
     return <>
         <div className={s.descriptionBlock}>
             <div className={s.left}>
-                <img src={profile.photos.large ? profile.photos.large : defaultAva  } alt="" className={s.mainPhoto}/>
+                <img src={profile.photos.large ? profile.photos.large : defaultAva} alt="" className={s.mainPhoto}/>
                 {isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
+
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
             <div className={s.right}>
-                <div>Full Name: {profile.fullName}</div>
-                <div>About Me: {profile.aboutMe}</div>
-                <div>Contacts:</div>
-                <ul className={s.contacts}>
-                    <li>facebook: {profile.contacts.facebook}</li>
-                    <li>vk: {profile.contacts.vk}</li>
-                    <li>twitter: {profile.contacts.twitter}</li>
-                    <li>instagram: {profile.contacts.instagram}</li>
-                </ul>
-                <div className={s.jobContainer}>
-                    <div>Looking for a job:</div>
-                    <img className={s.jobStatus} src={profile.lookingForAJob ? jobYes : jobNo} alt=""/>
-                </div>
-                <div>Job Description: {profile.lookingForAJobDescription}</div>
+                { editMode 
+                    ? <ProfileDataForm profile={profile}/> 
+                    : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner}/> }
+
             </div>
-
-
         </div>
     </>;
+}
+
+type ProfileDataPropsType = {
+    profile: ProfileType
+    isOwner: boolean | undefined
+    goToEditMode: () => void
+}
+
+const ProfileData: React.FC<ProfileDataPropsType> = ({profile, isOwner, goToEditMode}) => {
+    return <div>
+        {isOwner && <div><button onClick={goToEditMode}>edit</button></div>}
+        <div><b>Full Name</b>: {profile.fullName}</div>
+        <div className={s.jobContainer}>
+            <b>Looking for a job:</b>
+            <img className={s.jobStatus} src={profile.lookingForAJob ? jobYes : jobNo} alt=""/>
+        </div>
+        {profile.lookingForAJob &&
+            <div className={s.jobContainer}>
+                <b>My professional skills:</b>: {profile.lookingForAJobDescription}
+            </div>
+        }
+        <div>
+            <b>About Me</b>: {profile.aboutMe}
+        </div>
+        <div>
+            <b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
+            return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]}/>
+        })}
+        </div>
+
+        <div>Job Description: {profile.lookingForAJobDescription}</div>
+    </div>
+}
+
+type ContactPropsType = {
+    contactTitle: string
+    contactValue: string
+}
+
+const Contact: React.FC<ContactPropsType> = ({contactTitle, contactValue}) => {
+    return <div className={s.contact}><b>{contactTitle}</b>: {contactValue}</div>
 }

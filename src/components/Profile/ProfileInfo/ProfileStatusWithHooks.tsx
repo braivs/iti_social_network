@@ -6,11 +6,6 @@ type ProfileStatusPropsType = {
     updateStatus: (status: string) => void
 }
 
-type StateType = {
-    editMode: boolean
-    status: string
-}
-
 export const ProfileStatusWithHooks: React.FC<ProfileStatusPropsType> = (props) => {
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status);
@@ -34,10 +29,9 @@ export const ProfileStatusWithHooks: React.FC<ProfileStatusPropsType> = (props) 
 
     return (
         <div className={s.container}>
-            <div>status:</div>
-            {!editMode &&
+            {!editMode  &&
             <div className={s.status}>
-                <span onDoubleClick={activateEditMode}>{props.status || '-----'}</span>
+                <b>Status: </b><span onDoubleClick={activateEditMode}>{props.status || '-----'}</span>
             </div>
             }
             {editMode &&

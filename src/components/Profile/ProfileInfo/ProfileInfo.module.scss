@@ -1,6 +1,9 @@
 .descriptionBlock {
     padding: 10px;
     display: flex;
+    b {
+        font-weight: 700;
+    }
 
     .left {
         display: flex;
@@ -21,8 +24,13 @@
         align-items: center;
 
         .jobStatus {
-            width: 50px;
+            width: 20px;
             margin-left: 5px;
         }
     }
+
+}
+
+.contact {
+    padding-left: 10px;
 }
