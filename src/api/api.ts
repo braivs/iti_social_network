@@ -48,12 +48,16 @@ export const profileAPI = {
             }
         })
             .then(response => response.data)
+    },
+    saveProfile(profile: ProfileType) {
+        debugger
+        return instance.put(`profile`, profile);
     }
 }
 
 export const authAPI = {
     me() {
-        return instance.get<ResponseType<{id: number,email: string,login: string}>>(`auth/me`)
+        return instance.get<ResponseType<{ id: number, email: string, login: string }>>(`auth/me`)
     },
     login(email: string, password: string, rememberMe = false) {
         return instance.post<ResponseType<{ userId: number }>>('auth/login', {email, password, rememberMe})
@@ -67,9 +71,11 @@ export enum ResultCodesEnum {
     Success = 0,
     Error = 1
 }
+
 export enum ResultCodeForCaptcha {
     CaptchaIsRequired = 10
 }
+
 type ResponseType<D = {}> = {
     fieldsErrors: Array<string>
     resultCode: number

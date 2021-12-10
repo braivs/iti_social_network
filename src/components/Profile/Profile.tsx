@@ -12,6 +12,7 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
                          isOwner={props.isOwner}
                          profile={props.profilePage.profile}
                          status={props.status}
+                         saveProfile={props.saveProfile}
                          updateStatus={props.updateStatus}/>
             <MyPostsContainer/>
         </div>

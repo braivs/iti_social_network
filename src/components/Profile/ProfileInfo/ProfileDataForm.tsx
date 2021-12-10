@@ -7,7 +7,7 @@ export const ProfileDataFormPre: React.FC<InjectedFormProps<ProfileFormValuesTyp
     return <form onSubmit={handleSubmit}>
         <div><button onClick={() => {}}>save</button></div>
         <div>
-            <b>Full Name</b>: {createField('placeholder', 'FullName', [], Input)}
+            <b>Full Name</b>: {createField('placeholder', 'fullName', [], Input)}
         </div>
         <div className={s.jobContainer}>
             <b>Looking for a job:</b> {createField('placeholder', 'lookingForAJob', [], Input, {type: 'checkbox'})}
@@ -25,8 +25,8 @@ export const ProfileDataFormPre: React.FC<InjectedFormProps<ProfileFormValuesTyp
 }
 
 export type ProfileFormValuesType = {
-    FullName: string
-    lookingForAJob: string
+    fullName: string
+    lookingForAJob: boolean
     lookingForAJobDescription: string
     aboutMe: string
 }

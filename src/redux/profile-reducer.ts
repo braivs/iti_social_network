@@ -69,6 +69,7 @@ export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
 export const deletePost = (postId: number) => ({type: DELETE_POST, postId} as const)
 export const savePhotoSuccess = (photos: PhotosType) => ({type: SAVE_PHOTO_SUCCESS, photos} as const)
+export const saveProfileSuccess = (profile: ProfileType) => ({type: 'SAVE_PROFILE_SUCCESS', profile} as const)
 
 //Thunks
 export const getUserProfile = (userId: string) => async (dispatch: Dispatch<ProfileActionTypes>) => {
@@ -96,12 +97,20 @@ export const savePhoto = (file: File) => async (dispatch: Dispatch<ProfileAction
     }
 }
 
+export const saveProfile = (profile: ProfileType) => async (dispatch: Dispatch<ProfileActionTypes>) => {
+    let response = await profileAPI.saveProfile(profile);
+    if (response.data.resultCode === 0) {
+        dispatch(saveProfileSuccess(response.data.profile))
+    }
+}
+
 export type ProfileActionTypes =
     | ReturnType<typeof addPost>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
     | ReturnType<typeof deletePost>
     | ReturnType<typeof savePhotoSuccess>
+    | ReturnType<typeof saveProfileSuccess>
 
 export type ResponseFilePhotoType = {
     data: {

@@ -5,7 +5,7 @@ import jobYes from '../../../assets/images/jobYes.png'
 import jobNo from '../../../assets/images/jobNo.png'
 import defaultAva from '../../../assets/images/default_ava.png'
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
-import {ContactsType, ProfileType} from "../../../types/types";
+import {ContactsType, PhotosType, ProfileType} from "../../../types/types";
 import {ProfileDataForm, ProfileFormValuesType} from "./ProfileDataForm";
 
 type ProfileInfoPropsType = {
@@ -14,9 +14,17 @@ type ProfileInfoPropsType = {
     status: string
     updateStatus: (status: string) => void
     savePhoto: (file: File) => void
+    saveProfile: (profile: ProfileType) => void
 }
 
-export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateStatus, isOwner, savePhoto}) => {
+export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
+                                                                profile,
+                                                                status,
+                                                                updateStatus,
+                                                                isOwner,
+                                                                savePhoto,
+                                                                saveProfile
+                                                            }) => {
     let [editMode, setEditMode] = useState(false);
 
     if (!Object.keys(profile).length) {
@@ -29,9 +37,9 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, up
         }
     }
 
-    // todo: need to fix any
     const onSubmit = (formData: ProfileFormValuesType) => {
-        console.log(formData)
+        let profileUpdated = {...profile, ...formData}
+        saveProfile(profileUpdated)
     }
 
     return <>
@@ -43,9 +51,11 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, up
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
             <div className={s.right}>
-                { editMode 
+                {editMode
                     ? <ProfileDataForm onSubmit={onSubmit}/>
-                    : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner}/> }
+                    : <ProfileData goToEditMode={() => {
+                        setEditMode(true)
+                    }} profile={profile} isOwner={isOwner}/>}
 
             </div>
         </div>
@@ -60,7 +70,9 @@ type ProfileDataPropsType = {
 
 const ProfileData: React.FC<ProfileDataPropsType> = ({profile, isOwner, goToEditMode}) => {
     return <div>
-        {isOwner && <div><button onClick={goToEditMode}>edit</button></div>}
+        {isOwner && <div>
+          <button onClick={goToEditMode}>edit</button>
+        </div>}
         <div>
             <b>Full Name</b>: {profile.fullName}
         </div>
@@ -69,9 +81,9 @@ const ProfileData: React.FC<ProfileDataPropsType> = ({profile, isOwner, goToEdit
             <img className={s.jobStatus} src={profile.lookingForAJob ? jobYes : jobNo} alt=""/>
         </div>
         {profile.lookingForAJob &&
-            <div className={s.jobContainer}>
-                <b>My professional skills:</b>: {profile.lookingForAJobDescription}
-            </div>
+          <div className={s.jobContainer}>
+            <b>My professional skills:</b>: {profile.lookingForAJobDescription}
+          </div>
         }
         <div>
             <b>About Me</b>: {profile.aboutMe}
