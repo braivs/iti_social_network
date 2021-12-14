@@ -52,7 +52,13 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
             </div>
             <div className={s.right}>
                 {editMode
-                    ? <ProfileDataForm onSubmit={onSubmit}/>
+                    ? <ProfileDataForm initialValues={{
+                        fullName: profile.fullName,
+                        lookingForAJob: profile.lookingForAJob,
+                        lookingForAJobDescription: profile.lookingForAJobDescription,
+                        aboutMe: profile.aboutMe
+                    }}
+                        onSubmit={onSubmit}/>
                     : <ProfileData goToEditMode={() => {
                         setEditMode(true)
                     }} profile={profile} isOwner={isOwner}/>}
