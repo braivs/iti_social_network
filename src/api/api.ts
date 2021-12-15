@@ -23,14 +23,14 @@ export const usersAPI = {
     unfollow(userId: number) {
         return instance.delete<ResponseType>(`follow/${userId}`)
     },
-    getProfile(userId: string) {
+    getProfile(userId: number | null) {
         console.warn('Obsolete method. Please use profileAPI object.')
         return profileAPI.getProfile(userId)
     },
 }
 
 export const profileAPI = {
-    getProfile(userId: string) {
+    getProfile(userId: number | null) {
         return instance.get<ProfileType>(`profile/` + userId);
     },
     getStatus(userId: string) {
@@ -50,7 +50,6 @@ export const profileAPI = {
             .then(response => response.data)
     },
     saveProfile(profile: ProfileType) {
-        debugger
         return instance.put(`profile`, profile);
     }
 }

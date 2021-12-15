@@ -40,6 +40,7 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
     const onSubmit = (formData: ProfileFormValuesType) => {
         let profileUpdated = {...profile, ...formData}
         saveProfile(profileUpdated)
+        setEditMode(false)
     }
 
     return <>
@@ -56,8 +57,10 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
                         fullName: profile.fullName,
                         lookingForAJob: profile.lookingForAJob,
                         lookingForAJobDescription: profile.lookingForAJobDescription,
-                        aboutMe: profile.aboutMe
+                        aboutMe: profile.aboutMe,
+                        contacts: profile.contacts
                     }}
+                        profile={profile}
                         onSubmit={onSubmit}/>
                     : <ProfileData goToEditMode={() => {
                         setEditMode(true)

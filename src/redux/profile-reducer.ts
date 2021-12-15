@@ -1,6 +1,8 @@
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "../api/api";
 import {PhotosType, ProfileType} from "../types/types";
+import {ThunkAction} from "redux-thunk";
+import {AppRootStateType} from "./redux-store";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -69,10 +71,9 @@ export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const)
 export const deletePost = (postId: number) => ({type: DELETE_POST, postId} as const)
 export const savePhotoSuccess = (photos: PhotosType) => ({type: SAVE_PHOTO_SUCCESS, photos} as const)
-export const saveProfileSuccess = (profile: ProfileType) => ({type: 'SAVE_PROFILE_SUCCESS', profile} as const)
 
 //Thunks
-export const getUserProfile = (userId: string) => async (dispatch: Dispatch<ProfileActionTypes>) => {
+export const getUserProfile = (userId: number | null) => async (dispatch: Dispatch<ProfileActionTypes>) => {
     let response = await usersAPI.getProfile(userId);
     dispatch(setUserProfile(response.data))
 }
@@ -97,10 +98,11 @@ export const savePhoto = (file: File) => async (dispatch: Dispatch<ProfileAction
     }
 }
 
-export const saveProfile = (profile: ProfileType) => async (dispatch: Dispatch<ProfileActionTypes>) => {
+export const saveProfile = (profile: ProfileType): AppThunk => async (dispatch, getState: () => AppRootStateType) => {
+    const userId = getState().auth.id
     let response = await profileAPI.saveProfile(profile);
     if (response.data.resultCode === 0) {
-        dispatch(saveProfileSuccess(response.data.profile))
+        dispatch(getUserProfile(userId))
     }
 }
 
@@ -110,7 +112,7 @@ export type ProfileActionTypes =
     | ReturnType<typeof setStatus>
     | ReturnType<typeof deletePost>
     | ReturnType<typeof savePhotoSuccess>
-    | ReturnType<typeof saveProfileSuccess>
+
 
 export type ResponseFilePhotoType = {
     data: {
@@ -120,5 +122,5 @@ export type ResponseFilePhotoType = {
     messages: Array<string>
 }
 
-
+type AppThunk = ThunkAction<void, AppRootStateType, unknown, ProfileActionTypes>
 

@@ -2,8 +2,11 @@ import React from "react";
 import s from "./ProfileInfo.module.scss";
 import {createField, Input, Textarea} from "../../common/FormsControls/FormsControls";
 import {InjectedFormProps, reduxForm} from "redux-form";
+import {ContactsType, ProfileType} from "../../../types/types";
 
-export const ProfileDataFormSlave: React.FC<InjectedFormProps<ProfileFormValuesType>> = ({handleSubmit}) => {
+export const ProfileDataFormSlave: React.FC<InjectedFormProps<ProfileFormValuesType>> = ({ handleSubmit, initialValues }) => {
+    let contacts = initialValues.contacts;
+    console.log(contacts)
     return <form onSubmit={handleSubmit}>
         <div><button onClick={() => {}}>save</button></div>
         <div>
@@ -29,6 +32,7 @@ export type ProfileFormValuesType = {
     lookingForAJob: boolean
     lookingForAJobDescription: string
     aboutMe: string
+    contacts: ContactsType
 }
 
  const ProfileDataFormReduxForm = reduxForm<ProfileFormValuesType>({form: 'edit-profile'})(ProfileDataFormSlave)
@@ -36,6 +40,7 @@ export type ProfileFormValuesType = {
 type PropsType = {
     onSubmit: (formData: ProfileFormValuesType) => void
     initialValues: ProfileFormValuesType
+    profile: ProfileType
 }
 
 export const ProfileDataForm: React.FC<PropsType> = (props) => {
@@ -43,6 +48,6 @@ export const ProfileDataForm: React.FC<PropsType> = (props) => {
         props.onSubmit(formData)
     }
 
-    return <ProfileDataFormReduxForm onSubmit={onSubmit} initialValues={props.initialValues}/>
+    return <ProfileDataFormReduxForm onSubmit={onSubmit} initialValues={props.initialValues} />
 }
 
