@@ -107,9 +107,12 @@ export const saveProfile = (profile: ProfileType): AppThunk => async (dispatch, 
     if (response.data.resultCode === 0) {
         dispatch(getUserProfile(userId))
     } else {
+        const messageText = response.data.messages[0]
+        const beginIndex = messageText.indexOf('>')
+        const endIndex = messageText.indexOf(')')
+        const fieldName = messageText.slice(beginIndex + 1,endIndex).toLowerCase()
         // @ts-ignore
-        dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0]}))
-        // todo: home-task here parsing error message and light error field
+        dispatch(stopSubmit('edit-profile', { 'contacts': {[fieldName]: messageText}} ))
         return Promise.reject(response.data.messages[0])
     }
 }
