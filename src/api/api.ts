@@ -1,5 +1,5 @@
 import axios from "axios";
-import {PhotosType, ProfileType, UserType} from "../types/types";
+import {ProfileType, UserType} from "../types/types";
 import {ResponseFilePhotoType} from "../redux/profile-reducer";
 
 const instance = axios.create({
@@ -66,6 +66,12 @@ export const authAPI = {
     },
 }
 
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get<CaptchaResponseType>(`security/get-captcha-url`)
+    },
+}
+
 export enum ResultCodesEnum {
     Success = 0,
     Error = 1
@@ -85,4 +91,7 @@ type GetUsersType = {
     error: string
     items: Array<UserType>
     totalCount: number
+}
+type CaptchaResponseType = {
+    url: string
 }
