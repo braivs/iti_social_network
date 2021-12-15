@@ -5,7 +5,7 @@ import jobYes from '../../../assets/images/jobYes.png'
 import jobNo from '../../../assets/images/jobNo.png'
 import defaultAva from '../../../assets/images/default_ava.png'
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
-import {ContactsType, PhotosType, ProfileType} from "../../../types/types";
+import {ContactsType, ProfileType} from "../../../types/types";
 import {ProfileDataForm, ProfileFormValuesType} from "./ProfileDataForm";
 
 type ProfileInfoPropsType = {
@@ -14,7 +14,7 @@ type ProfileInfoPropsType = {
     status: string
     updateStatus: (status: string) => void
     savePhoto: (file: File) => void
-    saveProfile: (profile: ProfileType) => void
+    saveProfile: (profile: ProfileType) => Promise<void>
 }
 
 export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
@@ -37,10 +37,17 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
         }
     }
 
+    // todo: need to fix ts-ignore. Find right way to type return promise
     const onSubmit = (formData: ProfileFormValuesType) => {
-        let profileUpdated = {...profile, ...formData}
-        saveProfile(profileUpdated)
-        setEditMode(false)
+        const profileUpdated = {...profile, ...formData}
+        const promise = saveProfile(profileUpdated)
+        debugger
+        promise.then(
+            () => {
+                setEditMode(false)
+            }
+        )
+        //
     }
 
     return <>
@@ -60,8 +67,8 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = ({
                         aboutMe: profile.aboutMe,
                         contacts: profile.contacts
                     }}
-                        profile={profile}
-                        onSubmit={onSubmit}/>
+                                       profile={profile}
+                                       onSubmit={onSubmit}/>
                     : <ProfileData goToEditMode={() => {
                         setEditMode(true)
                     }} profile={profile} isOwner={isOwner}/>}

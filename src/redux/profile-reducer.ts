@@ -3,6 +3,7 @@ import {profileAPI, usersAPI} from "../api/api";
 import {PhotosType, ProfileType} from "../types/types";
 import {ThunkAction} from "redux-thunk";
 import {AppRootStateType} from "./redux-store";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -98,11 +99,18 @@ export const savePhoto = (file: File) => async (dispatch: Dispatch<ProfileAction
     }
 }
 
+// todo: need to fix ts-ignore
 export const saveProfile = (profile: ProfileType): AppThunk => async (dispatch, getState: () => AppRootStateType) => {
     const userId = getState().auth.id
-    let response = await profileAPI.saveProfile(profile);
+    const response = await profileAPI.saveProfile(profile);
+
     if (response.data.resultCode === 0) {
         dispatch(getUserProfile(userId))
+    } else {
+        // @ts-ignore
+        dispatch(stopSubmit('edit-profile', {_error: response.data.messages[0]}))
+        // todo: home-task here parsing error message and light error field
+        return Promise.reject(response.data.messages[0])
     }
 }
 

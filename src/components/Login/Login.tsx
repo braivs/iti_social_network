@@ -26,7 +26,8 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({handleSubm
 
             {error && <div className={s.formSummaryError}>
                 {error}
-            </div>}
+            </div>
+            }
             <div>
                 <button>Login</button>
             </div>
