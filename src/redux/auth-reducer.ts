@@ -4,22 +4,21 @@ import {ThunkAction} from "redux-thunk";
 import {AppRootStateType} from "./redux-store";
 import {FormAction, stopSubmit} from "redux-form";
 
-const SET_USER_DATA = 'bright-net/auth/SET-USER-DATA'
-const GET_CAPTCHA_URL_SUCCESS = 'bright-net/auth/GET_CAPTCHA_URL_SUCCESS'
-
 const initialState = {
     id: null as number | null,
     email: null as string | null,
     login: null as string | null,
     isAuth: false as boolean,
-    captchaUrl: null as null | string,
+    captchaUrl: null as null | string, // if null, then captcha is not required
 };
 
 type InitialStateType = typeof initialState;
 
 export const authReducer = (state = initialState, action: AuthActionTypes): InitialStateType => {
     switch (action.type) {
-        case SET_USER_DATA: {
+        case "bright-net/auth/GET_CAPTCHA_URL_SUCCESS":
+        case 'bright-net/auth/SET-USER-DATA':
+        {
             return {
                 ...state,
                 ...action.payload
@@ -31,13 +30,11 @@ export const authReducer = (state = initialState, action: AuthActionTypes): Init
 }
 
 export const setAuthUserData = (id: number | null, login: string | null, email: string | null, isAuth: boolean) => ({
-    type: SET_USER_DATA,
-    payload: {id, login, email, isAuth}
+    type: 'bright-net/auth/SET-USER-DATA', payload: {id, login, email, isAuth}
 } as const)
 
 export const getCaptchaUrlSuccess = (captchaUrl: string) => ({
-    type: GET_CAPTCHA_URL_SUCCESS,
-    payload: {captchaUrl}
+    type: 'bright-net/auth/GET_CAPTCHA_URL_SUCCESS', payload: {captchaUrl}
 } as const)
 
 export const getAuthUserData = () => async (dispatch: Dispatch<AuthActionTypes>) => {
@@ -49,11 +46,14 @@ export const getAuthUserData = () => async (dispatch: Dispatch<AuthActionTypes>)
     }
 }
 
-export const login = (email: string, password: string, rememberMe: boolean): ThunkType => async (dispatch) => {
-    let response = await authAPI.login(email, password, rememberMe);
+export const login = (email: string, password: string, rememberMe: boolean, captcha: string | null): ThunkType => async (dispatch) => {
+    let response = await authAPI.login(email, password, rememberMe, captcha);
     if (response.data.resultCode === ResultCodesEnum.Success) {
         dispatch(getAuthUserData())
-    } else {
+    }  else {
+        if (response.data.resultCode === ResultCodesEnum.CaptchaRequired) {
+            dispatch(getCaptchaUrl())
+        }
         let message = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
         dispatch(stopSubmit('login', {_error: message}))
     }
@@ -72,5 +72,7 @@ export const logout = (): ThunkType => async (dispatch) => {
     }
 }
 
-type AuthActionTypes = ReturnType<typeof setAuthUserData>
+type AuthActionTypes =
+    | ReturnType<typeof setAuthUserData>
+    | ReturnType<typeof getCaptchaUrlSuccess>
 type ThunkType = ThunkAction<void, AppRootStateType, unknown, AuthActionTypes | FormAction>

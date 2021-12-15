@@ -11,12 +11,14 @@
     color: red;
 }
 
+/*todo: fix length of border error*/
 .formSummaryError {
     border: red 1px solid;
     padding: 5px;
     color: red;
 }
 
+/*todo: on same string as checkbox*/
 .rememberMe {
     display: flex;
 }
