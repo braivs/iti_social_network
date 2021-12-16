@@ -85,10 +85,16 @@ export const getStatus = (userId: string) => async (dispatch: Dispatch<ProfileAc
 }
 
 export const updateStatus = (status: string) => async (dispatch: Dispatch<ProfileActionTypes>) => {
-    let response = await profileAPI.updateStatus(status);
-    if (response.data.resultCode === 0) {
-        dispatch(setStatus(status))
+    try {
+        let response = await profileAPI.updateStatus(status);
+        if (response.data.resultCode === 0) {
+            dispatch(setStatus(status))
+        }
+    } catch(error) {
+        // todo: Maybe fix: error not seen here like in PS99. Or it is because new version.
+        // Here possible to do dispatch. If we do catch here, than window.addEventListener at App does not work.
     }
+
 }
 
 export const savePhoto = (file: File) => async (dispatch: Dispatch<ProfileActionTypes>) => {

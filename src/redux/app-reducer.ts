@@ -4,12 +4,14 @@ import {getAuthUserData} from "./auth-reducer";
 
 type InitialStateType = {
     initialized: boolean
+    globalError: null | string
 }
 type AppActionTypes = ReturnType<typeof initializedSuccess>
 type ThunkType = ThunkAction<void, AppRootStateType, unknown, AppActionTypes>
 
 const initialState: InitialStateType = {
     initialized: false,
+    globalError: null
 };
 
 

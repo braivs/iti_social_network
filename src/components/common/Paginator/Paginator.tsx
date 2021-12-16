@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import s from "./Paginator.module.scss";
+import cn from "classnames";
 
 type PropsType = {
     onPageChanged: (p: number) => void
@@ -29,7 +30,7 @@ export const Paginator: React.FC<PropsType> = ({
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
     let rightPortionPageNumber = portionNumber * portionSize
 
-    return <div className={s.pagesContainer}>
+    return <div className={s.paginator}>
         {portionNumber > 1 &&
             <button onClick={() => {
                 setPortionNumber(portionNumber - 1)
@@ -38,7 +39,7 @@ export const Paginator: React.FC<PropsType> = ({
         {pages
             .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
             .map((p: any) => {
-                return <div className={`${s.circle} ${currentPage === p ? s.selectedPage : ""}`}
+                return <div className={cn({[s.selectedPage]: currentPage === p}, s.circle)}
                             onClick={() => {
                                 onPageChanged(p)
                             }}>{p}</div>

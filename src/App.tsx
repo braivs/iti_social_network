@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import {Route, withRouter} from 'react-router-dom';
+import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import {SidebarContainer} from './components/Sidebar/SidebarContainer';
 import {News} from './components/News/News';
 import {Music} from './components/Music/Music';
@@ -31,8 +31,18 @@ type MapDispatchPropsType = {
 type AppPropsType = MapStateToPropsType & MapDispatchPropsType
 
 class App extends React.Component<AppPropsType> {
+    // todo: maybe need to fix any & realize global error show
+    catchAllUnhandledErrors = (promiseRejectionEvent: any) => {
+        console.log('App catchAllUnhandledErrors: ', 'Some error occurred') // in PS99 was alert. I change it for better experience.
+        // and here dispatch thunk
+        // console.error(promiseRejectionEvent)
+    }
     componentDidMount() {
         this.props.initializeApp()
+        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors)
+    }
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors)
     }
 
     render() {
@@ -45,14 +55,17 @@ class App extends React.Component<AppPropsType> {
                     <HeaderContainer/>
                     <SidebarContainer/>
                     <div className={'app-wrapper-content'}>
-                        <Route path="/dialogs" render={withSuspense(DialogsContainer)}/>
-                        <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
-                        <Route path="/news" render={() => <News/>}/>
-                        <Route path="/music" render={() => <Music/>}/>
-                        <Route path="/settings" render={() => <Settings/>}/>
-                        <Route path="/users" render={() => <UsersContainer/>}/>
-                        <Route path="/login" render={() => <Login/>}/>
-                        {/*<Redirect from={'/'} to={'/profile'}/>*/}
+                        <Switch>
+                            <Route exact path="/" render={() => <Redirect to={'/profile'}/>}/>
+                            <Route path="/dialogs" render={withSuspense(DialogsContainer)}/>
+                            <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)}/>
+                            <Route path="/news" render={() => <News/>}/>
+                            <Route path="/music" render={() => <Music/>}/>
+                            <Route path="/settings" render={() => <Settings/>}/>
+                            <Route path="/users" render={() => <UsersContainer/>}/>
+                            <Route path="/login" render={() => <Login/>}/>
+                            <Route path="*" render={() => <div>404 NOT FOUND</div>}/>
+                        </Switch>
                     </div>
                 </div>
             </div>

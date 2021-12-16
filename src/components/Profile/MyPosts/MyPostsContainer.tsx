@@ -17,6 +17,7 @@ export type MyPostsPropsType = MapStatePropsType & MapDispatchPropsType
 const mapStateToProps = (state: AppRootStateType): MapStatePropsType => {
     return {
         posts: state.profilePage.posts
+        // newPostText: state.profilePage.newPostText // that was in PS99, but for me is working without it.
     }
 }
 
