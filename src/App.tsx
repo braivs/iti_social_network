@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.scss';
-import {HashRouter, Redirect, Route, withRouter} from 'react-router-dom';
+import {Redirect, Route, withRouter} from 'react-router-dom';
 import {SidebarContainer} from './components/Sidebar/SidebarContainer';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import {News} from './components/News/News';
@@ -10,10 +10,10 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
-import {connect, Provider} from "react-redux";
+import {connect} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
-import {AppRootStateType, store} from "./redux/redux-store";
+import {AppRootStateType} from "./redux/redux-store";
 import {Preloader} from "./components/common/Preloader/Preloader";
 
 type MapStateToPropsType = {
@@ -59,17 +59,6 @@ const mapStateToProps = (state: AppRootStateType) => ({
     initialized: state.app.initialized
 })
 
-let AppContainer = compose<React.ComponentType>(
+export default compose<React.ComponentType>(
     withRouter,
     connect(mapStateToProps, {initializeApp}))(App)
-
-let SamuraiJSApp = () => {
-    return <HashRouter>
-        <Provider store={store}>
-            <AppContainer />
-        </Provider>
-    </HashRouter>
-}
-
-export default SamuraiJSApp;
-
