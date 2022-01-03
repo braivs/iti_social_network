@@ -38,11 +38,11 @@ export const Paginator: React.FC<PropsType> = ({
 
         {pages
             .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-            .map((p: any) => {
-                return <div className={cn({[s.selectedPage]: currentPage === p}, s.circle)}
+            .map((p) => {
+                return <span key={p} className={cn({[s.selectedPage]: currentPage === p}, s.circle)}
                             onClick={() => {
                                 onPageChanged(p)
-                            }}>{p}</div>
+                            }}>{p}</span>
             })}
         {portionCount > portionNumber &&
             <button onClick={() => {
@@ -52,5 +52,3 @@ export const Paginator: React.FC<PropsType> = ({
 
 
 }
-
-// todo: need to fix any
